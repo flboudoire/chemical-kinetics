@@ -1,0 +1,1 @@
+jupyter nbconvert --to markdown "examples/HMF_oxidation_WO3/HMF_oxidation_WO3.ipynb"
