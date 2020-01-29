@@ -45,7 +45,7 @@ plot.plot_c(ds, ["HMF"])
 ```
 
 
-<p align='center'>\n![svg](simple_example_files/simple_example_2_0.svg)
+<p align='center'>![svg](simple_example_files/simple_example_2_0.svg)
 </p>
 
 
@@ -54,7 +54,7 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
-<p align='center'>\n![svg](simple_example_files/simple_example_3_0.svg)
+<p align='center'>![svg](simple_example_files/simple_example_3_0.svg)
 </p>
 
 
@@ -63,7 +63,7 @@ plot.plot_q(ds)
 ```
 
 
-<p align='center'>\n![svg](simple_example_files/simple_example_4_0.svg)
+<p align='center'>![svg](simple_example_files/simple_example_4_0.svg)
 </p>
 
 
@@ -72,5 +72,5 @@ plot.plot_ks(ds)
 ```
 
 
-<p align='center'>\n![svg](simple_example_files/simple_example_5_0.svg)
+<p align='center'>![svg](simple_example_files/simple_example_5_0.svg)
 </p>
