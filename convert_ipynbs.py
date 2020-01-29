@@ -1,11 +1,13 @@
 import os
 
-files = [
-    "examples/HMF_oxidation_WO3/HMF_oxidation_WO3",
-    "examples/simple_example/simple_example"
-    ]
+ipynb_files = list()
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if file.endswith(".ipynb") and "checkpoint" not in file:
+            name = file.replace(".ipynb", "")
+            ipynb_files.append(os.path.join(root, name))
 
-for file in files:
+for file in ipynb_files:
 
     os.system(rf"jupyter nbconvert --to markdown {file}.ipynb")
 
