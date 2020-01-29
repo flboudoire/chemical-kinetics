@@ -19,5 +19,5 @@ for file in files:
             else:
                 clean_md += line
 
-    with open(rf"{file}_clean.md", "w") as f:
+    with open(rf"{file}.md", "w") as f:
         f.write(clean_md)

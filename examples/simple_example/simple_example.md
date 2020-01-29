@@ -45,8 +45,8 @@ plot.plot_c(ds, ["HMF"])
 ```
 
 
-![svg](simple_example_files/simple_example_2_0.svg)
-
+<p align='center'><img src = simple_example_files/simple_example_2_0.svg
+></p>
 
 
 ```python
@@ -54,8 +54,8 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
-![svg](simple_example_files/simple_example_3_0.svg)
-
+<p align='center'><img src = simple_example_files/simple_example_3_0.svg
+></p>
 
 
 ```python
@@ -63,8 +63,8 @@ plot.plot_q(ds)
 ```
 
 
-![svg](simple_example_files/simple_example_4_0.svg)
-
+<p align='center'><img src = simple_example_files/simple_example_4_0.svg
+></p>
 
 
 ```python
@@ -72,5 +72,5 @@ plot.plot_ks(ds)
 ```
 
 
-![svg](simple_example_files/simple_example_5_0.svg)
-
+<p align='center'><img src = simple_example_files/simple_example_5_0.svg
+></p>
