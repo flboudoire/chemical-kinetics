@@ -13,7 +13,9 @@ for file in files:
     with open(rf"{file}.md") as f:
         for line in f:
             if "![svg]" in line:
-                clean_md += rf"<p align='center'>{line}</p>"
+                line.replace("![svg](", "")
+                line.replace(")", "")
+                clean_md += rf"<p align='center'><img src = {line}></p>"
             else:
                 clean_md += line
 

@@ -45,8 +45,8 @@ plot.plot_c(ds, ["HMF"])
 ```
 
 
-<p align='center'>![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_2_0.svg)
-</p>
+<p align='center'><img src = ![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_2_0.svg)
+></p>
 
 
 ```python
@@ -54,8 +54,8 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
-<p align='center'>![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_3_0.svg)
-</p>
+<p align='center'><img src = ![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_3_0.svg)
+></p>
 
 
 ```python
@@ -63,8 +63,8 @@ plot.plot_q(ds)
 ```
 
 
-<p align='center'>![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_4_0.svg)
-</p>
+<p align='center'><img src = ![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_4_0.svg)
+></p>
 
 
 ```python
@@ -72,5 +72,5 @@ plot.plot_ks(ds)
 ```
 
 
-<p align='center'>![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_5_0.svg)
-</p>
+<p align='center'><img src = ![svg](HMF_oxidation_WO3_files/HMF_oxidation_WO3_5_0.svg)
+></p>
