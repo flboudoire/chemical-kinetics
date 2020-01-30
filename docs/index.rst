@@ -7,13 +7,13 @@ chemical_kinetics module documentation
 ======================================
 
 data_processing.py
-==================
+------------------
 
 .. automodule:: data_processing
    :members:
 
 fit.py
-======
+------
 
 .. automodule:: fit
    :members:
