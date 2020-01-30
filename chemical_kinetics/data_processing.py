@@ -24,8 +24,8 @@ class Dataset:
             datasets.
         fit_results:
             MinimizerResult from the lmfit module, stores the results of
-            the fit, see: [MinimizerResult documentation]
-            (https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult)
+            the fit, see: [MinimizerResult
+            documentation](https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult)
             for details. Defined when the fit.fit_dataset() function is
             run on the Dataset object.
         names:
