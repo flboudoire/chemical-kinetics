@@ -24,8 +24,8 @@ class Dataset:
             datasets.
         fit_results:
             MinimizerResult from the lmfit module, stores the results of
-            the fit, see:
-            https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
+            the fit, see: [MinimizerResult documentation]
+            (https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult)
             for details. Defined when the fit.fit_dataset() function is
             run on the Dataset object.
         names:
@@ -113,9 +113,10 @@ class Dataset:
         """Loads / processes .csv files holding charge passed over time data.
 
         Recommendations for the .csv file formatting:
-        * the files headers should be formatted in this fashion: "t, Q"
-        * first column should be the time, second column charge passed
-        * each columns in each files must have the same number of rows
+          * the files headers should be formatted in this fashion: "t,
+          Q" 
+          * first column should be the time, second column charge passed
+          * each columns in each files must have the same number of rows
         and columns
 
         Example files can be found here: #TODO link to github folder

@@ -54,8 +54,8 @@ directly at initialization using the files_q argument.</p>
 datasets.</p>
 </dd>
 <dt>fit_results:</dt><dd><p>MinimizerResult from the lmfit module, stores the results of
-the fit, see:
-<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult">https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult</a>
+the fit, see: [MinimizerResult documentation]
+(<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult">https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult</a>)
 for details. Defined when the fit.fit_dataset() function is
 run on the Dataset object.</p>
 </dd>
@@ -98,11 +98,16 @@ function Docstring for more details.</p>
 <dt id="data_processing.Dataset.load_q">
 <code class="sig-name descname">load_q</code><span class="sig-paren">(</span><em class="sig-param">files</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset.load_q" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads / processes .csv files holding charge passed over time data.</p>
-<p>Recommendations for the .csv file formatting:
-* the files headers should be formatted in this fashion: “t, Q”
+<dl>
+<dt>Recommendations for the .csv file formatting:</dt><dd><ul class="simple">
+<li><p>the files headers should be formatted in this fashion: “t,</p></li>
+</ul>
+<p>Q” 
 * first column should be the time, second column charge passed
-* each columns in each files must have the same number of rows
-and columns</p>
+* each columns in each files must have the same number of rows</p>
+</dd>
+</dl>
+<p>and columns</p>
 <p>Example files can be found here: #TODO link to github folder
 with raw data</p>
 <p>Relies on the load() function from this module, see also this
