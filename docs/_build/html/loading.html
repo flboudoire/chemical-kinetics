@@ -164,14 +164,14 @@ concentration vs time files.</p></li>
 passed vs time files, if this argument is not set
 further fitting will proceed without taking the charge
 passed in account.</p></li>
-<li><p><strong>| c_label | q_label</strong> (<em>t_label</em>) – Set the corresponding attributes values. Used to set the
+<li><p><strong>c_label</strong><strong>, </strong><strong>q_label</strong> (<em>t_label</em><em>,</em>) – Set the corresponding attributes values. Used to set the
 x and y axes labels when plotting.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">df_c/df_c_std/df_c_fit</code></dt>
+<code class="sig-name descname">df_c, df_c_std, df_c_fit</code></dt>
 <dd><p>DataFrames used to store respectively the mean
 concentration, the concentration standard deviations and the
 corresponding fit results. Defined by the load_c method or
@@ -180,7 +180,7 @@ directly at initialization using the files_c argument.</p>
 
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">df_q/df_q_std/df_q_fit</code></dt>
+<code class="sig-name descname">df_q, df_q_std, df_q_fit</code></dt>
 <dd><p>DataFrames used to store respectively the mean charge
 passed, the charge passed standard deviations and the
 corresponding fit results. Defined by the load_q method or
@@ -189,7 +189,7 @@ directly at initialization using the files_q argument.</p>
 
 <dl class="attribute">
 <dt>
-<code class="sig-name descname">t_label/c_label/q_label</code></dt>
+<code class="sig-name descname">t_label, c_label, q_label</code></dt>
 <dd><p>Labels to be used for the x and y axes when plotting the
 datasets.</p>
 <dl class="field-list simple">
@@ -274,7 +274,7 @@ each column in each file must have the same number of rows.</p>
 deviation (df_std).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>df/df_std</p>
+<dd class="field-odd"><p>df, df_std</p>
 </dd>
 </dl>
 </dd></dl>
