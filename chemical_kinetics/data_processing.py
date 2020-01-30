@@ -88,7 +88,6 @@ class Dataset:
 
          * the files headers are formatted in this fashion: "t, species
          name 1, species name 2..."
-
          * first column is time, other columns are concentrations
 
         Example files can be found here: #TODO link to github folder
