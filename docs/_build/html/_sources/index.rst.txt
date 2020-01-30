@@ -11,15 +11,5 @@ chemical_kinetics documentation
    :caption: Contents:
 
    loading
-
-Fitting
--------
-
-.. automodule:: fit
-   :members:
-
-Plotting
---------
-
-.. automodule:: plot
-   :members:
+   fitting
+   plotting

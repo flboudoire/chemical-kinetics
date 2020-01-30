@@ -1,0 +1,6 @@
+
+Fitting
+-------
+
+.. automodule:: fit
+   :members:
