@@ -4,7 +4,7 @@ You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive. -->
 # chemical_kinetics module documentation
 
-## data_processing.py
+## Loading data
 
 
 ### class data_processing.Dataset(files_c, files_q=None, t_label='t [s]', c_label='C [M]', q_label='Q [C]')
@@ -127,7 +127,7 @@ Returns:
         DataFrames holding the averaged data (df) and standard
         deviation (df_std).
 
-## fit.py
+## Fitting
 
 
 ### fit.evaluate(derivatives, params, t, c0)
@@ -135,4 +135,4 @@ Returns:
 ### fit.fit_dataset(dataset, model, parameters, untracked_c0=[])
 
 ### fit.residuals(params, df_c, df_q, model, c0, tracked_species)
-## plot.py
+## Plotting

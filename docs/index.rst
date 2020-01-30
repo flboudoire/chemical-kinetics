@@ -6,20 +6,20 @@
 chemical_kinetics module documentation
 ======================================
 
-data_processing.py
-------------------
+Loading data
+------------
 
 .. automodule:: data_processing
    :members:
 
-fit.py
-------
+Fitting
+-------
 
 .. automodule:: fit
    :members:
 
-plot.py
-------
+Plotting
+--------
 
 .. automodule:: plot
    :members:
