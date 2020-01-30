@@ -6,7 +6,7 @@ import numpy as np
 import lmfit
 
 
-def evaluate_c(derivatives, params, t, c0):
+def evaluate(derivatives, params, t, c0):
 
     """
 
@@ -46,7 +46,7 @@ def residuals(
             )
 
     if df_q is not None:
-        c = evaluate_c(
+        c = evaluate(
             derivatives = model.derivatives,
             params = params,
             t = df_q["t"],
