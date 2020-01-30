@@ -145,10 +145,8 @@ def load(files):
             each column in each file must have the same number of rows.
 
     Returns:
-        df (pandas.DataFrame):
-            Averaged dataset.
-        df_std (pandas.DataFrame):
-            Standard deviation dataset.
+        pandas.DataFrame, pandas.DataFrame:
+            Averaged dataset and standard deviation dataset.
 
     """
 
