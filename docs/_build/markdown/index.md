@@ -4,6 +4,17 @@ You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive. -->
 # chemical_kinetics module documentation
 
+# Indices and tables
+
+
+* Index
+
+
+* Module Index
+
+
+* Search Page
+
 ## Loading data
 
 
