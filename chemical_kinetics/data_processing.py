@@ -22,17 +22,17 @@ class Dataset:
             x and y axes labels when plotting.
     
     Attributes:
-        df_c, df_c_std, df_c_fit:
+        df_c/df_c_std/df_c_fit:
             DataFrames used to store respectively the mean
             concentration, the concentration standard deviations and the
             corresponding fit results. Defined by the load_c method or
             directly at initialization using the files_c argument.
-        df_q, df_q_std, df_q_fit:
+        df_q/df_q_std/df_q_fit:
             DataFrames used to store respectively the mean charge
             passed, the charge passed standard deviations and the
             corresponding fit results. Defined by the load_q method or
             directly at initialization using the files_q argument.
-        t_label, c_label, q_label (str):
+        t_label/c_label/q_label (str):
             Labels to be used for the x and y axes when plotting the
             datasets.
         fit_results:
@@ -145,7 +145,7 @@ def load(files):
             each column in each file must have the same number of rows.
 
     Returns:
-        df, df_std:
+        df/df_std:
             DataFrames holding the averaged data (df) and standard
             deviation (df_std).
 
