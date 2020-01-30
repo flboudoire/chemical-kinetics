@@ -146,8 +146,7 @@ def load(files):
 
     Returns:
         df, df_std:
-            DataFrames holding the averaged data (df) and standard
-            deviation (df_std).
+            DataFrames holding the averaged data and standard deviation.
 
     """
 
