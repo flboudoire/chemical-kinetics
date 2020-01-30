@@ -17,7 +17,7 @@ class Dataset:
             passed vs time files, if this argument is not set
             further fitting will proceed without taking the charge
             passed in account.
-        t_label (str, optional), c_label (str, optional), q_label (str, optional):
+        t_label c_label q_label (str, optional):
             Set the corresponding attributes values. Used to set the
             x and y axes labels when plotting.
     
