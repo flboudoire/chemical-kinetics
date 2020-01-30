@@ -6,9 +6,11 @@ import pandas as pd
 
 class Dataset:
 
-    """ Load and stores kinetics data, stores fit results and axes labels.
+    """
+    Load and stores kinetics data, stores fit results and axes labels.
     
-    Attributes:
+    Attributes
+    ----------
         df_c, df_c_std, df_c_fit:
             DataFrames used to store respectively the mean
             concentration, the concentration standard deviations and the
