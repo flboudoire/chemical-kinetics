@@ -113,14 +113,12 @@ class Dataset:
         """Loads / processes .csv files holding charge passed over time data.
 
         Recommendations for the .csv file formatting:
-        
-          * the files headers should be formatted in this fashion: "t, 
-          Q"
 
+          * the files headers should be formatted in this fashion: 't,
+        Q'
           * first column should be the time, second column charge passed
-          
           * each columns in each files must have the same number of rows 
-          and columns
+        and columns
 
         Example files can be found here: #TODO link to github folder
         with raw data
