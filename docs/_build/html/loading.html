@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Loading data &#8212; Chemical kinetics 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="chemical_kinetics documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-data_processing">
+<span id="loading-data"></span><h1>Loading data<a class="headerlink" href="#module-data_processing" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="data_processing.Dataset">
+<em class="property">class </em><code class="sig-prename descclassname">data_processing.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">files_c</em>, <em class="sig-param">files_q=None</em>, <em class="sig-param">t_label='t [s]'</em>, <em class="sig-param">c_label='C [M]'</em>, <em class="sig-param">q_label='Q [C]'</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and stores kinetics data, stores fit results and axes labels.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><dl class="simple">
+<dt>df_c, df_c_std, df_c_fit:</dt><dd><p>DataFrames used to store respectively the mean
+concentration, the concentration standard deviations and the
+corresponding fit results. Defined by the load_c method or
+directly at initialization using the files_c argument.</p>
+</dd>
+<dt>df_q, df_q_std, df_q_fit:</dt><dd><p>DataFrames used to store respectively the mean charge
+passed, the charge passed standard deviations and the
+corresponding fit results. Defined by the load_q method or
+directly at initialization using the files_q argument.</p>
+</dd>
+<dt>t_label, c_label, q_label (str):</dt><dd><p>Labels to be used for the x and y axes when plotting the
+datasets.</p>
+</dd>
+<dt>fit_results:</dt><dd><p>MinimizerResult from the lmfit module, stores the results of
+the fit, see:
+<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult">https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult</a>
+for details. Defined when the fit.fit_dataset() function is
+run on the Dataset object.</p>
+</dd>
+<dt>names:</dt><dd><p>List of species names which concentration evolution over
+time is tracked. Used in particular to label the data when
+plotting. Defined in the load_c method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="data_processing.Dataset.load_c">
+<code class="sig-name descname">load_c</code><span class="sig-paren">(</span><em class="sig-param">files</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset.load_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads / processes .csv files holding concentration over time data.</p>
+<p>Recommendations for the .csv file formatting:
+* the files headers should be formatted in this fashion: “t,
+species name 1, species name 2…”
+* first column should be the time, other columns are
+concentrations</p>
+<p>Example files can be found here: #TODO link to github folder
+with raw data</p>
+<p>Relies on the load() function from this module, see also this
+function Docstring for more details.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>files:</dt><dd><p>list of strings representing the paths of the .csv files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="data_processing.Dataset.load_q">
+<code class="sig-name descname">load_q</code><span class="sig-paren">(</span><em class="sig-param">files</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset.load_q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads / processes .csv files holding charge passed over time data.</p>
+<p>Recommendations for the .csv file formatting:
+* the files headers should be formatted in this fashion: “t, Q”
+* first column should be the time, second column charge passed
+* each columns in each files must have the same number of rows
+and columns</p>
+<p>Example files can be found here: #TODO link to github folder
+with raw data</p>
+<p>Relies on the load() function from this module, see also this
+function Docstring for more details.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>files:</dt><dd><p>list of strings representing the paths of the .csv files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="data_processing.load">
+<code class="sig-prename descclassname">data_processing.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">files</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads and processes data from .csv files, stores it in Dataframes.</p>
+<p>The .csv files should have the same headers, the same number of
+columns and the same number of rows. The header should be held in
+the first row.</p>
+<p>These .csv files are typically generated from raw data files from
+experiments using custom code to satisfy these requirements.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><dl class="simple">
+<dt>files:</dt><dd><p>List of string(s) representing the path(s) to the file(s),
+each column in each file must have the same number of rows.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>df, df_std:</dt><dd><p>DataFrames holding the averaged data (df) and standard
+deviation (df_std).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Chemical kinetics</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Loading data</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">chemical_kinetics documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Florent Boudoire.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/loading.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
