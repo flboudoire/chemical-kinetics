@@ -10,11 +10,7 @@ chemical_kinetics module documentation
    :maxdepth: 2
    :caption: Contents:
 
-Loading data
-------------
-
-.. automodule:: data_processing
-   :members:
+   loading
 
 Fitting
 -------
