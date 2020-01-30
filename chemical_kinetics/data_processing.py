@@ -84,7 +84,7 @@ class Dataset:
 
         """Loads / processes .csv files holding concentration over time data.
 
-        Recommendations for the .csv file formatting:
+        Recommendations for the .csv file formatting
           * the files headers are formatted in this fashion: "t, species
         name 1, species name 2..."
           * first column is time, other columns are concentrations
@@ -111,7 +111,7 @@ class Dataset:
 
         """Loads / processes .csv files holding charge passed over time data.
 
-        Recommendations for the .csv file formatting:
+        Recommendations for the .csv file formatting
           * the files headers should be formatted in this fashion: "t,Q"
           * first column should be the time, second column charge passed
 
