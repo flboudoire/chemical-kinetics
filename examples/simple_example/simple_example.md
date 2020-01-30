@@ -1,3 +1,39 @@
+# Simple example: reversible monomolecular reaction
+
+## Model
+
+The reaction we consider in this example is the following:
+
+$$\rm A \rightarrow B$$
+
+
+```python
+def derivatives(y, t, p):
+
+    """
+    Calculates the derivatives from local values, used by scipy.integrate.solve_ivp
+    """
+    
+    c = {"A" : y[0], "B" : y[1]}
+    
+    dc = dict()
+
+    dc["A"] = p["k2"]*c["B"] - p["k1"]*c["A"]
+    dc["B"] = p["k1"]*c["A"] - p["k2"]*c["B"]
+    
+    dy = [dc["A"], dc["B"]]
+
+    return dy
+```
+
+
+```python
+from chemical_kinetics import fit
+
+fit.evaluate(derivatives, )
+```
+
+
 ```python
 from chemical_kinetics import data_processing
 
@@ -45,7 +81,7 @@ plot.plot_c(ds, ["HMF"])
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_2_0.svg
+<p align='center'><img src = simple_example_files/simple_example_5_0.svg
 ></p>
 
 
@@ -54,7 +90,7 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_3_0.svg
+<p align='center'><img src = simple_example_files/simple_example_6_0.svg
 ></p>
 
 
@@ -63,7 +99,7 @@ plot.plot_q(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_4_0.svg
+<p align='center'><img src = simple_example_files/simple_example_7_0.svg
 ></p>
 
 
@@ -72,5 +108,5 @@ plot.plot_ks(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_5_0.svg
+<p align='center'><img src = simple_example_files/simple_example_8_0.svg
 ></p>

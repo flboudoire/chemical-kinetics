@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../chemical_kinetics'))
+sys.path.insert(0, os.path.abspath('../chemical_kinetics/'))
 
 
 # -- Project information -----------------------------------------------------
@@ -31,7 +31,8 @@ release = '1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_markdown_builder'
+    'sphinx_markdown_builder',
+    'sphinx.ext.autodoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

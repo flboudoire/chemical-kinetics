@@ -16,7 +16,8 @@ ds = data_processing.Dataset(
 
 
 ```python
-from chemical_kinetics import model, fit
+from chemical_kinetics import fit
+import model
 
 parameter_vars = dict(value = 0.05, min = 0)
 parameter_names = [
