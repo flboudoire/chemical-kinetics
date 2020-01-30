@@ -86,11 +86,10 @@ class Dataset:
 
         Recommendations for the .csv file formatting:
 
-         * the files headers should be formatted in this fashion: "t, 
-         species name 1, species name 2..."
+         * the files headers are formatted in this fashion: "t, species
+         name 1, species name 2..."
 
-         * first column should be the time, other columns are
-         concentrations
+         * first column is time, other columns are concentrations
 
         Example files can be found here: #TODO link to github folder
         with raw data
@@ -117,11 +116,8 @@ class Dataset:
         Recommendations for the .csv file formatting:
 
           * the files headers should be formatted in this fashion: "t,Q"
-
           * first column should be the time, second column charge passed
-
-          * each columns in each files must have the same number of rows 
-          and columns
+          * each columns in each files must have the same number of rows
 
         Example files can be found here: #TODO link to github folder
         with raw data
