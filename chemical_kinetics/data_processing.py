@@ -24,10 +24,12 @@ class Dataset:
             datasets.
         fit_results:
             MinimizerResult from the lmfit module, stores the results of
-            the fit, see:
+            the fit, for details see:
+            
             https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
-            for details. Defined when the fit.fit_dataset() function is
-            run on the Dataset object.
+            
+            Defined when the fit.fit_dataset() function is run on the
+            Dataset object.
         names:
             List of species names which concentration evolution over
             time is tracked. Used in particular to label the data when
