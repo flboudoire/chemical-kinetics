@@ -155,6 +155,20 @@
 <dt id="data_processing.Dataset">
 <em class="property">class </em><code class="sig-prename descclassname">data_processing.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">files_c</em>, <em class="sig-param">files_q=None</em>, <em class="sig-param">t_label='t [s]'</em>, <em class="sig-param">c_label='C [M]'</em>, <em class="sig-param">q_label='Q [C]'</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and stores kinetics data, stores fit results and axes labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files_c</strong> – List of strings representing the path of the
+concentration vs time files.</p></li>
+<li><p><strong>files_q</strong> (<em>optional</em>) – List of strings representing the path of the charge
+passed vs time files, if this argument is not set
+further fitting will proceed without taking the charge
+passed in account.</p></li>
+<li><p><strong>c_label</strong><strong>, </strong><strong>q_label</strong> (<em>t_label</em><em>,</em>) – Set the corresponding attributes values. Used to set the
+x and y axes labels when plotting.</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="attribute">
 <dt>
 <code class="sig-name descname">df_c, df_c_std, df_c_fit</code></dt>

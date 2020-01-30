@@ -7,6 +7,19 @@ import pandas as pd
 class Dataset:
 
     """ Load and stores kinetics data, stores fit results and axes labels.
+
+    Arguments:
+        files_c:
+            List of strings representing the path of the
+            concentration vs time files.
+        files_q (optional):
+            List of strings representing the path of the charge
+            passed vs time files, if this argument is not set
+            further fitting will proceed without taking the charge
+            passed in account.
+        t_label, c_label, q_label (str, optional):
+            Set the corresponding attributes values. Used to set the
+            x and y axes labels when plotting.
     
     Attributes:
         df_c, df_c_std, df_c_fit:
@@ -25,7 +38,7 @@ class Dataset:
         fit_results:
             MinimizerResult from the lmfit module, stores the results of
             the fit, for details see:
-            
+
             https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
             
             Defined when the fit.fit_dataset() function is run on the
