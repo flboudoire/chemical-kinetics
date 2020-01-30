@@ -4,40 +4,38 @@
 ### class data_processing.Dataset(files_c, files_q=None, t_label='t [s]', c_label='C [M]', q_label='Q [C]')
 Load and stores kinetics data, stores fit results and axes labels.
 
-Attributes:
+> df_c, df_c_std, df_c_fit
 
-    df_c, df_c_std, df_c_fit:
+>     DataFrames used to store respectively the mean
+>     concentration, the concentration standard deviations and the
+>     corresponding fit results. Defined by the load_c method or
+>     directly at initialization using the files_c argument.
 
-        DataFrames used to store respectively the mean
-        concentration, the concentration standard deviations and the
-        corresponding fit results. Defined by the load_c method or
-        directly at initialization using the files_c argument.
+> df_q, df_q_std, df_q_fit
 
-    df_q, df_q_std, df_q_fit:
+>     DataFrames used to store respectively the mean charge
+>     passed, the charge passed standard deviations and the
+>     corresponding fit results. Defined by the load_q method or
+>     directly at initialization using the files_q argument.
 
-        DataFrames used to store respectively the mean charge
-        passed, the charge passed standard deviations and the
-        corresponding fit results. Defined by the load_q method or
-        directly at initialization using the files_q argument.
+> t_label, c_label, q_label
 
-    t_label, c_label, q_label (str):
+>     Labels to be used for the x and y axes when plotting the
+>     datasets.
 
-        Labels to be used for the x and y axes when plotting the
-        datasets.
+> fit_results
 
-    fit_results:
+>     MinimizerResult from the lmfit module, stores the results of
+>     the fit, see:
+>     [https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult](https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult)
+>     for details. Defined when the fit.fit_dataset() function is
+>     run on the Dataset object.
 
-        MinimizerResult from the lmfit module, stores the results of
-        the fit, see:
-        [https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult](https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult)
-        for details. Defined when the fit.fit_dataset() function is
-        run on the Dataset object.
+> names
 
-    names:
-
-        List of species names which concentration evolution over
-        time is tracked. Used in particular to label the data when
-        plotting. Defined in the load_c method.
+>     List of species names which concentration evolution over
+>     time is tracked. Used in particular to label the data when
+>     plotting. Defined in the load_c method.
 
 
 #### load_c(files)
