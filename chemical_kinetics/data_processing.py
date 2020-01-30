@@ -17,7 +17,9 @@ class Dataset:
             passed vs time files, if this argument is not set
             further fitting will proceed without taking the charge
             passed in account.
-        t_label, c_label, q_label (str, optional):
+        t_label (str, optional):
+        c_label (str, optional):
+        q_label (str, optional):
             Set the corresponding attributes values. Used to set the
             x and y axes labels when plotting.
     
@@ -57,21 +59,7 @@ class Dataset:
         c_label = "C [M]",
         q_label = "Q [C]"
         ):
-        """ Class constructor
-
-        Arguments:
-            files_c:
-                List of strings representing the path of the
-                concentration vs time files.
-            files_q (optional):
-                List of strings representing the path of the charge
-                passed vs time files, if this argument is not set
-                further fitting will proceed without taking the charge
-                passed in account.
-            t_label, c_label, q_label (str, optional):
-                Set the corresponding attributes values. Used to set the
-                x and y axes labels when plotting.
-        """
+        """ Class constructor """
 
         # initialize attributes
 
