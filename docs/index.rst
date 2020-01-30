@@ -17,3 +17,9 @@ fit.py
 
 .. automodule:: fit
    :members:
+
+plot.py
+------
+
+.. automodule:: plot
+   :members:
