@@ -28,7 +28,7 @@ for file in ipynb_files:
         f.write(clean_md)
 
 # update documentation
-os.system(r"cd docs; make markdown")
+os.system(r"cd docs; make clean; make markdown")
 
 # git
 os.system(r"git pull;git add .;git commit -a -m 'Update';git push;")
