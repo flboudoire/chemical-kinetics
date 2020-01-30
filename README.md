@@ -6,7 +6,7 @@ A python module to load, fit and plot chemical kinetics data. It is used to extr
 
 Using pip:
 ```bash
-pip install chemical_kinetics
+$ pip install chemical_kinetics
 ```
 Or just download the chemical_kinetics folder and add it to your python path.
 
