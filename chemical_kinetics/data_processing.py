@@ -9,44 +9,41 @@ class Dataset:
     """ Load and stores kinetics data, stores fit results and axes labels.
 
     Arguments:
-        files_c:
-            List of strings representing the path of the
-            concentration vs time files.
-        files_q (optional):
-            List of strings representing the path of the charge
-            passed vs time files, if this argument is not set
-            further fitting will proceed without taking the charge
-            passed in account.
+        files_c (list):
+            The path(s) of the concentration vs time files.
+        files_q (list, optional):
+            The path(s) of the charge passed vs time files, if this
+            argument is not set further fitting will proceed without
+            taking the charge passed in account.
         t_label|c_label|q_label (str, optional):
             Set the corresponding attributes values. Used to set the
             x and y axes labels when plotting.
     
     Attributes:
-        df_c|df_c_std|df_c_fit:
-            DataFrames used to store respectively the mean
-            concentration, the concentration standard deviations and the
-            corresponding fit results. Defined by the load_c method or
-            directly at initialization using the files_c argument.
-        df_q|df_q_std|df_q_fit:
-            DataFrames used to store respectively the mean charge
-            passed, the charge passed standard deviations and the
-            corresponding fit results. Defined by the load_q method or
-            directly at initialization using the files_q argument.
+        df_c|df_c_std|df_c_fit (pandas.DataFrame):
+            Store respectively the mean concentration, the concentration
+            standard deviations and the corresponding fit results.
+            Defined by the load_c method or directly at initialization
+            using the files_c argument.
+        df_q|df_q_std|df_q_fit (pandas.DataFrame):
+            Store respectively the mean charge passed, the charge passed
+            standard deviations and the corresponding fit results.
+            Defined by the load_q method or directly at initialization
+            using the files_q argument.
         t_label|c_label|q_label (str):
             Labels to be used for the x and y axes when plotting the
             datasets.
-        fit_results:
-            MinimizerResult from the lmfit module, stores the results of
-            the fit, for details see:
+        fit_results (lmfit.MinimizerResult):
+            Stores the results of the fit, for details see:
 
             https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
             
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
-        names:
-            List of species names which concentration evolution over
-            time is tracked. Used in particular to label the data when
-            plotting. Defined in the load_c method.
+        names (list):
+            Species names which concentration evolution over time is
+            tracked. Used in particular to label the data when plotting.
+            Defined in the load_c method.
     """
 
     def __init__(
@@ -93,11 +90,11 @@ class Dataset:
         with raw data
 
         Relies on the load() function from this module, see also this
-        function Docstring for more details.
+        function documentation for more details.
 
         Arguments:
-            files:
-                list of strings representing the paths of the .csv files
+            files (list):
+                Path(s) of the .csv files.
         """
 
         # load the files in Dataframes
@@ -122,8 +119,8 @@ class Dataset:
         function Docstring for more details.
 
         Arguments:
-            files:
-                list of strings representing the paths of the .csv files
+            files (list):
+                Paths of the .csv files.
         """
 
         self.df_q, self.df_q_std = load(files)
@@ -140,13 +137,13 @@ def load(files):
     experiments using custom code to satisfy these requirements.
 
     Arguments:
-        files:
-            List of string(s) representing the path(s) to the file(s),
-            each column in each file must have the same number of rows.
+        files (list):
+            Path(s) to the file(s), each column in each file must have
+            the same number of rows.
 
     Returns:
         pandas.DataFrame, pandas.DataFrame:
-            Averaged dataset and standard deviation dataset.
+            Averages DataFrame and standard deviation DataFrame.
 
     """
 
