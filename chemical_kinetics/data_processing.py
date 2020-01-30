@@ -145,8 +145,9 @@ def load(files):
             each column in each file must have the same number of rows.
 
     Returns:
-        df, df_std:
-            DataFrames holding the averaged data and standard deviation.
+        df|df_std:
+            DataFrames holding the averaged data (df) and standard
+            deviation (df_std).
 
     """
 
