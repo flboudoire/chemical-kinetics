@@ -2,7 +2,7 @@
 
 We consider in this example are the following reactions:
 
-- Forward reaction 1: A $\rightarrow$ B with time constant k<sub>1, fw</sub>
+- Forward reaction 1: A :math:`\rightarrow` B with time constant k<sub>1, fw</sub>
 
 - Backward reaction 1: B &rarr; A with time constant k<sub>1, bw</sub>
 
@@ -12,17 +12,17 @@ Which gives the following differential equations according to the law of mass ac
 
 .. math:: \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]
 
-$$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
+.. math:: \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]
 
-$$\frac{dC}{dt} = k_{2}[B]$$
+.. math:: \frac{dC}{dt} = k_{2}[B]
 
 This system of differential equation will be computed at a given time t using the following function:
 
 
 ```python
 import re
-string = r"$$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$"
-pattern = r'\$\$(.*?)\$\$'
+string = r".. math:: \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]"
+pattern = r'\:math:`\`(.*?)\:math:`\`'
 repl = r".. math:: \1"
 s = re.sub(pattern, repl, string)
 # s = re.findall(pattern, string)
@@ -35,8 +35,8 @@ print(s)
 
 ```python
 import re
-string = r"- Forward reaction 1: A $\rightarrow$ B with time $\rightarrow$ constant k<sub>1, fw</sub>"
-pattern = r'\$(.*?)\$'
+string = r"- Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k<sub>1, fw</sub>"
+pattern = r'\:math:`(.*?)\`'
 repl = r":math:`\1`"
 s = re.sub(pattern, repl, string)
 # s = re.findall(pattern, string)

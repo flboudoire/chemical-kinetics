@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Simple example &mdash; Chemical kinetics 1.0 documentation</title>
+  <title>Model &mdash; Chemical kinetics 1.0 documentation</title>
   
 
   
@@ -17,26 +17,25 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
         <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Plotting" href="plotting.html" /> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Chemical kinetics
+            <a href="../index.html" class="icon icon-home"> Chemical kinetics
           
 
           
@@ -63,7 +62,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -80,16 +79,11 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#model">Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#loading-and-plotting-the-dataset">Loading and plotting the dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#fitting">Fitting</a></li>
-</ul>
-</li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../loading.html">Loading data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting.html">Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simple_example.html">Simple example</a></li>
 </ul>
 
             
@@ -104,7 +98,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Chemical kinetics</a>
+          <a href="../index.html">Chemical kinetics</a>
         
       </nav>
 
@@ -133,15 +127,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Simple example</li>
+      <li>Model</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/simple_example.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/notebooks/simple_example.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -154,25 +148,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="simple-example">
-<h1>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="model">
-<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="model">
+<h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
 <p>We consider in this example are the following reactions:</p>
 <ul class="simple">
-<li><p>Forward reaction 1: A $rightarrow$ B with time constant k<span class="raw-html-m2r"><sub>1, fw</sub></span></p></li>
+<li><p>Forward reaction 1: A <span class="math notranslate nohighlight">\(\rightarrow\)</span> B with time constant k<span class="raw-html-m2r"><sub>1, fw</sub></span></p></li>
 <li><p>Backward reaction 1: B &amp;rarr; A with time constant k<span class="raw-html-m2r"><sub>1, bw</sub></span></p></li>
 <li><p>Forward reaction 2: B &amp;rarr; C with time constant k<span class="raw-html-m2r"><sub>2</sub></span></p></li>
 </ul>
 <p>Which gives the following differential equations according to the law of mass action:</p>
 <div class="math notranslate nohighlight">
 \[\frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]\]</div>
-<p>$$frac{dB}{dt} = k<em>{1,fw}[A] - k</em>{1,bw}[B] - k_{2}[B]$$</p>
-<p>$$frac{dC}{dt} = k_{2}[B]$$</p>
+<div class="math notranslate nohighlight">
+\[\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{dC}{dt} = k_{2}[B]\]</div>
 <p>This system of differential equation will be computed at a given time t using the following function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$$\frac</span><span class="si">{dB}{dt}</span><span class="s2"> = k_{1,fw}[A] - k_{1,bw}[B] - k_</span><span class="si">{2}</span><span class="s2">[B]$$&quot;</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\$\$(.*?)\$\$&#39;</span>
+<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.. math:: \frac</span><span class="si">{dB}{dt}</span><span class="s2"> = k_{1,fw}[A] - k_{1,bw}[B] - k_</span><span class="si">{2}</span><span class="s2">[B]&quot;</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\:math:`\`(.*?)\:math:`\`&#39;</span>
 <span class="n">repl</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.. math:: \1&quot;</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 <span class="c1"># s = re.findall(pattern, string)</span>
@@ -182,8 +176,8 @@
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;- Forward reaction 1: A $\rightarrow$ B with time $\rightarrow$ constant k&lt;sub&gt;1, fw&lt;/sub&gt;&quot;</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\$(.*?)\$&#39;</span>
+<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;- Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k&lt;sub&gt;1, fw&lt;/sub&gt;&quot;</span>
+<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\:math:`(.*?)\`&#39;</span>
 <span class="n">repl</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;:math:`\1`&quot;</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
 <span class="c1"># s = re.findall(pattern, string)</span>
@@ -229,7 +223,7 @@
 <p><strong>Note:</strong> when defining the “derivatives” function, do not use keys for the “p” parameters dictionary containing the string “<a href="#id1"><span class="problematic" id="id2">c0_</span></a>” (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the “fit.fit_dataset” function.</p>
 </div>
 <div class="section" id="loading-and-plotting-the-dataset">
-<h2>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h2>
+<h1>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h1>
 <p>The dataset “data/concentrations vs time.csv” is loaded in an object of class data_processing.Dataset (see <a class="reference external" href="#TODOaddlink">class documentation</a> for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.</p>
 <p>Its a good idea to consult the [recomendations for the .csv files format] (#TODO write and add link).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
@@ -250,7 +244,7 @@
 <p align='center'><img src = simple_example_files/simple_example_8_0.svg
 ></p></div>
 <div class="section" id="fitting">
-<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
+<h1>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h1>
 <p>We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the “residuals” function but a different residuals definition can include other parameters.</p>
 <p>These parameters are given as a dictionary where the keys are the time constant names. The corresponding values are a dictionary containing the parameter arguments (for a list of arguments consult the lmfit.Parameter <a class="reference external" href="#TODO:addlink">documentation</a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -420,20 +414,12 @@
 </pre></div>
 </div>
 </div>
-</div>
 
 
            </div>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="plotting.html" class="btn btn-neutral float-left" title="Plotting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
