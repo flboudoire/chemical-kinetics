@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-chemical_kinetics documentation
-===============================
+chemical_kinetics
+=================
 
 .. mdinclude:: ../README.md
 
