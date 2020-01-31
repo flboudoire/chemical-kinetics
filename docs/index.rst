@@ -6,6 +6,8 @@
 chemical_kinetics documentation
 ===============================
 
+.. mdinclude:: ../README.md
+
 .. toctree::
 
    loading
