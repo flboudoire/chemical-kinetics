@@ -10,7 +10,7 @@ We consider in this example are the following reactions:
 
 Which gives the following differential equations according to the law of mass action:
 
-.. math:: \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]
+$$\frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]$$
 
 $$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
 
