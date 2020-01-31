@@ -30,5 +30,10 @@ for file in ipynb_files:
 # update documentation
 os.system(r"cd docs; make clean; make html")
 
+# copy images from examples
+for file in ipynb_files:
+    folder = file.split("/")[-1]
+    os.system(rf"cd {file}_files docs/_build/html/{folder}_files")
+
 # git
 os.system(r"git pull;git add .;git commit -a -m 'Auto update';git push;")
