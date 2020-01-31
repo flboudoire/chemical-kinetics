@@ -134,7 +134,7 @@ fit.fit_dataset(
     Fit succeeded.
 
 
-The fit results can be vizualised 
+The fit results can be printed and plotted using the following functions:
 
 
 ```python
@@ -174,9 +174,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.0997</td>
-      <td>0.00195</td>
-      <td>1.96</td>
+      <td>0.102</td>
+      <td>0.00191</td>
+      <td>1.87</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -185,9 +185,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0203</td>
-      <td>0.000636</td>
-      <td>3.13</td>
+      <td>0.0204</td>
+      <td>0.000606</td>
+      <td>2.96</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -197,8 +197,8 @@ fit.print_result(ds)
       <th>2</th>
       <td>k_2</td>
       <td>0.0201</td>
-      <td>0.000215</td>
-      <td>1.07</td>
+      <td>0.000204</td>
+      <td>1.01</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -208,9 +208,9 @@ fit.print_result(ds)
       <th>3</th>
       <td>c0_A</td>
       <td>1.0</td>
-      <td>0.00778</td>
-      <td>0.778</td>
-      <td>0.957</td>
+      <td>0.00749</td>
+      <td>0.747</td>
+      <td>1.02</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -229,10 +229,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.198</td>
-      <td>0.00452</td>
-      <td>2.28</td>
-      <td>0.185</td>
+      <td>0.205</td>
+      <td>0.00443</td>
+      <td>2.16</td>
+      <td>0.204</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>
@@ -245,7 +245,6 @@ fit.print_result(ds)
 
 ```python
 from chemical_kinetics import plot
-
 plot.plot_c(ds)
 ```
 
