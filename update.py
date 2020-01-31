@@ -43,7 +43,7 @@ for file in ipynb_files:
                 clean_md +=  re.sub(pattern, repl, line)
             elif "<table" in line:
                 pattern = r'class\=\"(.*?)\"'
-                repl = r"docutils"
+                repl = r"class = 'docutils'"
                 clean_md +=  re.sub(pattern, repl, line)
             else:
                 clean_md += line
