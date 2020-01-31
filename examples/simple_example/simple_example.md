@@ -2,7 +2,7 @@
 
 We consider in this example are the following reactions:
 
-- Forward reaction 1: $\rm A \rightarrow B$ with time constant $\rm k_{1, fw}$
+- Forward reaction 1: $\rm A :math:`\rightarrow` B with time constant $\rm k_{1, fw}$
 
 - Backward reaction 1: $\rm B \rightarrow A$ with time constant $\rm k_{1, bw}$
 
@@ -10,7 +10,8 @@ We consider in this example are the following reactions:
 
 Which gives the following differential equations according to the law of mass action:
 
-$$\rm \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]$$
+.. math::
+    \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]
 
 $$\rm \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
 
