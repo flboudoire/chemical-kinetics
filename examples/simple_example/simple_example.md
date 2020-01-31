@@ -1,5 +1,3 @@
-# Simple example
-
 ## Model
 
 We consider in this example are the following reactions:
