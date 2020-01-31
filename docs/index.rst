@@ -7,8 +7,6 @@ chemical_kinetics documentation
 ===============================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
 
    loading
    fitting
