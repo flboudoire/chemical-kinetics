@@ -13,3 +13,4 @@ chemical_kinetics documentation
    loading
    fitting
    plotting
+   simple_example
