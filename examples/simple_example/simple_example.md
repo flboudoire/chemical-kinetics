@@ -53,7 +53,7 @@ def derivatives(y, t, p):
     return dy
 ```
 
-**Note:** when defining the "derivatives" function, do not use keys for the "p" parameters dictionary containing the string "c0_" (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the "fit.fit_dataset" function.
+**Caution:** when defining the "derivatives" function, do not use keys for the "p" parameters dictionary containing the string "c0_" (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the "fit.fit_dataset" function.
 
 ### Loading and plotting the dataset
 
