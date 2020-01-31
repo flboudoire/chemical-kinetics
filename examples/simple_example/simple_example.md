@@ -1,4 +1,4 @@
-## Model
+### Model
 
 We consider in this example are the following reactions:
 
@@ -55,7 +55,7 @@ def derivatives(y, t, p):
 
 **Note:** when defining the "derivatives" function, do not use keys for the "p" parameters dictionary containing the string "c0_" (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the "fit.fit_dataset" function.
 
-## Loading and plotting the dataset
+### Loading and plotting the dataset
 
 The dataset "data/concentrations vs time.csv" is loaded in an object of class data_processing.Dataset (see [class documentation](#TODO add link) for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.
 
@@ -85,7 +85,7 @@ plot.plot_c(ds)
 <p align='center'><img src = simple_example_files/simple_example_6_0.svg
 ></p>
 
-## Fitting
+### Fitting
 
 We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the "residuals" function but a different residuals definition can include other parameters.
 

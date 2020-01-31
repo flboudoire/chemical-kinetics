@@ -84,10 +84,12 @@
 <li class="toctree-l1"><a class="reference internal" href="loading.html">Loading data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#model">Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#loading-and-plotting-the-dataset">Loading and plotting the dataset</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#fitting">Fitting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#model">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-and-plotting-the-dataset">Loading and plotting the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting">Fitting</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -154,9 +156,8 @@
             
   <div class="section" id="simple-example">
 <h1>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h1>
-</div>
 <div class="section" id="model">
-<h1>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h1>
+<h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
 <p>We consider in this example are the following reactions:</p>
 <ul class="simple">
 <li><p>Forward reaction 1: $rm A rightarrow B$ with time constant $rm k_{1, fw}$</p></li>
@@ -204,7 +205,7 @@
 <p><strong>Note:</strong> when defining the “derivatives” function, do not use keys for the “p” parameters dictionary containing the string “<a href="#id1"><span class="problematic" id="id2">c0_</span></a>” (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the “fit.fit_dataset” function.</p>
 </div>
 <div class="section" id="loading-and-plotting-the-dataset">
-<h1>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h1>
+<h2>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The dataset “data/concentrations vs time.csv” is loaded in an object of class data_processing.Dataset (see <a class="reference external" href="#TODOaddlink">class documentation</a> for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.</p>
 <p>Its a good idea to consult the [recomendations for the .csv files format] (#TODO write and add link).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
@@ -225,7 +226,7 @@
 <p align='center'><img src = simple_example_files/simple_example_6_0.svg
 ></p></div>
 <div class="section" id="fitting">
-<h1>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h1>
+<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
 <p>We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the “residuals” function but a different residuals definition can include other parameters.</p>
 <p>These parameters are given as a dictionary where the keys are the time constant names. The corresponding values are a dictionary containing the parameter arguments (for a list of arguments consult the lmfit.Parameter <a class="reference external" href="#TODO:addlink">documentation</a>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -393,6 +394,7 @@
 
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;data/concentrations vs time.csv&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 </div>
 
