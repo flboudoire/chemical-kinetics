@@ -6,7 +6,7 @@ Using pip:
 ```bash
 pip install chemical_kinetics
 ```
-Or just download the [chemical_kinetics](chemical_kinetics/) folder and add it to your python path.
+Or download the [chemical_kinetics](chemical_kinetics/) folder and add it to your python path.
 
 ### Examples
 
