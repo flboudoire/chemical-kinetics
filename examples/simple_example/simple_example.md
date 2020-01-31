@@ -2,20 +2,19 @@
 
 We consider in this example are the following reactions:
 
-- Forward reaction 1: $\rm A :math:`\rightarrow` B with time constant $\rm k_{1, fw}$
+- Forward reaction 1: A &rarr; B with time constant k<sub>1, fw</sub>
 
-- Backward reaction 1: $\rm B \rightarrow A$ with time constant $\rm k_{1, bw}$
+- Backward reaction 1: B &rarr; A with time constant k<sub>1, bw</sub>
 
-- Forward reaction 2: $\rm B \rightarrow C$ with time constant $\rm k_{2}$
+- Forward reaction 2: B &rarr; C with time constant k<sub>2</sub>
 
 Which gives the following differential equations according to the law of mass action:
 
-.. math::
-    \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]
+.. math:: \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]
 
-$$\rm \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
+$$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
 
-$$\rm \frac{dC}{dt} = k_{2}[B]$$
+$$\frac{dC}{dt} = k_{2}[B]$$
 
 This system of differential equation will be computed at a given time t using the following function:
 

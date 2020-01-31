@@ -160,15 +160,15 @@
 <h2>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h2>
 <p>We consider in this example are the following reactions:</p>
 <ul class="simple">
-<li><p>Forward reaction 1: $rm A <span class="math notranslate nohighlight">\(\rightarrow\)</span> B with time constant $rm k_{1, fw}$</p></li>
-<li><p>Backward reaction 1: $rm B rightarrow A$ with time constant $rm k_{1, bw}$</p></li>
-<li><p>Forward reaction 2: $rm B rightarrow C$ with time constant $rm k_{2}$</p></li>
+<li><p>Forward reaction 1: A &amp;rarr; B with time constant k<span class="raw-html-m2r"><sub>1, fw</sub></span></p></li>
+<li><p>Backward reaction 1: B &amp;rarr; A with time constant k<span class="raw-html-m2r"><sub>1, bw</sub></span></p></li>
+<li><p>Forward reaction 2: B &amp;rarr; C with time constant k<span class="raw-html-m2r"><sub>2</sub></span></p></li>
 </ul>
 <p>Which gives the following differential equations according to the law of mass action:</p>
 <div class="math notranslate nohighlight">
 \[\frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]\]</div>
-<p>$$rm frac{dB}{dt} = k<em>{1,fw}[A] - k</em>{1,bw}[B] - k_{2}[B]$$</p>
-<p>$$rm frac{dC}{dt} = k_{2}[B]$$</p>
+<p>$$frac{dB}{dt} = k<em>{1,fw}[A] - k</em>{1,bw}[B] - k_{2}[B]$$</p>
+<p>$$frac{dC}{dt} = k_{2}[B]$$</p>
 <p>This system of differential equation will be computed at a given time t using the following function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
 
