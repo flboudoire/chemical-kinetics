@@ -33,6 +33,7 @@ os.system(r"cd docs; make clean; make html")
 # copy images from examples
 for file in ipynb_files:
     folder = file.split("/")[-1]
+    print(rf"cd {file}_files docs/_build/html/{folder}_files")
     os.system(rf"cd {file}_files docs/_build/html/{folder}_files")
 
 # git
