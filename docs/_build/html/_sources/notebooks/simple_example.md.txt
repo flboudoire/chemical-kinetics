@@ -4,9 +4,9 @@ We consider in this example are the following reactions:
 
 - Forward reaction 1: A :math:`\rightarrow` B with time constant k<sub>1, fw</sub>
 
-- Backward reaction 1: B &rarr; A with time constant k<sub>1, bw</sub>
+- Backward reaction 1: B :math:`\rightarrow` A with time constant k<sub>1, bw</sub>
 
-- Forward reaction 2: B &rarr; C with time constant k<sub>2</sub>
+- Forward reaction 2: B :math:`\rightarrow` C with time constant k<sub>2</sub>
 
 Which gives the following differential equations according to the law of mass action:
 
@@ -17,34 +17,6 @@ Which gives the following differential equations according to the law of mass ac
 .. math:: \frac{dC}{dt} = k_{2}[B]
 
 This system of differential equation will be computed at a given time t using the following function:
-
-
-```python
-import re
-string = r".. math:: \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]"
-pattern = r'\:math:`\`(.*?)\:math:`\`'
-repl = r".. math:: \1"
-s = re.sub(pattern, repl, string)
-# s = re.findall(pattern, string)
-print(s)
-```
-
-    .. math:: \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]
-
-
-
-```python
-import re
-string = r"- Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k<sub>1, fw</sub>"
-pattern = r'\:math:`(.*?)\`'
-repl = r":math:`\1`"
-s = re.sub(pattern, repl, string)
-# s = re.findall(pattern, string)
-print(s)
-```
-
-    - Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k<sub>1, fw</sub>
-
 
 
 ```python
@@ -110,7 +82,7 @@ plot.plot_c(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_8_0.svg
+<p align='center'><img src = simple_example_files/simple_example_6_0.svg
 ></p>
 
 ### Fitting
@@ -275,7 +247,7 @@ plot.plot_c(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_17_0.svg
+<p align='center'><img src = simple_example_files/simple_example_15_0.svg
 ></p>
 
 

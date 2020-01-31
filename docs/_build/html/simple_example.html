@@ -161,8 +161,8 @@
 <p>We consider in this example are the following reactions:</p>
 <ul class="simple">
 <li><p>Forward reaction 1: A <span class="math notranslate nohighlight">\(\rightarrow\)</span> B with time constant k<span class="raw-html-m2r"><sub>1, fw</sub></span></p></li>
-<li><p>Backward reaction 1: B &amp;rarr; A with time constant k<span class="raw-html-m2r"><sub>1, bw</sub></span></p></li>
-<li><p>Forward reaction 2: B &amp;rarr; C with time constant k<span class="raw-html-m2r"><sub>2</sub></span></p></li>
+<li><p>Backward reaction 1: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> A with time constant k<span class="raw-html-m2r"><sub>1, bw</sub></span></p></li>
+<li><p>Forward reaction 2: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> C with time constant k<span class="raw-html-m2r"><sub>2</sub></span></p></li>
 </ul>
 <p>Which gives the following differential equations according to the law of mass action:</p>
 <div class="math notranslate nohighlight">
@@ -172,29 +172,6 @@
 <div class="math notranslate nohighlight">
 \[\frac{dC}{dt} = k_{2}[B]\]</div>
 <p>This system of differential equation will be computed at a given time t using the following function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.. math:: \frac</span><span class="si">{dB}{dt}</span><span class="s2"> = k_{1,fw}[A] - k_{1,bw}[B] - k_</span><span class="si">{2}</span><span class="s2">[B]&quot;</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\:math:`\`(.*?)\:math:`\`&#39;</span>
-<span class="n">repl</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.. math:: \1&quot;</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
-<span class="c1"># s = re.findall(pattern, string)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
- <span class="o">..</span> <span class="n">math</span><span class="p">::</span> \<span class="n">frac</span><span class="p">{</span><span class="n">dB</span><span class="p">}{</span><span class="n">dt</span><span class="p">}</span> <span class="o">=</span> <span class="n">k_</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="n">fw</span><span class="p">}[</span><span class="n">A</span><span class="p">]</span> <span class="o">-</span> <span class="n">k_</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="n">bw</span><span class="p">}[</span><span class="n">B</span><span class="p">]</span> <span class="o">-</span> <span class="n">k_</span><span class="p">{</span><span class="mi">2</span><span class="p">}[</span><span class="n">B</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-<span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;- Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k&lt;sub&gt;1, fw&lt;/sub&gt;&quot;</span>
-<span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\:math:`(.*?)\`&#39;</span>
-<span class="n">repl</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;:math:`\1`&quot;</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span>
-<span class="c1"># s = re.findall(pattern, string)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>- Forward reaction 1: A :math:`\rightarrow` B with time :math:`\rightarrow` constant k&lt;sub&gt;1, fw&lt;/sub&gt;
-</pre></div>
-</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot; Calculates the derivatives of the concentrations at t</span>
@@ -249,7 +226,7 @@
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<p align='center'><img src = simple_example_files/simple_example_8_0.svg
+<p align='center'><img src = simple_example_files/simple_example_6_0.svg
 ></p></div>
 <div class="section" id="fitting">
 <h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
@@ -394,7 +371,7 @@
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<p align='center'><img src = simple_example_files/simple_example_17_0.svg
+<p align='center'><img src = simple_example_files/simple_example_15_0.svg
 ></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
