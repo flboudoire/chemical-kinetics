@@ -40,6 +40,13 @@ class Dataset:
             
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
+        init_params (lmfit.Parameters):
+            Stores the initial parameters for the fit, for details see:
+
+            https://lmfit.github.io/lmfit-py/parameters.html
+            
+            Defined when the fit.fit_dataset() function is run on the
+            Dataset object.
         names (list):
             Species names which concentration evolution over time is
             tracked. Used in particular to label the data when plotting.
@@ -72,6 +79,7 @@ class Dataset:
 
         self.names = None
         self.fit_results = None
+        self.init_params = None
 
         # load data from list of files
         self.load_c(files_c)
