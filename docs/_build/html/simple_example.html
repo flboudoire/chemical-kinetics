@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simple example &mdash; Chemical kinetics 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Plotting" href="plotting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Chemical kinetics
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Loading data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fitting.html">Fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id13">)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id31">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id36">)</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chemical kinetics</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Simple example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/simple_example.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="simple-example">
+<h1>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h1>
+<p># Simple example</p>
+<p>## Model</p>
+<p>We consider in this example are the following reactions:</p>
+<ul class="simple">
+<li><p>Forward reaction 1: $rm A rightarrow B$ with time constant $rm k_{1, fw}$</p></li>
+<li><p>Backward reaction 1: $rm B rightarrow A$ with time constant $rm k_{1, bw}$</p></li>
+<li><p>Forward reaction 2: $rm B rightarrow C$ with time constant $rm k_{2}$</p></li>
+</ul>
+<p>Which gives the following differential equations according to the law of mass action:</p>
+<p>$$rm frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]$$</p>
+<p>$$rm frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$</p>
+<p>$$rm frac{dC}{dt} = k_{2}[B]$$</p>
+<p>This system of differential equation will be computed at a given time t using the following function:</p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
+def derivatives(y, t, p):</p>
+<blockquote>
+<div><p>“”” Calculates the derivatives of the concentrations at t</p>
+<p>Used scipy.integrate.odeint to numerically solve the differential
+equations in a given time range.</p>
+<p>Lists (y and dy) used by scipy.integrate.odeint are converted
+to dictionaries (c and dc) in order to make the differentials
+easier to write and read for humans.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>y (list): concentration values at t
+t (float): time value where the derivatives are calculated
+p (dict): dictionary containing the parameters used to
+calculate the derivatives e.g. time constants</p>
+</dd>
+</dl>
+<p>“””</p>
+<p># list (y) to dict (c) conversion
+c = {“A” : y[0], “B” : y[1], “C” : y[2]}</p>
+<p># calculate the differentials
+dc = dict()
+dc[“A”] = p[“k_1bw”]*c[“B”] - p[“k_1fw”]*c[“A”]
+dc[“B”] = p[“k_1fw”]*c[“A”] - p[“k_1bw”]*c[“B”] - p[“k_2”]*c[“B”]
+dc[“C”] = p[“k_2”]*c[“B”]</p>
+<p># dict (dc) to list (dy) conversion
+dy = [dc[“A”], dc[“B”], dc[“C”]]</p>
+<p>return dy</p>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p><strong>Note:</strong> when defining the “derivatives” function, do not use keys for the “p” parameters dictionary containing the string “<a href="#id45"><span class="problematic" id="id46">c0_</span></a>” (if you do an error will be raised). These keys are reserved for the initial concentrations and will be defined and used in the “fit.fit_dataset” function.</p>
+<p>## Loading and plotting the dataset</p>
+<p>The dataset “data/concentrations vs time.csv” is loaded in an object of class data_processing.Dataset (see [class documentation](#TODO add link) for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.</p>
+<p>Its a good idea to consult the [recomendations for the .csv files format] (#TODO write and add link).</p>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+from chemical_kinetics import data_processing</p>
+<dl class="simple">
+<dt>ds = data_processing.Dataset(</dt><dd><p>files_c = [“data/concentrations vs time.csv”],
+t_label = “Time [a.u.]”,
+c_label = “Concentration [a.u.]”</p>
+</dd>
+</dl>
+<div class="section" id="id13">
+<h2>)<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<p>You can check if the data was loaded properly by plotting it:</p>
+<p><a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a>python
+from chemical_kinetics import plot</p>
+<p>plot.plot_c(ds)
+<a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></p>
+<p>&lt;p align=’center’&gt;&lt;img src = simple_example_files/simple_example_6_0.svg
+&gt;&lt;/p&gt;</p>
+<p>## Fitting</p>
+<p>We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the “residuals” function but a different residuals definition can include other parameters.</p>
+<p>These parameters are given as a dictionary where the keys are the time constant names. The corresponding values are a dictionary containing the parameter arguments (for a list of arguments consult the lmfit.Parameter [documentation](#TODO: add link)).</p>
+<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a>python
+parameters = {</p>
+<blockquote>
+<div><p>“k_1fw”: dict(value = 0.1, min = 0),
+“k_1bw”: dict(value = 0.1, min = 0),
+“k_2”: dict(value = 0.1, min = 0)</p>
+</div></blockquote>
+</div>
+<div class="section" id="id26">
+<h2>}<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<p>Another argument to be passed to the fit function are the initial concentrations. These are defined in a similar way as the “parameters” variable since they are also fit parameters. It is mandatory to give the same names for theses parameters as the corresponding names given to the columns in the .csv file that was loaded in your dataset object. If you do not declare a value for the initial concentration for one of the species tracked in your .csv file then this value will be the first concentration value from this file by default.</p>
+<p>For demonstration, in this example we consider that:
+- the initial concentration of A is at least 0.5 and we default its initial value
+- the initial concentration of B is known and fixed to 0
+- the initial concentration of C is unknown and we use a default value for this parameter by not declaring it at all. The default value is the initial concentration for C in the dataset</p>
+<p><a href="#id27"><span class="problematic" id="id28">``</span></a><a href="#id29"><span class="problematic" id="id30">`</span></a>python
+c0 = {</p>
+<blockquote>
+<div><p>“A”: dict(min = 0.5),
+“B”: dict(value = 0., vary = False)</p>
+</div></blockquote>
+</div>
+<div class="section" id="id31">
+<h2>}<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<p>We can now pass these parameters to the fit function. Once the fit converged a message generated by the lmfit.MinimizerResult class is displayed (see [this page](#TODO add link) for details on this message significance).</p>
+<p><a href="#id32"><span class="problematic" id="id33">``</span></a><a href="#id34"><span class="problematic" id="id35">`</span></a>python
+from chemical_kinetics import fit</p>
+<dl class="simple">
+<dt>fit.fit_dataset(</dt><dd><p>dataset = ds,
+derivatives = derivatives,
+parameters = parameters,
+c0 = c0</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id36">
+<h2>)<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Fit succeeded.</p>
+</div></blockquote>
+<p>The fit results can be printed and plotted using the following functions:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">fit.print_result(ds)</span>
+<span class="pre">`</span></code></p>
+<p>&lt;div&gt;
+&lt;style scoped&gt;</p>
+<blockquote>
+<div><dl class="simple">
+<dt>.dataframe tbody tr th:only-of-type {</dt><dd><p>vertical-align: middle;</p>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>.dataframe tbody tr th {</dt><dd><p>vertical-align: top;</p>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>.dataframe thead th {</dt><dd><p>text-align: right;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>&lt;/style&gt;
+&lt;table border=”1” class=”dataframe”&gt;</p>
+<blockquote>
+<div><dl>
+<dt>&lt;thead&gt;</dt><dd><dl class="simple">
+<dt>&lt;tr style=”text-align: right;”&gt;</dt><dd><p>&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;value&lt;/th&gt;
+&lt;th&gt;stderr&lt;/th&gt;
+&lt;th&gt;stderr/value %&lt;/th&gt;
+&lt;th&gt;init. val.&lt;/th&gt;
+&lt;th&gt;vary&lt;/th&gt;
+&lt;th&gt;min&lt;/th&gt;
+&lt;th&gt;max&lt;/th&gt;</p>
+</dd>
+</dl>
+<p>&lt;/tr&gt;</p>
+</dd>
+</dl>
+<p>&lt;/thead&gt;
+&lt;tbody&gt;</p>
+<blockquote>
+<div><dl class="simple">
+<dt>&lt;tr&gt;</dt><dd><p>&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt;k_1fw&lt;/td&gt;
+&lt;td&gt;0.102&lt;/td&gt;
+&lt;td&gt;0.00191&lt;/td&gt;
+&lt;td&gt;1.87&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</dd>
+</dl>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt;k_1bw&lt;/td&gt;
+&lt;td&gt;0.0204&lt;/td&gt;
+&lt;td&gt;0.000606&lt;/td&gt;
+&lt;td&gt;2.96&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt;k_2&lt;/td&gt;
+&lt;td&gt;0.0201&lt;/td&gt;
+&lt;td&gt;0.000204&lt;/td&gt;
+&lt;td&gt;1.01&lt;/td&gt;
+&lt;td&gt;0.1&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt;c0_A&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.00749&lt;/td&gt;
+&lt;td&gt;0.747&lt;/td&gt;
+&lt;td&gt;1.02&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt;c0_B&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;nan&lt;/td&gt;
+&lt;td&gt;0.0&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;-inf&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;th&gt;5&lt;/th&gt;
+&lt;td&gt;c0_C&lt;/td&gt;
+&lt;td&gt;0.205&lt;/td&gt;
+&lt;td&gt;0.00443&lt;/td&gt;
+&lt;td&gt;2.16&lt;/td&gt;
+&lt;td&gt;0.204&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;-inf&lt;/td&gt;
+&lt;td&gt;inf&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;</p>
+</div></blockquote>
+<p>&lt;/tbody&gt;</p>
+</div></blockquote>
+<p>&lt;/table&gt;
+&lt;/div&gt;</p>
+<p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">from</span> <span class="pre">chemical_kinetics</span> <span class="pre">import</span> <span class="pre">plot</span>
+<span class="pre">plot.plot_c(ds)</span>
+<span class="pre">`</span></code></p>
+<p>&lt;p align=’center’&gt;&lt;img src = simple_example_files/simple_example_15_0.svg
+&gt;&lt;/p&gt;</p>
+<p><a href="#id37"><span class="problematic" id="id38">``</span></a><a href="#id39"><span class="problematic" id="id40">`</span></a>python
+from chemical_kinetics import fit
+import pandas as pd
+import numpy as np
+import lmfit</p>
+<p>params = lmfit.Parameters()
+params.add(“k_1fw”, value = 0.1)
+params.add(“k_1bw”, value = 0.02)
+params.add(“k_2”, value = 0.02)
+params.add(“c0_A”, value = 1)
+params.add(“c0_B”, value = 0)
+params.add(“c0_C”, value = 0.2)</p>
+<p>t = np.linspace(0,100,50)
+c = fit.evaluate(derivatives, params, t)</p>
+<p>noise = lambda c : c + c*0.2*(np.random.random(c.shape) - 0.5)
+c = noise(c)</p>
+<p>data = np.hstack((t.reshape(-1,1), c))</p>
+<p>df = pd.DataFrame(columns = [“t”, “A”, “B”, “C”], data = data)</p>
+<p>df.to_csv(r”data/concentrations vs time.csv”, index = False)
+<a href="#id41"><span class="problematic" id="id42">``</span></a><a href="#id43"><span class="problematic" id="id44">`</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="plotting.html" class="btn btn-neutral float-left" title="Plotting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Florent Boudoire
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
