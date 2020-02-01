@@ -18,14 +18,16 @@ Instalation
 -----------
 
 Using pip:
-```bash
-pip install chemical_kinetics
-```
-Or download the [chemical_kinetics](#TODO: add link) folder and add it to your python path.
+
+.. code:: bash
+
+    pip install chemical_kinetics
+
+Or download the chemical_kinetics folder on `Github <#TODO: add link>` and add it to your python path.
 
 Examples
 --------
 
-- :ref:`Simple theoretical example<Simple example>` homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
+- :ref:`Simple theoretical example<Simple example>`: homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
 
-- :ref:`Example using real experimental data<Advanced example>` published in `this <#TODO: add link>`_ scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
+- :ref:`Example using real experimental data<Advanced example>`: published in `this <#TODO: add link>`_ scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
