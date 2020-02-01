@@ -8,8 +8,8 @@ chemical_kinetics
 
 .. mdinclude:: ../README.md
 
-Content
--------
+Contents
+--------
 
 .. toctree::
 
