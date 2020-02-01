@@ -6,13 +6,10 @@
 chemical_kinetics
 =================
 
-.. mdinclude:: ../README.md
-
-Contents
---------
-
 .. toctree::
 
    simple_example
    advanced_example
    docs
+
+.. mdinclude:: ../README.md
