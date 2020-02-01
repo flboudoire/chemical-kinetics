@@ -26,6 +26,6 @@ Or download the [chemical_kinetics](#TODO: add link) folder and add it to your p
 Examples
 --------
 
-- :ref:`Simple example <Simple theoretical example>` homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
+- :ref:`Simple theoretical example<Simple example>` homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
 
-- Example using real experimental data: :ref:`Advanced example` published in `this <#TODO: add link>`_ scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
+- :ref:`Example using real experimental data<Advanced example>` published in `this <#TODO: add link>`_ scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
