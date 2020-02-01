@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TODO: comment each steps presented here &mdash; Chemical kinetics 1.0 documentation</title>
+  <title>Kinetic model &mdash; Chemical kinetics 1.0 documentation</title>
   
 
   
@@ -128,7 +128,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>TODO: comment each steps presented here</li>
+      <li>Kinetic model</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -152,10 +152,9 @@
 <li><p>using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit</p></li>
 <li><p>fitting when the concentration evolution over time experimental data only covers some of the species considered in the model</p></li>
 </ul>
-<div class="section" id="todo-comment-each-steps-presented-here">
-<h1>TODO: comment each steps presented here<a class="headerlink" href="#todo-comment-each-steps-presented-here" title="Permalink to this headline">¶</a></h1>
+<p><strong>TODO: comment each steps presented here</strong></p>
 <div class="section" id="kinetic-model">
-<h2>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h2>
+<h1>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h1>
 <div class="math notranslate nohighlight">
 \[\frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]\]</div>
 <div class="math notranslate nohighlight">
@@ -167,7 +166,9 @@
 <div class="math notranslate nohighlight">
 \[\frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]\]</div>
 <div class="math notranslate nohighlight">
-\[\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA] + k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]\]</div>
+\[\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]\]</div>
+<div class="math notranslate nohighlight">
+\[+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]\]</div>
 <div class="math notranslate nohighlight">
 \[\frac{d[humins^*]}{dt} = k_{H^*}[humins]\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">species_tracked</span> <span class="o">=</span> <span class="p">[</span>
@@ -237,7 +238,7 @@
 </div>
 </div>
 <div class="section" id="load-concentrations-and-charge-passed-evolution-over-time">
-<h2>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h2>
+<h1>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
 
 <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data/run</span><span class="si">{i}</span><span class="s2">/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -255,7 +256,7 @@
 </div>
 </div>
 <div class="section" id="fitting">
-<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
+<h1>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h1>
 <p>Define parameters</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">parameter_names</span> <span class="o">=</span> <span class="p">[</span>
@@ -294,7 +295,7 @@
 </div>
 </div>
 <div class="section" id="fit-results">
-<h2>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h2>
+<h1>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -630,7 +631,6 @@
 </div>
 <p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_21_0.svg
 ></p></div>
-</div>
 
 
            </div>

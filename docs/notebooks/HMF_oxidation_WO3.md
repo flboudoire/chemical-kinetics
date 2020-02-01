@@ -2,7 +2,7 @@ This example emphasizes two scenarii not covered in the simple example:
 - using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit
 - fitting when the concentration evolution over time experimental data only covers some of the species considered in the model
 
-#TODO: comment each steps presented here
+**TODO: comment each steps presented here**
 
 ### Kinetic model
 
@@ -16,7 +16,8 @@ This example emphasizes two scenarii not covered in the simple example:
 
 .. math:: \frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]
 
-.. math:: \frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA] + k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]
+.. math:: \frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]
+.. math:: + k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]
 
 .. math:: \frac{d[humins^*]}{dt} = k_{H^*}[humins]
 

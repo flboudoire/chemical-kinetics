@@ -84,13 +84,10 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="simple_example.html">Simple example</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced example</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#todo-comment-each-steps-presented-here">TODO: comment each steps presented here</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#kinetic-model">Kinetic model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#load-concentrations-and-charge-passed-evolution-over-time">Load concentrations and charge passed evolution over time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fitting">Fitting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fit-results">Fit results</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#kinetic-model">Kinetic model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-concentrations-and-charge-passed-evolution-over-time">Load concentrations and charge passed evolution over time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting">Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fit-results">Fit results</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Documentation</a></li>
@@ -165,10 +162,9 @@
 <li><p>using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit</p></li>
 <li><p>fitting when the concentration evolution over time experimental data only covers some of the species considered in the model</p></li>
 </ul>
-<div class="section" id="todo-comment-each-steps-presented-here">
-<h2>TODO: comment each steps presented here<a class="headerlink" href="#todo-comment-each-steps-presented-here" title="Permalink to this headline">¶</a></h2>
+<p><strong>TODO: comment each steps presented here</strong></p>
 <div class="section" id="kinetic-model">
-<h3>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h3>
+<h2>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h2>
 <div class="math notranslate nohighlight">
 \[\frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]\]</div>
 <div class="math notranslate nohighlight">
@@ -180,7 +176,9 @@
 <div class="math notranslate nohighlight">
 \[\frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]\]</div>
 <div class="math notranslate nohighlight">
-\[\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA] + k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]\]</div>
+\[\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]\]</div>
+<div class="math notranslate nohighlight">
+\[+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]\]</div>
 <div class="math notranslate nohighlight">
 \[\frac{d[humins^*]}{dt} = k_{H^*}[humins]\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">species_tracked</span> <span class="o">=</span> <span class="p">[</span>
@@ -250,7 +248,7 @@
 </div>
 </div>
 <div class="section" id="load-concentrations-and-charge-passed-evolution-over-time">
-<h3>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h3>
+<h2>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
 
 <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data/run</span><span class="si">{i}</span><span class="s2">/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -268,7 +266,7 @@
 </div>
 </div>
 <div class="section" id="fitting">
-<h3>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h3>
+<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
 <p>Define parameters</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">parameter_names</span> <span class="o">=</span> <span class="p">[</span>
@@ -307,7 +305,7 @@
 </div>
 </div>
 <div class="section" id="fit-results">
-<h3>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h3>
+<h2>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -643,7 +641,6 @@
 </div>
 <p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_21_0.svg
 ></p></div>
-</div>
 </div>
 
 
