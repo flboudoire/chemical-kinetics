@@ -23,7 +23,7 @@ Using pip:
 
     pip install chemical_kinetics
 
-Or download the chemical_kinetics folder on `Github <#TODO: add link>`_ and add it to your python path.
+Or download the chemical_kinetics folder on `Github <https://github.com/flboudoire/chemical-kinetics>`_ and add it to your python path.
 
 Examples
 --------
