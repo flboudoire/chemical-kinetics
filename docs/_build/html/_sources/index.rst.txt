@@ -8,6 +8,7 @@ chemical_kinetics
 
 .. toctree::
 
+   index
    simple_example
    advanced_example
    docs
