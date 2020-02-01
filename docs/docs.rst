@@ -3,13 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-chemical_kinetics
-=================
-
-.. mdinclude:: ../README.md
+Documentation
+-------------
 
 .. toctree::
 
-   simple_example
-   advanced_example
-   docs
+   loading
+   fitting
+   plotting

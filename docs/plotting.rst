@@ -1,6 +1,6 @@
 
 Plotting
---------
+~~~~~~~~
 
 .. automodule:: plot
    :members:

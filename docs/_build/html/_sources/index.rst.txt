@@ -10,7 +10,6 @@ chemical_kinetics
 
 .. toctree::
 
-   loading
-   fitting
-   plotting
    simple_example
+   advanced_example
+   docs
