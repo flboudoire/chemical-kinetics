@@ -8,8 +8,7 @@ import lmfit
 
 def evaluate(derivatives, params, t):
 
-    """
-
+    """ #TODO: comment function
     """
 
     c0 = [params[key].value for key in params if "c0_" in key]
@@ -26,6 +25,9 @@ def evaluate(derivatives, params, t):
 
 
 def calculate_residuals(df, fit, names):
+
+    """ #TODO: comment function
+    """
 
     res = list()
     for i, name in enumerate(names):
@@ -47,8 +49,7 @@ def residuals(
     tracked_species
     ):
 
-    """
-
+    """ #TODO: comment function
     """
 
     c = evaluate(
@@ -67,6 +68,7 @@ def residuals(
             t = df_q["t"]
             )
         q = c_to_q(c)
+        q = q.reshape(-1,1)
 
         res.extend(calculate_residuals(df_q, q, "Q"))
 
@@ -82,8 +84,7 @@ def fit_dataset(
     c0_untracked = {}
     ):
 
-    """
-
+    """ #TODO: comment function
     """
 
     tracked_species = dataset.names
@@ -110,9 +111,9 @@ def fit_dataset(
         else:
             params.add(key, value = c0_value_default)
 
-    for name in c0_untracked:
+    for name, value in c0_untracked.items():
         key = fr"c0_{name}"
-        params.add(key, **c0[name])
+        params.add(key, **value)
 
     dataset.init_params = params
 
@@ -143,6 +144,9 @@ def fit_dataset(
         dataset.df_q_fit["Q"] = c_to_q(c_fit)
 
 def print_result(dataset):
+
+    """ #TODO: comment function
+    """
 
     params = dataset.fit_result.params
     init_params = dataset.init_params

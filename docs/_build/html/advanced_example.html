@@ -83,7 +83,16 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="simple_example.html">Simple example</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#todo-comment-each-steps-presented-here">TODO: comment each steps presented here</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kinetic-model">Kinetic model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-concentrations-and-charge-passed-evolution-over-time">Load concentrations and charge passed evolution over time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fitting">Fitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-results">Fit results</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Documentation</a></li>
 </ul>
 
@@ -151,6 +160,97 @@
             
   <div class="section" id="advanced-example">
 <h1>Advanced example<a class="headerlink" href="#advanced-example" title="Permalink to this headline">¶</a></h1>
+<p>This example emphasizes two scenarii not covered in the simple example:</p>
+<ul class="simple">
+<li><p>using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit</p></li>
+<li><p>fitting when the concentration evolution over time experimental data only covers some of the species considered in the model</p></li>
+</ul>
+<div class="section" id="todo-comment-each-steps-presented-here">
+<h2>TODO: comment each steps presented here<a class="headerlink" href="#todo-comment-each-steps-presented-here" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="kinetic-model">
+<h3>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[DFF]}{dt} = k_{\textbf{1}1}[HMF] - (k_{\textbf{2}1} + k_{H\textbf{2}1})[DFF]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[HMFCA]}{dt} = k_{\textbf{1}2}[HMF] - (k_{\textbf{2}2} + k_{H\textbf{2}2})[HMFCA]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[FFCA]}{dt} = k_{\textbf{2}1}[DFF] + k_{\textbf{2}2}[HMFCA] - (k_{\textbf{3}} + k_{H\textbf{3}})[FFCA]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA] + k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d[humins^*]}{dt} = k_{H^*}[humins]\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">species_tracked</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;HMF&quot;</span><span class="p">,</span> <span class="s2">&quot;DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FDCA&quot;</span>
+<span class="p">]</span>
+<span class="n">species_untracked</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;H_HMF&quot;</span><span class="p">,</span>  <span class="s2">&quot;H_DFF&quot;</span><span class="p">,</span>  <span class="s2">&quot;H_HMFCA&quot;</span><span class="p">,</span>  <span class="s2">&quot;H_FFCA&quot;</span><span class="p">,</span>  <span class="s2">&quot;H_FDCA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Hx_HMF&quot;</span><span class="p">,</span> <span class="s2">&quot;Hx_DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;Hx_HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;Hx_FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;Hx_FDCA&quot;</span>
+<span class="p">]</span>
+<span class="n">species</span> <span class="o">=</span> <span class="n">species_tracked</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">species</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">species_untracked</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the derivatives from local values, used by scipy.integrate.solve_ivp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="n">s</span><span class="p">:</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">species</span><span class="p">)}</span>
+
+    <span class="n">dc</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">]</span>      <span class="o">=</span>  <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;k11&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k12&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH1&quot;</span><span class="p">])</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">]</span>      <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k11&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">]</span>                       <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;k21&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH21&quot;</span><span class="p">])</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;HMFCA&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k12&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">]</span>                       <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;k22&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH22&quot;</span><span class="p">])</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;FFCA&quot;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k21&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k22&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMFCA&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s2">&quot;k3&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH3&quot;</span><span class="p">])</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;FFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;FDCA&quot;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;k3&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;FFCA&quot;</span><span class="p">]</span>                       <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH4&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;FDCA&quot;</span><span class="p">]</span>
+
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;H_HMF&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH1&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">]</span>    <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_HMF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;H_DFF&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH21&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">]</span>   <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_DFF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;H_HMFCA&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH22&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;HMFCA&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_HMFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;H_FFCA&quot;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH3&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;FFCA&quot;</span><span class="p">]</span>   <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_FFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;H_FDCA&quot;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kH4&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;FDCA&quot;</span><span class="p">]</span>   <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_FDCA&quot;</span><span class="p">]</span>
+
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;Hx_HMF&quot;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_HMF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;Hx_DFF&quot;</span><span class="p">]</span>   <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_DFF&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;Hx_HMFCA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_HMFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;Hx_FFCA&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_FFCA&quot;</span><span class="p">]</span>
+    <span class="n">dc</span><span class="p">[</span><span class="s2">&quot;Hx_FDCA&quot;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s2">&quot;kHx&quot;</span><span class="p">]</span><span class="o">*</span><span class="n">c</span><span class="p">[</span><span class="s2">&quot;H_FDCA&quot;</span><span class="p">]</span>
+
+    <span class="n">dy</span> <span class="o">=</span> <span class="p">[</span><span class="n">dc</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">species</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dy</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight">
+\[Q = \frac{q}{N_A} \sum_i n_i [i]\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">constants</span>
+
+<span class="k">def</span> <span class="nf">c_to_q</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+
+    <span class="n">c_e</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">species</span><span class="p">):</span>
+        <span class="n">c_e</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">5</span><span class="p">))</span><span class="o">*</span><span class="n">c</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">c_e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">c_e</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># uM</span>
+    <span class="n">c_e</span> <span class="o">*=</span> <span class="mf">1e-6</span> <span class="c1"># M</span>
+
+    <span class="n">V</span> <span class="o">=</span> <span class="mf">100e-3</span> <span class="c1"># L</span>
+
+    <span class="n">q</span> <span class="o">=</span> <span class="n">c_e</span><span class="o">*</span><span class="n">V</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">N_A</span><span class="o">*</span><span class="n">constants</span><span class="o">.</span><span class="n">e</span> <span class="c1"># number of charge in coulombs</span>
+
+    <span class="k">return</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-concentrations-and-charge-passed-evolution-over-time">
+<h3>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
 
 <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data/run</span><span class="si">{i}</span><span class="s2">/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -166,47 +266,385 @@
 <span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
-<span class="kn">import</span> <span class="nn">model</span>
-
-<span class="n">parameter_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</div>
+<div class="section" id="fitting">
+<h3>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h3>
+<p>Define parameters</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">parameter_names</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="s2">&quot;12&quot;</span><span class="p">,</span><span class="s2">&quot;21&quot;</span><span class="p">,</span><span class="s2">&quot;22&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;H1&quot;</span><span class="p">,</span><span class="s2">&quot;H21&quot;</span><span class="p">,</span><span class="s2">&quot;H22&quot;</span><span class="p">,</span><span class="s2">&quot;H3&quot;</span><span class="p">,</span><span class="s2">&quot;H4&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Hx&quot;</span>
+    <span class="s2">&quot;k11&quot;</span><span class="p">,</span><span class="s2">&quot;k12&quot;</span><span class="p">,</span><span class="s2">&quot;k21&quot;</span><span class="p">,</span><span class="s2">&quot;k22&quot;</span><span class="p">,</span><span class="s2">&quot;k3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kH1&quot;</span><span class="p">,</span><span class="s2">&quot;kH21&quot;</span><span class="p">,</span><span class="s2">&quot;kH22&quot;</span><span class="p">,</span><span class="s2">&quot;kH3&quot;</span><span class="p">,</span><span class="s2">&quot;kH4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kHx&quot;</span>
     <span class="p">]</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;k&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">:</span> <span class="n">parameter_vars</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">parameter_names</span><span class="p">}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">parameter_vars</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">parameter_names</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Define c0</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c0</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">species_tracked</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Define c0_untracked</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="n">c0_untracked</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vary</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">species_untracked</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
 
 <span class="n">fit</span><span class="o">.</span><span class="n">fit_dataset</span><span class="p">(</span>
-    <span class="n">ds</span><span class="p">,</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="p">,</span>
+    <span class="n">derivatives</span> <span class="o">=</span> <span class="n">derivatives</span><span class="p">,</span>
+    <span class="n">c_to_q</span> <span class="o">=</span> <span class="n">c_to_q</span><span class="p">,</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">,</span>
-    <span class="n">untracked_c0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">c0</span> <span class="o">=</span> <span class="n">c0</span><span class="p">,</span>
+    <span class="n">c0_untracked</span> <span class="o">=</span> <span class="n">c0_untracked</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>Fit succeeded.
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">plot</span>
+</div>
+<div class="section" id="fit-results">
+<h3>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class = 'docutils'>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>value</th>
+      <th>stderr</th>
+      <th>stderr/value %</th>
+      <th>init. val.</th>
+      <th>vary</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>k11</td>
+      <td>0.00554</td>
+      <td>0.000194</td>
+      <td>3.51</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>k12</td>
+      <td>0.00181</td>
+      <td>5.24e-05</td>
+      <td>2.89</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>k21</td>
+      <td>0.0649</td>
+      <td>0.00333</td>
+      <td>5.13</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>k22</td>
+      <td>0.038</td>
+      <td>0.00303</td>
+      <td>7.98</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>k3</td>
+      <td>0.00731</td>
+      <td>0.000395</td>
+      <td>5.41</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>kH1</td>
+      <td>0.0302</td>
+      <td>0.000366</td>
+      <td>1.21</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>kH21</td>
+      <td>0.0435</td>
+      <td>0.00659</td>
+      <td>15.1</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>kH22</td>
+      <td>5.87e-06</td>
+      <td>0.00251</td>
+      <td>4.27e+04</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>kH3</td>
+      <td>0.0545</td>
+      <td>0.00317</td>
+      <td>5.81</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>kH4</td>
+      <td>0.0728</td>
+      <td>0.00594</td>
+      <td>8.17</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>kHx</td>
+      <td>0.00173</td>
+      <td>0.00027</td>
+      <td>15.6</td>
+      <td>0.05</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>c0_HMF</td>
+      <td>4.86e+03</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.86e+03</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>c0_DFF</td>
+      <td>4.57</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.57</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>c0_HMFCA</td>
+      <td>0.453</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.453</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>c0_FFCA</td>
+      <td>0.248</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.248</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>c0_FDCA</td>
+      <td>0.112</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.112</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>c0_H_HMF</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>c0_H_DFF</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>c0_H_HMFCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>c0_H_FFCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>c0_H_FDCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>c0_Hx_HMF</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>c0_Hx_DFF</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>c0_Hx_HMFCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>c0_Hx_FFCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>c0_Hx_FDCA</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>nan</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>-inf</td>
+      <td>inf</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">plot</span>
 
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_2_0.svg
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_19_0.svg
 ></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FDCA&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_3_0.svg
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_20_0.svg
 ></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_q</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_4_0.svg
-></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_ks</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
-</pre></div>
-</div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_5_0.svg
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_21_0.svg
 ></p></div>
+</div>
+</div>
 
 
            </div>

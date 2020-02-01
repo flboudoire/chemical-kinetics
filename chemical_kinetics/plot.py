@@ -5,7 +5,8 @@ import numpy as np
 
 
 def plot_c(ds, names = None):
-
+    """ #TODO: comment function
+    """
     if names is None: names = ds.names
 
     df = ds.df_c
@@ -15,14 +16,24 @@ def plot_c(ds, names = None):
     plt.figure()
     lines = dict()
     for name in names:
-        p = plt.errorbar(
-            df["t"],
-            df[name],
-            yerr = df_std[name],
+        style = dict(
             linestyle = "none",
             marker = ".",
             label = name
             )
+        if np.all(np.isnan(df_std[name])):
+            p = plt.plot(
+                df["t"],
+                df[name],
+                **style
+                )
+        else:
+            p = plt.errorbar(
+                df["t"],
+                df[name],
+                yerr = df_std[name],
+                **style
+                )
         lines[name] = p[0]
     plt.xlabel(ds.t_label)
     plt.ylabel(ds.c_label)
@@ -40,7 +51,8 @@ def plot_c(ds, names = None):
 
 
 def plot_q(ds):
-
+    """ #TODO: comment function
+    """
     df = ds.df_q
     df_std = ds.df_q_std
     df_fit = ds.df_q_fit

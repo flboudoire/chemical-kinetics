@@ -1,4 +1,9 @@
-### Model
+This example is meant to showcase the basic steps needed to fit a dataset consisting of the evolution over time of the concentration of different species. These steps are the following:
+- create a kinetic model that can be used by the module
+- loading and plotting the data
+- fitting and displaying the fit results
+
+### Kinetic model
 
 We consider in this example are the following reactions:
 
@@ -82,10 +87,10 @@ plot.plot_c(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_6_0.svg
+<p align='center'><img src = simple_example_files/simple_example_7_0.svg
 ></p>
 
-### Fitting
+### Fitting and displaying thefit results
 
 We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the "residuals" function but a different residuals definition can include other parameters.
 
@@ -172,9 +177,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.102</td>
-      <td>0.00191</td>
-      <td>1.87</td>
+      <td>0.099</td>
+      <td>0.002</td>
+      <td>2.03</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -183,9 +188,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0204</td>
-      <td>0.000606</td>
-      <td>2.96</td>
+      <td>0.0199</td>
+      <td>0.000649</td>
+      <td>3.27</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -194,9 +199,9 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0201</td>
-      <td>0.000204</td>
-      <td>1.01</td>
+      <td>0.0203</td>
+      <td>0.000224</td>
+      <td>1.11</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -206,9 +211,9 @@ fit.print_result(ds)
       <th>3</th>
       <td>c0_A</td>
       <td>1.0</td>
-      <td>0.00749</td>
-      <td>0.747</td>
-      <td>1.02</td>
+      <td>0.00813</td>
+      <td>0.811</td>
+      <td>1.08</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -227,10 +232,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.205</td>
-      <td>0.00443</td>
-      <td>2.16</td>
-      <td>0.204</td>
+      <td>0.194</td>
+      <td>0.00467</td>
+      <td>2.41</td>
+      <td>0.182</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>
@@ -247,8 +252,10 @@ plot.plot_c(ds)
 ```
 
 
-<p align='center'><img src = simple_example_files/simple_example_15_0.svg
+<p align='center'><img src = simple_example_files/simple_example_16_0.svg
 ></p>
+
+For information, here is the code that was used to generate the raw data used in this example:
 
 
 ```python
@@ -257,6 +264,7 @@ import pandas as pd
 import numpy as np
 import lmfit
 
+# Time constantsand initial concentrations definitions
 params = lmfit.Parameters()
 params.add("k_1fw", value = 0.1)
 params.add("k_1bw", value = 0.02)
@@ -265,15 +273,15 @@ params.add("c0_A", value = 1)
 params.add("c0_B", value = 0)
 params.add("c0_C", value = 0.2)
 
+# Generate time and concentration evolution over time
 t = np.linspace(0,100,50)
 c = fit.evaluate(derivatives, params, t)
 
-noise = lambda c : c + c*0.2*(np.random.random(c.shape) - 0.5)
-c = noise(c)
+# Add random noise
+c += c*0.2*(np.random.random(c.shape) - 0.5)
 
+# Create a DataFrame from t and c and save it as .csv
 data = np.hstack((t.reshape(-1,1), c))
-
 df = pd.DataFrame(columns = ["t", "A", "B", "C"], data = data)
-
 df.to_csv(r"data/concentrations vs time.csv", index = False)
 ```
