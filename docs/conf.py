@@ -35,7 +35,8 @@ extensions = [
     'sphinxcontrib.napoleon',
     'sphinx_rtd_theme',
     'm2r',
-    'sphinx.ext.mathjax'
+    'sphinx.ext.mathjax',
+    'sphinx.ext.autosectionlabel'
 ]
 
 # source_suffix = '.rst'
