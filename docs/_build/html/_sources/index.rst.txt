@@ -8,6 +8,9 @@ chemical_kinetics
 
 .. mdinclude:: ../README.md
 
+Content
+~~~~~~~
+
 .. toctree::
 
    simple_example

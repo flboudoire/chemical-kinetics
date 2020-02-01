@@ -13,7 +13,3 @@ Or download the [chemical_kinetics](chemical_kinetics/) folder and add it to you
 - [Simple theoretical example](examples/simple_example/simple_example.md): homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
 
 - [Example using real experimental data](examples/HMF_oxidation_WO3/HMF_oxidation_WO3.md): published in [this]() scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
-
-### Documentation
-
-You can consult the documentation [here](docs/_build/markdown/index.md).
