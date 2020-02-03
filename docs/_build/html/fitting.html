@@ -161,31 +161,116 @@
 <dl class="function">
 <dt id="fit.calculate_residuals">
 <code class="sig-prename descclassname">fit.</code><code class="sig-name descname">calculate_residuals</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">fit</em>, <em class="sig-param">names</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.calculate_residuals" title="Permalink to this definition">¶</a></dt>
-<dd><p>#TODO: comment function</p>
+<dd><p>Calculates residuals values by comparing values in df and in fit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – Holds the data to be fitted. Either concentrations vs time
+or charge passed vs time depending on the situation.</p></li>
+<li><p><strong>fit</strong> (<em>numpy.ndarray</em>) – Holds the fit evaluation.</p></li>
+<li><p><strong>names</strong> – Names of the columns in df that hold the data to be compared
+to the fit values. Necessary because in some cases not all
+of the data stored in df is fitted.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="fit.evaluate">
 <code class="sig-prename descclassname">fit.</code><code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param">derivatives</em>, <em class="sig-param">params</em>, <em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd><p>#TODO: comment function</p>
+<dd><p>Evaluate the concentration(s) evolution(s) over time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>derivatives</strong> (<em>function</em>) – A function in the form dy = f(y, t, p) used to compute
+d(concentration)/dt at a time t for each species. Used by
+scipy.integrate.odeint</p></li>
+<li><p><strong>params</strong> (<em>lmfit.parameter.Parameters</em>) – The parameters values used to compute the derivatives
+function, for details on this object class see:
+<a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p></li>
+<li><p><strong>t</strong> (<em>list</em>) – Time values at which the concentrations should be evaluated.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="fit.fit_dataset">
-<code class="sig-prename descclassname">fit.</code><code class="sig-name descname">fit_dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">derivatives</em>, <em class="sig-param">parameters</em>, <em class="sig-param">c_to_q=None</em>, <em class="sig-param">c0={}</em>, <em class="sig-param">c0_untracked={}</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.fit_dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>#TODO: comment function</p>
+<code class="sig-prename descclassname">fit.</code><code class="sig-name descname">fit_dataset</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">derivatives</em>, <em class="sig-param">parameters</em>, <em class="sig-param">c0={}</em>, <em class="sig-param">c0_untracked={}</em>, <em class="sig-param">c_to_q=None</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.fit_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit a dataset holding concentration vs t data and optionally charge vs t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>chemical_kinetics.data_processing.Dataset</em>) – Object holding the different DataFrames containing the data
+to be fitted</p></li>
+<li><p><strong>derivatives</strong> (<em>function</em>) – A function in the form dy = f(y, t, p) used to compute
+d(concentration)/dt at a time t for each species. Used by
+scipy.integrate.odeint</p></li>
+<li><p><strong>(</strong><strong>dict of str</strong> (<em>c0</em>) – dict):
+Stores parameter names: arguments (e.g. value, min, max,
+vary) to be passed to the corresponding lmfit.Parameter.
+Represents all</p></li>
+<li><p><strong>(</strong><strong>dict of str</strong> – dict, optional):
+Stores species name: arguments (e.g. value, min, max, vary)
+to be passed to the corresponding lmfit.Parameter. Represent
+concentration at initial time for the species whose
+concentration evolution over time is stored in dataset.df_c.</p></li>
+<li><p><strong>(</strong><strong>collections.OrderedDict of str</strong> (<em>c0_untracked</em>) – dict, optional):
+Stores species name: arguments (e.g. value, min, max, vary)
+to be passed to the corresponding lmfit.Parameter. Represent
+concentration at initial time for the species whose
+concentration evolution over time is NOT stored in
+dataset.df_c. An ordered dictionary is necessary in this
+case to be able to pass arguments properly to the
+scipy.integrate.Sodeint solver.</p></li>
+<li><p><strong>c_to_q</strong> (<em>function</em><em>, </em><em>optional</em>) – Used to convert the concentrations over time evolution into
+charge passed.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="fit.print_result">
 <code class="sig-prename descclassname">fit.</code><code class="sig-name descname">print_result</code><span class="sig-paren">(</span><em class="sig-param">dataset</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.print_result" title="Permalink to this definition">¶</a></dt>
-<dd><p>#TODO: comment function</p>
+<dd><p>Pretty printing of the fit parameters stored in dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<em>chemical_kinetics.data_processing.Dataset</em>) – Object holding the different DataFrames containing the
+initial parameters and the fitted parameters</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="fit.residuals">
-<code class="sig-prename descclassname">fit.</code><code class="sig-name descname">residuals</code><span class="sig-paren">(</span><em class="sig-param">params</em>, <em class="sig-param">df_c</em>, <em class="sig-param">df_q</em>, <em class="sig-param">derivatives</em>, <em class="sig-param">c_to_q</em>, <em class="sig-param">tracked_species</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.residuals" title="Permalink to this definition">¶</a></dt>
-<dd><p>#TODO: comment function</p>
+<code class="sig-prename descclassname">fit.</code><code class="sig-name descname">residuals</code><span class="sig-paren">(</span><em class="sig-param">params</em>, <em class="sig-param">df_c</em>, <em class="sig-param">derivatives</em>, <em class="sig-param">tracked_species</em>, <em class="sig-param">df_q=None</em>, <em class="sig-param">c_to_q=None</em><span class="sig-paren">)</span><a class="headerlink" href="#fit.residuals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates residuals for concentrations vs t and optionally charge vs t</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>lmfit.parameter.Parameters</em>) – The parameters values used to compute the derivatives
+function, for details on this object class see:
+<a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p></li>
+<li><p><strong>df_c</strong> (<em>pandas.DataFrame</em>) – Holds the concentration vs time data to be fitted.</p></li>
+<li><p><strong>derivatives</strong> (<em>function</em>) – A function in the form dy = f(y, t, p) used to compute
+d(concentration)/dt at a time t for each species. Used by
+scipy.integrate.odeint</p></li>
+<li><p><strong>tracked_species</strong> (<em>list</em>) – Column names in df_c corresponding to the fitted data (used
+to exclude e.g. the “t” column)</p></li>
+<li><p><strong>df_q</strong> (<em>pandas.DataFrame</em><em>, </em><em>optional</em>) – Holds the charge passed vs time data to be fitted.</p></li>
+<li><p><strong>c_to_q</strong> (<em>function</em><em>, </em><em>optional</em>) – Used to convert the concentrations over time evolution into
+charge passed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Residuals values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

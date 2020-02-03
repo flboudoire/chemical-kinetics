@@ -161,7 +161,7 @@
 <dl class="class">
 <dt id="data_processing.Dataset">
 <em class="property">class </em><code class="sig-prename descclassname">data_processing.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">files_c</em>, <em class="sig-param">files_q=None</em>, <em class="sig-param">t_label='t [s]'</em>, <em class="sig-param">c_label='C [M]'</em>, <em class="sig-param">q_label='Q [C]'</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load and stores kinetics data, stores fit results and axes labels.</p>
+<dd><p>Loads and stores kinetics data, stores fit results and axes labels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -217,9 +217,9 @@ datasets.</p>
 <dl class="attribute">
 <dt id="data_processing.Dataset.fit_results">
 <code class="sig-name descname">fit_results</code><a class="headerlink" href="#data_processing.Dataset.fit_results" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stores the results of the fit, for details see:</p>
-<p><a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult">https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult</a></p>
-<p>Defined when the fit.fit_dataset() function is run on the
+<dd><p>Stores the results of the fit, for details see:
+<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult">https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult</a>
+Defined when the fit.fit_dataset() function is run on the
 Dataset object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -231,13 +231,14 @@ Dataset object.</p>
 <dl class="attribute">
 <dt id="data_processing.Dataset.init_params">
 <code class="sig-name descname">init_params</code><a class="headerlink" href="#data_processing.Dataset.init_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stores the initial parameters for the fit, for details see:</p>
+<dd><p>Stores the initial parameters for the fit, for details on
+this object class see:</p>
 <p><a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p>
 <p>Defined when the fit.fit_dataset() function is run on the
 Dataset object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>lmfit.Parameters</p>
+<dd class="field-odd"><p>lmfit.parameter.Parameters</p>
 </dd>
 </dl>
 </dd></dl>

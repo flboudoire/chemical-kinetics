@@ -117,13 +117,13 @@ Define parameters
 
 
 ```python
-parameter_vars = dict(value = 0.05, min = 0)
+parameter_args = dict(value = 0.05, min = 0)
 parameter_names = [
     "k11","k12","k21","k22","k3",
     "kH1","kH21","kH22","kH3","kH4",
     "kHx"
     ]
-parameters = {name: parameter_vars for name in parameter_names}
+parameters = {name: parameter_args for name in parameter_names}
 ```
 
 Define c0
@@ -505,14 +505,6 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_20_0.svg
-></p>
-
-
 ```python
 plot.plot_q(ds)
 ```
-
-
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_21_0.svg
-></p>

@@ -268,13 +268,13 @@
 <div class="section" id="fitting">
 <h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
 <p>Define parameters</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_vars</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parameter_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">parameter_names</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;k11&quot;</span><span class="p">,</span><span class="s2">&quot;k12&quot;</span><span class="p">,</span><span class="s2">&quot;k21&quot;</span><span class="p">,</span><span class="s2">&quot;k22&quot;</span><span class="p">,</span><span class="s2">&quot;k3&quot;</span><span class="p">,</span>
     <span class="s2">&quot;kH1&quot;</span><span class="p">,</span><span class="s2">&quot;kH21&quot;</span><span class="p">,</span><span class="s2">&quot;kH22&quot;</span><span class="p">,</span><span class="s2">&quot;kH3&quot;</span><span class="p">,</span><span class="s2">&quot;kH4&quot;</span><span class="p">,</span>
     <span class="s2">&quot;kHx&quot;</span>
     <span class="p">]</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">parameter_vars</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">parameter_names</span><span class="p">}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">parameter_args</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">parameter_names</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Define c0</p>
@@ -635,12 +635,10 @@
 ></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FDCA&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_20_0.svg
-></p><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_q</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_q</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_21_0.svg
-></p></div>
+</div>
 </div>
 
 

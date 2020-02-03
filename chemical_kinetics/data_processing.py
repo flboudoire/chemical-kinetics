@@ -6,7 +6,7 @@ import pandas as pd
 
 class Dataset:
 
-    """ Load and stores kinetics data, stores fit results and axes labels.
+    """Loads and stores kinetics data, stores fit results and axes labels.
 
     Arguments:
         files_c (list):
@@ -35,13 +35,12 @@ class Dataset:
             datasets.
         fit_results (lmfit.MinimizerResult):
             Stores the results of the fit, for details see:
-
             https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
-            
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
-        init_params (lmfit.Parameters):
-            Stores the initial parameters for the fit, for details see:
+        init_params (lmfit.parameter.Parameters):
+            Stores the initial parameters for the fit, for details on
+            this object class see:
 
             https://lmfit.github.io/lmfit-py/parameters.html
             
