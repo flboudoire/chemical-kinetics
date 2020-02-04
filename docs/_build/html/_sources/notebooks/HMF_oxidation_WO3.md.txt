@@ -2,9 +2,9 @@ This example emphasizes two scenarii not covered in the simple example:
 - using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit
 - fitting when the concentration evolution over time experimental data only covers some of the species considered in the model
 
-**TODO: comment each steps presented here**
-
 ### Kinetic model
+
+The kinetics model derived in [this](TODO add ref) paper leads to the following set of differential equations:
 
 .. math:: \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]
 
@@ -21,6 +21,10 @@ This example emphasizes two scenarii not covered in the simple example:
 
 .. math:: \frac{d[humins^*]}{dt} = k_{H^*}[humins]
 
+In order to define this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The humins and electropolymerized humins (humins\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of humins and humins* (electropolymerized humins) are considered. However, these total humins and humins\* concentrations need to be splitted here into the individual concentrations coming from each individual humins formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time to also fit the chronocoulometry data recorded in our experiment.
+
+We define the species names considered in this experiment as follow:
+
 
 ```python
 species_tracked = [
@@ -34,12 +38,56 @@ species = species_tracked.copy()
 species.extend(species_untracked)
 ```
 
+HMF, DFF, HMFCA, FFCA and FDCA are the tracked species. The humins coming from these species are denoted with the same names prepended with a "H_". The electropolymerized humins coming from these species also contains the same names and are prepended with "Hx_". To sum up we can now write:
+
+.. math::  [humins] = [H\_HMF] + [H\_DFF] + [H\_HMFCA] + [H\_FFCA] + [H\_FDCA] 
+
+.. math::  [humins^*] = [Hx\_HMF] + [Hx\_DFF] + [Hx\_HMFCA] + [Hx\_FFCA] + [Hx\_FDCA] 
+
+Therefore, the derivatives for [humins] presented above are rewritten in the following way:
+
+.. math:: \frac{d[H\_HMF]}{dt} = k_{H\textbf{1}}[HMF] - k_{H^*}[H\_HMF]
+
+.. math:: \frac{d[H\_DFF]}{dt} = k_{H\textbf{1}}[DFF] - k_{H^*}[H\_DFF]
+
+.. math:: \frac{d[H\_HMFCA]}{dt} = k_{H\textbf{1}}[HMFCA] - k_{H^*}[H\_HMFCA]
+
+.. math:: \frac{d[H\_FFCA]}{dt} = k_{H\textbf{1}}[FFCA] - k_{H^*}[H\_FFCA]
+
+.. math:: \frac{d[H\_FDCA]}{dt} = k_{H\textbf{1}}[FDCA] - k_{H^*}[H\_FDCA]
+
+The derivatives for [humins\*] are rewritten in this way:
+
+.. math:: \frac{d[Hx\_HMF]}{dt} = k_{H^*}[H\_HMF]
+
+.. math:: \frac{d[Hx\_DFF]}{dt} = k_{H^*}[H\_DFF]
+
+.. math:: \frac{d[Hx\_HMFCA]}{dt} = k_{H^*}[H\_HMFCA]
+
+.. math:: \frac{d[Hx\_FFCA]}{dt} = k_{H^*}[H\_FFCA]
+
+.. math:: \frac{d[Hx\_FDCA]}{dt} = k_{H^*}[H\_FDCA]
+
+The derivatives function derived from these differential equations is written as follow:
+
 
 ```python
 def derivatives(y, t, p):
 
-    """
-    Calculates the derivatives from local values, used by scipy.integrate.solve_ivp
+    """Calculates the derivatives of the concentrations at t
+    
+    Used scipy.integrate.odeint to numerically solve the differential
+    equations in a given time range.
+    
+    Lists (y and dy) used by scipy.integrate.odeint are converted
+    to dictionaries (c and dc) in order to make the differentials
+    easier to write and read for humans.
+    
+    Arguments:
+        y (list): concentration values at t
+        t (float): time value where the derivatives are calculated
+        p (dict): dictionary containing the parameters used to
+        calculate the derivatives e.g. time constants
     """
     
     c = {s:y[i] for i, s in enumerate(species)}
@@ -69,7 +117,11 @@ def derivatives(y, t, p):
     return dy
 ```
 
-.. math:: Q = \frac{q}{N_A} \sum_i n_i [i]
+We can then convert the concentrations evolution over time into the charge passed over time using this equation:
+
+.. math:: Q = e N_A V \sum_i n_i C_i
+
+With e the electron charge in Coulombs, N<sub>A</sub> the Avogadro number, V the volume of solution, n<sub>i</sub> the number of charge passed to make one molecule of i, and C<sub>i</sub> the concentration of species i. This equation translates into code as follow:
 
 
 ```python
@@ -77,22 +129,41 @@ import numpy as np
 import scipy.constants as constants
 
 def c_to_q(c):
-
-    c_e = list()
+    
+    """Calculates the charge passed from the concentrations vs time
+    
+    Arguments:
+        c (numpy.ndarray):
+            Concentrations evolution over time, axis 0 is time,
+            axis 1 is species.
+    """
+    
+    # the concentrations are monitored in micromoles/L
+    # so we convert them to moles/L
+    c *= 1e-6
+    
+    # calculate the product ni Ci for each species
+    ni_Ci = list()
     for i, s in enumerate(species):
-        c_e.append(2*(i%5 + int(i/5))*c[:,i])
-
-    c_e = np.sum(c_e, axis = 0) # uM
-    c_e *= 1e-6 # M
-
-    V = 100e-3 # L
-
-    q = c_e*V*constants.N_A*constants.e # number of charge in coulombs
+        ni_Ci.append(2*(i%5 + int(i/5))*c[:,i])
+    
+    # calculate the sum of ni Ci for all species
+    sum_ni_Ci = np.sum(ni_Ci, axis = 0)
+    
+    # solution volume in L
+    V = 100e-3
+    
+    # charge passed in C
+    q = sum_ni_Ci*V*constants.N_A*constants.e
 
     return q
 ```
 
+Now that the model is define we can load the raw data and fit it.
+
 ### Load concentrations and charge passed evolution over time
+
+Here three .csv files are passed for the evolution of HMF, DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional .csv files are passed for the charge passed over time.
 
 
 ```python
@@ -113,7 +184,9 @@ ds = data_processing.Dataset(
 
 ### Fitting
 
-Define parameters
+The only parameters to be fitted are the time constants. The initial concentrations are fixed to the initial values recorded by HPLC for the tracked species. For the untracked species the initial concentrations are fixed to 0.
+
+We first define the time constants parameters:
 
 
 ```python
@@ -126,14 +199,14 @@ parameter_names = [
 parameters = {name: parameter_args for name in parameter_names}
 ```
 
-Define c0
+Then we define the initial concentrations parameter for the tracked species:
 
 
 ```python
 c0 = {name: dict(vary = False) for name in species_tracked}
 ```
 
-Define c0_untracked
+And finally, we define the initial concentrations for the untracked species:
 
 
 ```python
@@ -142,6 +215,8 @@ c0_untracked = OrderedDict({
     name: dict(value = 0, vary = False) for name in species_untracked
 })
 ```
+
+With the data loaded, the model and the parameters / initial concentrations defined we can proceed with the fit:
 
 
 ```python
@@ -161,6 +236,8 @@ fit.fit_dataset(
 
 
 ### Fit results
+
+The fit results are summarized in the table below. Note that all the initial concentrations, starting by "c0_" are fixed so only the ks values are parameters of the fit.
 
 
 ```python
@@ -201,7 +278,7 @@ fit.print_result(ds)
       <th>0</th>
       <td>k11</td>
       <td>0.00554</td>
-      <td>0.000194</td>
+      <td>0.000195</td>
       <td>3.51</td>
       <td>0.05</td>
       <td>True</td>
@@ -211,8 +288,8 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k12</td>
-      <td>0.00181</td>
-      <td>5.24e-05</td>
+      <td>0.00182</td>
+      <td>5.25e-05</td>
       <td>2.89</td>
       <td>0.05</td>
       <td>True</td>
@@ -223,8 +300,8 @@ fit.print_result(ds)
       <th>2</th>
       <td>k21</td>
       <td>0.0649</td>
-      <td>0.00333</td>
-      <td>5.13</td>
+      <td>0.00324</td>
+      <td>5.0</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -233,9 +310,9 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>k22</td>
-      <td>0.038</td>
-      <td>0.00303</td>
-      <td>7.98</td>
+      <td>0.0381</td>
+      <td>0.00215</td>
+      <td>5.65</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -245,8 +322,8 @@ fit.print_result(ds)
       <th>4</th>
       <td>k3</td>
       <td>0.00731</td>
-      <td>0.000395</td>
-      <td>5.41</td>
+      <td>0.000391</td>
+      <td>5.35</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -256,8 +333,8 @@ fit.print_result(ds)
       <th>5</th>
       <td>kH1</td>
       <td>0.0302</td>
-      <td>0.000366</td>
-      <td>1.21</td>
+      <td>0.000371</td>
+      <td>1.23</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -266,9 +343,9 @@ fit.print_result(ds)
     <tr>
       <th>6</th>
       <td>kH21</td>
-      <td>0.0435</td>
-      <td>0.00659</td>
-      <td>15.1</td>
+      <td>0.0436</td>
+      <td>0.00652</td>
+      <td>15.0</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -277,9 +354,9 @@ fit.print_result(ds)
     <tr>
       <th>7</th>
       <td>kH22</td>
-      <td>5.87e-06</td>
-      <td>0.00251</td>
-      <td>4.27e+04</td>
+      <td>1.68e-07</td>
+      <td>0.00129</td>
+      <td>7.65e+05</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -289,8 +366,8 @@ fit.print_result(ds)
       <th>8</th>
       <td>kH3</td>
       <td>0.0545</td>
-      <td>0.00317</td>
-      <td>5.81</td>
+      <td>0.0031</td>
+      <td>5.69</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -300,8 +377,8 @@ fit.print_result(ds)
       <th>9</th>
       <td>kH4</td>
       <td>0.0728</td>
-      <td>0.00594</td>
-      <td>8.17</td>
+      <td>0.00591</td>
+      <td>8.12</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -488,6 +565,8 @@ fit.print_result(ds)
 </div>
 
 
+To assess the fit results the evolution of concentration over time and charge passed over time are plotted:
+
 
 ```python
 from chemical_kinetics import plot
@@ -496,7 +575,7 @@ plot.plot_c(ds, ["HMF"])
 ```
 
 
-<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_19_0.svg
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_36_0.svg
 ></p>
 
 
@@ -505,6 +584,14 @@ plot.plot_c(ds, ["DFF", "HMFCA", "FFCA", "FDCA"])
 ```
 
 
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_37_0.svg
+></p>
+
+
 ```python
 plot.plot_q(ds)
 ```
+
+
+<p align='center'><img src = HMF_oxidation_WO3_files/HMF_oxidation_WO3_38_0.svg
+></p>

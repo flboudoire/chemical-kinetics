@@ -27,7 +27,7 @@ This system of differential equation will be computed at a given time t using th
 ```python
 def derivatives(y, t, p):
     
-    """ Calculates the derivatives of the concentrations at t
+    """Calculates the derivatives of the concentrations at t
     
     Used scipy.integrate.odeint to numerically solve the differential
     equations in a given time range.
@@ -177,9 +177,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.099</td>
-      <td>0.002</td>
-      <td>2.03</td>
+      <td>0.0982</td>
+      <td>0.00171</td>
+      <td>1.74</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -188,9 +188,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0199</td>
-      <td>0.000649</td>
-      <td>3.27</td>
+      <td>0.0197</td>
+      <td>0.000554</td>
+      <td>2.81</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -199,9 +199,9 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0203</td>
-      <td>0.000224</td>
-      <td>1.11</td>
+      <td>0.0201</td>
+      <td>0.000193</td>
+      <td>0.964</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -210,9 +210,9 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>1.0</td>
-      <td>0.00813</td>
-      <td>0.811</td>
+      <td>0.998</td>
+      <td>0.00699</td>
+      <td>0.701</td>
       <td>1.08</td>
       <td>True</td>
       <td>0.5</td>
@@ -232,10 +232,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.194</td>
-      <td>0.00467</td>
-      <td>2.41</td>
-      <td>0.182</td>
+      <td>0.199</td>
+      <td>0.00407</td>
+      <td>2.05</td>
+      <td>0.204</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

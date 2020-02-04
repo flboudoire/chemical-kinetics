@@ -28,7 +28,7 @@ Or download the chemical_kinetics folder on `Github <https://github.com/flboudoi
 Examples
 --------
 
-- :ref:`Simple theoretical example<Simple example>`: homogeneous reversible reaction. Demonstrates the fit of species concentration evolution over time.
+- :ref:`Simple theoretical example<Simple example>`: demonstrates the fit of species concentration evolution over time.
 
 - :ref:`Example using real experimental data<Advanced example>`: published in `this <#TODO: add link>`_ scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
 
