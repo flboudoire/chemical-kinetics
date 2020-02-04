@@ -174,22 +174,23 @@ def fit_dataset(
             A function in the form dy = f(y, t, p) used to compute
             d(concentration)/dt at a time t for each species. Used by
             scipy.integrate.odeint
-        parameters (dict of str: dict):
-            Stores parameter names: arguments (e.g. value, min, max,
-            vary) to be passed to the corresponding lmfit.Parameter.
-            Represents all 
-        c0 (dict of str: dict, optional):
-            Stores species name: arguments (e.g. value, min, max, vary)
-            to be passed to the corresponding lmfit.Parameter. Represent
-            concentration at initial time for the species whose
-            concentration evolution over time is stored in dataset.df_c.
-        c0_untracked (collections.OrderedDict of str: dict, optional):
-            Stores species name: arguments (e.g. value, min, max, vary)
-            to be passed to the corresponding lmfit.Parameter. Represent
-            concentration at initial time for the species whose
-            concentration evolution over time is NOT stored in
-            dataset.df_c. An ordered dictionary is necessary in this
-            case to be able to pass arguments properly to the
+        parameters (dict):
+            Stores parameter names (str): arguments (dict) (e.g. value,
+            min, max, vary) to be passed to the corresponding
+            lmfit.Parameter. Represents all 
+        c0 (dict, optional):
+            Stores species name (str): arguments (dict) (e.g. value,
+            min, max, vary) to be passed to the corresponding
+            lmfit.Parameter. Represent concentration at initial time for
+            the species whose concentration evolution over time is
+            stored in dataset.df_c.
+        c0_untracked (collections.OrderedDict, optional):
+            Stores species name (str): arguments (dict) (e.g. value,
+            min, max, vary) to be passed to the corresponding
+            lmfit.Parameter. Represent concentration at initial time for
+            the species whose concentration evolution over time is NOT
+            stored in dataset.df_c. An ordered dictionary is necessary
+            in this case to be able to pass arguments properly to the
             scipy.integrate.Sodeint solver.
         c_to_q (function, optional):
             Used to convert the concentrations over time evolution into
