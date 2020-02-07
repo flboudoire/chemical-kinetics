@@ -2,5 +2,5 @@
 Loading data - data.py
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: data_processing
+.. automodule:: data
    :members:

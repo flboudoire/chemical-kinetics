@@ -217,9 +217,9 @@
 <h2>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The dataset “data/concentrations vs time.csv” is loaded in an object of class data_processing.Dataset (see <a class="reference external" href="#TODOaddlink">class documentation</a> for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.</p>
 <p>Its a good idea to consult the [recomendations for the .csv files format] (#TODO write and add link).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data_processing</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data</span>
 
-<span class="n">ds</span> <span class="o">=</span> <span class="n">data_processing</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span>
     <span class="n">files_c</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;data/concentrations vs time.csv&quot;</span><span class="p">],</span>
     <span class="n">t_label</span> <span class="o">=</span> <span class="s2">&quot;Time [a.u.]&quot;</span><span class="p">,</span>
     <span class="n">c_label</span> <span class="o">=</span> <span class="s2">&quot;Concentration [a.u.]&quot;</span>
@@ -308,9 +308,9 @@
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.0982</td>
-      <td>0.00171</td>
-      <td>1.74</td>
+      <td>0.0993</td>
+      <td>0.00192</td>
+      <td>1.93</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -319,9 +319,9 @@
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0197</td>
-      <td>0.000554</td>
-      <td>2.81</td>
+      <td>0.0201</td>
+      <td>0.00062</td>
+      <td>3.09</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -330,9 +330,9 @@
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0201</td>
-      <td>0.000193</td>
-      <td>0.964</td>
+      <td>0.0198</td>
+      <td>0.000212</td>
+      <td>1.07</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -341,10 +341,10 @@
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>0.998</td>
-      <td>0.00699</td>
-      <td>0.701</td>
-      <td>1.08</td>
+      <td>0.994</td>
+      <td>0.00768</td>
+      <td>0.772</td>
+      <td>0.969</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -363,10 +363,10 @@
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.199</td>
-      <td>0.00407</td>
-      <td>2.05</td>
-      <td>0.204</td>
+      <td>0.2</td>
+      <td>0.00449</td>
+      <td>2.25</td>
+      <td>0.214</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

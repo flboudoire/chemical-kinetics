@@ -68,9 +68,9 @@ Its a good idea to consult the [recomendations for the .csv files format] (#TODO
 
 
 ```python
-from chemical_kinetics import data_processing
+from chemical_kinetics import data
 
-ds = data_processing.Dataset(
+ds = data.Dataset(
     files_c = ["data/concentrations vs time.csv"],
     t_label = "Time [a.u.]",
     c_label = "Concentration [a.u.]"
@@ -177,9 +177,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.0982</td>
-      <td>0.00171</td>
-      <td>1.74</td>
+      <td>0.0993</td>
+      <td>0.00192</td>
+      <td>1.93</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -188,9 +188,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0197</td>
-      <td>0.000554</td>
-      <td>2.81</td>
+      <td>0.0201</td>
+      <td>0.00062</td>
+      <td>3.09</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -199,9 +199,9 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0201</td>
-      <td>0.000193</td>
-      <td>0.964</td>
+      <td>0.0198</td>
+      <td>0.000212</td>
+      <td>1.07</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -210,10 +210,10 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>0.998</td>
-      <td>0.00699</td>
-      <td>0.701</td>
-      <td>1.08</td>
+      <td>0.994</td>
+      <td>0.00768</td>
+      <td>0.772</td>
+      <td>0.969</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -232,10 +232,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.199</td>
-      <td>0.00407</td>
-      <td>2.05</td>
-      <td>0.204</td>
+      <td>0.2</td>
+      <td>0.00449</td>
+      <td>2.25</td>
+      <td>0.214</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

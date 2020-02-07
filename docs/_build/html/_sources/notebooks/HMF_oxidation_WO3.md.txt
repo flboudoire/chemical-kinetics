@@ -167,13 +167,13 @@ Here three .csv files are passed for the evolution of HMF, DFF, HMFCA, FFCA and 
 
 
 ```python
-from chemical_kinetics import data_processing
+from chemical_kinetics import data
 
 folders = [f"data/run{i}/" for i in range(1,4)]
 files_c = [f"{folder}Reaction Monitoring.csv" for folder in folders]
 files_q = [f"{folder}Charge Passed.csv" for folder in folders]
 
-ds = data_processing.Dataset(
+ds = data.Dataset(
     files_c = files_c,
     files_q = files_q,
     t_label = "Time [h]",
