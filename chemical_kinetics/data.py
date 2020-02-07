@@ -45,12 +45,14 @@ class Dataset:
             Stores the results of the fit, for details see the
             lmfit.minimizer.MinimizerResult documentation:
             https://lmfit.github.io/lmfit-py/fitting.html
+
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
         init_params (lmfit.parameter.Parameters):
             Stores the initial parameters for the fit, for details on
             this object class see:
             https://lmfit.github.io/lmfit-py/parameters.html
+            
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
         names (list):

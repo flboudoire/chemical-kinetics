@@ -179,9 +179,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.101</td>
-      <td>0.00213</td>
-      <td>2.11</td>
+      <td>0.1</td>
+      <td>0.00194</td>
+      <td>1.94</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -190,9 +190,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0202</td>
-      <td>0.00068</td>
-      <td>3.37</td>
+      <td>0.0201</td>
+      <td>0.000623</td>
+      <td>3.1</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -201,9 +201,9 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0198</td>
-      <td>0.000231</td>
-      <td>1.17</td>
+      <td>0.0199</td>
+      <td>0.000213</td>
+      <td>1.07</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -212,10 +212,10 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>0.987</td>
-      <td>0.00838</td>
-      <td>0.849</td>
-      <td>0.996</td>
+      <td>1.0</td>
+      <td>0.00779</td>
+      <td>0.779</td>
+      <td>0.974</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -234,10 +234,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.204</td>
-      <td>0.00496</td>
-      <td>2.43</td>
-      <td>0.2</td>
+      <td>0.205</td>
+      <td>0.00459</td>
+      <td>2.25</td>
+      <td>0.216</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

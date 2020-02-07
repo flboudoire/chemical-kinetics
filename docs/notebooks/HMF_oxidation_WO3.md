@@ -289,7 +289,7 @@ fit.print_result(ds)
       <th>1</th>
       <td>k12</td>
       <td>0.00182</td>
-      <td>5.25e-05</td>
+      <td>5.24e-05</td>
       <td>2.89</td>
       <td>0.05</td>
       <td>True</td>
@@ -300,8 +300,8 @@ fit.print_result(ds)
       <th>2</th>
       <td>k21</td>
       <td>0.0649</td>
-      <td>0.00324</td>
-      <td>5.0</td>
+      <td>0.00411</td>
+      <td>6.33</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -310,9 +310,9 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>k22</td>
-      <td>0.0381</td>
-      <td>0.00215</td>
-      <td>5.65</td>
+      <td>0.038</td>
+      <td>0.00853</td>
+      <td>22.4</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -321,9 +321,9 @@ fit.print_result(ds)
     <tr>
       <th>4</th>
       <td>k3</td>
-      <td>0.00731</td>
-      <td>0.000391</td>
-      <td>5.35</td>
+      <td>0.0073</td>
+      <td>0.000393</td>
+      <td>5.38</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -333,8 +333,8 @@ fit.print_result(ds)
       <th>5</th>
       <td>kH1</td>
       <td>0.0302</td>
-      <td>0.000371</td>
-      <td>1.23</td>
+      <td>0.000367</td>
+      <td>1.22</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -343,9 +343,9 @@ fit.print_result(ds)
     <tr>
       <th>6</th>
       <td>kH21</td>
-      <td>0.0436</td>
-      <td>0.00652</td>
-      <td>15.0</td>
+      <td>0.0435</td>
+      <td>0.00708</td>
+      <td>16.3</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -354,9 +354,9 @@ fit.print_result(ds)
     <tr>
       <th>7</th>
       <td>kH22</td>
-      <td>1.68e-07</td>
-      <td>0.00129</td>
-      <td>7.65e+05</td>
+      <td>2.93e-05</td>
+      <td>0.00839</td>
+      <td>2.86e+04</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -366,8 +366,8 @@ fit.print_result(ds)
       <th>8</th>
       <td>kH3</td>
       <td>0.0545</td>
-      <td>0.0031</td>
-      <td>5.69</td>
+      <td>0.00431</td>
+      <td>7.9</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -376,9 +376,9 @@ fit.print_result(ds)
     <tr>
       <th>9</th>
       <td>kH4</td>
-      <td>0.0728</td>
-      <td>0.00591</td>
-      <td>8.12</td>
+      <td>0.0727</td>
+      <td>0.00592</td>
+      <td>8.13</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
@@ -388,8 +388,8 @@ fit.print_result(ds)
       <th>10</th>
       <td>kHx</td>
       <td>0.00173</td>
-      <td>0.00027</td>
-      <td>15.6</td>
+      <td>0.000275</td>
+      <td>15.9</td>
       <td>0.05</td>
       <td>True</td>
       <td>0.0</td>
