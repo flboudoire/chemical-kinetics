@@ -39,10 +39,10 @@ def plot_c(dataset, names = None):
             marker = ".",
             label = name
             )
-        # here we need to consider wether no errorbars were generated for any
+        # here we need to consider whether no error-bars were generated for any
         # of the raw data (i.e. only one data file was loaded when creating
         # "dataset"); if no standard deviation were generated use plot to plot
-        # the data, else use errorbar to plot the data
+        # the data, else use error-bar to plot the data
         if np.all(np.isnan(df_std[name])):
             p = plt.plot(
                 df["t"],
@@ -97,7 +97,7 @@ def plot_q(dataset):
     plt.figure()
     
     # use a filled area to simplify the raw data standard deviation
-    # visualisation
+    # visualization
     plt.fill_between(
         df["t"],
         df["Q"] - df_std["Q"],

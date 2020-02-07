@@ -1,4 +1,10 @@
-""" 
+"""
+This module defines the Dataset class that is used to load the .csv
+files holding the data to be fitted and after the fit is performed the
+initial parameters, the fitted parameters and the fit estimation.
+
+This module also defines the load function used in the Dataset.load_c
+and Dataset.load_q functions to load .csv files.
 """
 
 import pandas as pd
@@ -41,9 +47,7 @@ class Dataset:
         init_params (lmfit.parameter.Parameters):
             Stores the initial parameters for the fit, for details on
             this object class see:
-
             https://lmfit.github.io/lmfit-py/parameters.html
-            
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
         names (list):

@@ -158,6 +158,11 @@
             
   <div class="section" id="module-data_processing">
 <span id="loading-data"></span><h1>Loading data<a class="headerlink" href="#module-data_processing" title="Permalink to this headline">¶</a></h1>
+<p>This module defines the Dataset class that is used to load the .csv
+files holding the data to be fitted and after the fit is performed the
+initial parameters, the fitted parameters and the fit estimation.</p>
+<p>This module also defines the load function used in the Dataset.load_c
+and Dataset.load_q functions to load .csv files.</p>
 <dl class="class">
 <dt id="data_processing.Dataset">
 <em class="property">class </em><code class="sig-prename descclassname">data_processing.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param">files_c</em>, <em class="sig-param">files_q=None</em>, <em class="sig-param">t_label='t [s]'</em>, <em class="sig-param">c_label='C [M]'</em>, <em class="sig-param">q_label='Q [C]'</em><span class="sig-paren">)</span><a class="headerlink" href="#data_processing.Dataset" title="Permalink to this definition">¶</a></dt>
@@ -232,9 +237,9 @@ Dataset object.</p>
 <dt id="data_processing.Dataset.init_params">
 <code class="sig-name descname">init_params</code><a class="headerlink" href="#data_processing.Dataset.init_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stores the initial parameters for the fit, for details on
-this object class see:</p>
-<p><a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p>
-<p>Defined when the fit.fit_dataset() function is run on the
+this object class see:
+<a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a>
+Defined when the fit.fit_dataset() function is run on the
 Dataset object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>

@@ -191,7 +191,7 @@ def fit_dataset(
             the species whose concentration evolution over time is NOT
             stored in dataset.df_c. An ordered dictionary is necessary
             in this case to be able to pass arguments properly to the
-            scipy.integrate.Sodeint solver.
+            scipy.integrate.odeint solver.
         c_to_q (function, optional):
             Used to convert the concentrations over time evolution into
             charge passed.
@@ -300,7 +300,7 @@ def print_result(dataset):
     params = dataset.fit_result.params
     init_params = dataset.init_params
 
-    # none values are returned by lmfit.minimize for errorbars when they could
+    # none values are returned by lmfit.minimize for error-bars when they could
     # not be calculated, formatting NoneType is not possible so if None values
     # are obtained, they are converted to nan values
     stderr = {

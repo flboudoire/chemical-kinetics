@@ -150,7 +150,7 @@
             
   <div class="section" id="chemical-kinetics">
 <h1>chemical_kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h1>
-<p>A python module to load, fit and plot chemical kinetics data. It is used to extract reaction time constants from experimental data. This data should at least describe the evolution of some of the species concentration over time. Optionally, if an electrochemical measurement was performed, the fit can also include the charge passed over time in order to improve the fit precision.</p>
+<p>A python module to load, fit and plot chemical kinetics data. In particular, it is used to extract reaction time constants from experimental data. This data should at least describe the evolution of some of the species concentration over time. Optionally, if an electrochemical measurement was performed, the fit can also include the charge passed over time in order to improve the time constants estimation.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="simple_example.html">Simple example</a><ul>
@@ -174,8 +174,8 @@
 </li>
 </ul>
 </div>
-<div class="section" id="instalation">
-<h2>Instalation<a class="headerlink" href="#instalation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Using pip:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install chemical_kinetics
 </pre></div>
@@ -186,8 +186,12 @@
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="simple_example.html#simple-example"><span class="std std-ref">Simple theoretical example</span></a>: demonstrates the fit of species concentration evolution over time.</p></li>
-<li><p><a class="reference internal" href="advanced_example.html#advanced-example"><span class="std std-ref">Example using real experimental data</span></a>: published in <a class="reference external" href="#TODO:addlink">this</a> scientific paper. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.</p></li>
+<li><p><a class="reference internal" href="advanced_example.html#advanced-example"><span class="std std-ref">Example using real experimental data</span></a>: published in <a class="reference external" href="#TODO:addlink">this scientific paper</a>. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.</p></li>
 </ul>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>This code relies on the use of scipy, numpy, pandas and matplotlib packages. It also uses the <a class="reference external" href="https://lmfit.github.io/lmfit-py/intro.html">lmfit package</a> (Matt Newville et al., LMFIT: Non-Linear Least-Square Minimization and Curve-Fitting for Python).</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
