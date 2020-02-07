@@ -202,7 +202,7 @@ function, for details on this object class see:
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<em>chemical_kinetics.data_processing.Dataset</em>) – Object holding the different DataFrames containing the data
+<li><p><strong>dataset</strong> (<em>chemical_kinetics.data.Dataset</em>) – Object holding the different DataFrames containing the data
 to be fitted</p></li>
 <li><p><strong>derivatives</strong> (<em>function</em>) – A function in the form dy = f(y, t, p) used to compute
 d(concentration)/dt at a time t for each species. Used by
@@ -235,7 +235,7 @@ charge passed.</p></li>
 <dd><p>Pretty printing of the fit parameters stored in dataset</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dataset</strong> (<em>chemical_kinetics.data_processing.Dataset</em>) – Object holding the different DataFrames containing the
+<dd class="field-odd"><p><strong>dataset</strong> (<em>chemical_kinetics.data.Dataset</em>) – Object holding the different DataFrames containing the
 initial parameters and the fitted parameters</p>
 </dd>
 </dl>

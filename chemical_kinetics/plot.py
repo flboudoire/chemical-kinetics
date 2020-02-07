@@ -12,7 +12,7 @@ def plot_c(dataset, names = None):
     dataset. Else it only plots the raw data.
 
     Arguments:
-        dataset (chemical_kinetics.data_processing.Dataset):
+        dataset (chemical_kinetics.data.Dataset):
             Object holding the DataFrame containing the data and the fit
             results.
         names (list, optional):
@@ -84,7 +84,7 @@ def plot_q(dataset):
     dataset. Else it only plots the raw data.
 
     Arguments:
-        dataset (chemical_kinetics.data_processing.Dataset):
+        dataset (chemical_kinetics.data.Dataset):
             Object holding the DataFrame containing the data and the fit
             results.
     """

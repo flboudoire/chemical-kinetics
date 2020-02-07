@@ -167,7 +167,7 @@ def fit_dataset(
     """Fit a dataset holding concentration vs t data and optionally charge vs t
 
     Arguments:
-        dataset (chemical_kinetics.data_processing.Dataset):
+        dataset (chemical_kinetics.data.Dataset):
             Object holding the different DataFrames containing the data
             to be fitted
         derivatives (function):
@@ -291,7 +291,7 @@ def print_result(dataset):
     """ Pretty printing of the fit parameters stored in dataset
 
     Arguments:
-        dataset (chemical_kinetics.data_processing.Dataset):
+        dataset (chemical_kinetics.data.Dataset):
             Object holding the different DataFrames containing the
             initial parameters and the fitted parameters 
     """
