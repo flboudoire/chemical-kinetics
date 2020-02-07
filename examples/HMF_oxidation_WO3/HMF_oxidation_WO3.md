@@ -1,10 +1,10 @@
 This example emphasizes two scenarii not covered in the simple example:
-- using charge passed over time data, which can be acquired when performing electrochemical measurements, and that can help improve the accuracy of the time constants obtained from the fit
+- using charge passed over time data, which can be acquired when performing electrochemical measurements (chronocoulometry), and that can help improve the accuracy of the time constants obtained from the fit
 - fitting when the concentration evolution over time experimental data only covers some of the species considered in the model
 
 ### Kinetic model
 
-The kinetics model derived in [this](TODO add ref) paper leads to the following set of differential equations:
+The kinetics model derived in [this paper](TODO add link when published) leads to the following set of differential equations:
 
 $$\frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]$$
 
@@ -21,7 +21,7 @@ $$+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]$$
 
 $$\frac{d[humins^*]}{dt} = k_{H^*}[humins]$$
 
-In order to define this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The humins and electropolymerized humins (humins\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of humins and humins* (electropolymerized humins) are considered. However, these total humins and humins\* concentrations need to be splitted here into the individual concentrations coming from each individual humins formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time to also fit the chronocoulometry data recorded in our experiment.
+In order to write a function describing this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The humins and electropolymerized humins (humins\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of humins and humins\* (electropolymerized humins) are considered. However, these total humins and humins\* concentrations need to be splitted here into the individual concentrations coming from each individual humins formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time allowing us to include the corresponding experimental data in the fit.
 
 We define the species names considered in this experiment as follow:
 
@@ -38,13 +38,13 @@ species = species_tracked.copy()
 species.extend(species_untracked)
 ```
 
-HMF, DFF, HMFCA, FFCA and FDCA are the tracked species. The humins coming from these species are denoted with the same names prepended with a "H_". The electropolymerized humins coming from these species also contains the same names and are prepended with "Hx_". To sum up we can now write:
+HMF, DFF, HMFCA, FFCA and FDCA are the species whose concentrations are tracked experimentally. The humins and humins\* coming from these species are denoted with the same names prepended respectively with a "H_" and a "Hx_". To sum up we can now write:
 
 $$ [humins] = [H\_HMF] + [H\_DFF] + [H\_HMFCA] + [H\_FFCA] + [H\_FDCA] $$
 
 $$ [humins^*] = [Hx\_HMF] + [Hx\_DFF] + [Hx\_HMFCA] + [Hx\_FFCA] + [Hx\_FDCA] $$
 
-Therefore, the derivatives for [humins] presented above are rewritten in the following way:
+Therefore, the derivatives presented above for the concentration of humins are rewritten in the following way:
 
 $$\frac{d[H\_HMF]}{dt} = k_{H\textbf{1}}[HMF] - k_{H^*}[H\_HMF]$$
 
@@ -56,7 +56,7 @@ $$\frac{d[H\_FFCA]}{dt} = k_{H\textbf{1}}[FFCA] - k_{H^*}[H\_FFCA]$$
 
 $$\frac{d[H\_FDCA]}{dt} = k_{H\textbf{1}}[FDCA] - k_{H^*}[H\_FDCA]$$
 
-The derivatives for [humins\*] are rewritten in this way:
+The derivatives for the concentration of humins\* are rewritten in this way:
 
 $$\frac{d[Hx\_HMF]}{dt} = k_{H^*}[H\_HMF]$$
 
@@ -68,7 +68,7 @@ $$\frac{d[Hx\_FFCA]}{dt} = k_{H^*}[H\_FFCA]$$
 
 $$\frac{d[Hx\_FDCA]}{dt} = k_{H^*}[H\_FDCA]$$
 
-The derivatives function derived from these differential equations is written as follow:
+We can now write the "derivatives" function derived from these differential equations:
 
 
 ```python
@@ -79,8 +79,8 @@ def derivatives(y, t, p):
     Used scipy.integrate.odeint to numerically solve the differential
     equations in a given time range.
     
-    Lists (y and dy) used by scipy.integrate.odeint are converted
-    to dictionaries (c and dc) in order to make the differentials
+    Lists ("y" and "dy") used by scipy.integrate.odeint are converted
+    to dictionaries ("c" and "dc") in order to make the differentials
     easier to write and read for humans.
     
     Arguments:
@@ -142,28 +142,28 @@ def c_to_q(c):
     # so we convert them to moles/L
     c *= 1e-6
     
-    # calculate the product ni Ci for each species
+    # calculate the product ni*Ci for each species
     ni_Ci = list()
     for i, s in enumerate(species):
         ni_Ci.append(2*(i%5 + int(i/5))*c[:,i])
     
-    # calculate the sum of ni Ci for all species
+    # calculate the sum of ni*Ci for all species
     sum_ni_Ci = np.sum(ni_Ci, axis = 0)
     
     # solution volume in L
     V = 100e-3
     
     # charge passed in C
-    q = sum_ni_Ci*V*constants.N_A*constants.e
+    q = constants.e*constants.N_A*V*sum_ni_Ci
 
     return q
 ```
 
-Now that the model is define we can load the raw data and fit it.
+Now that the model is defined we can load the raw data and fit it.
 
 ### Load concentrations and charge passed evolution over time
 
-Here three .csv files are passed for the evolution of HMF, DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional .csv files are passed for the charge passed over time.
+Here three .csv files are used to get the measured evolution of HMF, DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional .csv files are used for the charge passed over time.
 
 
 ```python
@@ -206,7 +206,7 @@ Then we define the initial concentrations parameter for the tracked species:
 c0 = {name: dict(vary = False) for name in species_tracked}
 ```
 
-And finally, we define the initial concentrations for the untracked species:
+And finally, we define the initial concentrations for the untracked species (note that we need here to define an ordered dictionary):
 
 
 ```python
@@ -216,7 +216,7 @@ c0_untracked = OrderedDict({
 })
 ```
 
-With the data loaded, the model and the parameters / initial concentrations defined we can proceed with the fit:
+With the data loaded, the model defined and the parameters / initial concentrations initialized we can proceed with the fit:
 
 
 ```python
@@ -237,7 +237,7 @@ fit.fit_dataset(
 
 ### Fit results
 
-The fit results are summarized in the table below. Note that all the initial concentrations, starting by "c0_" are fixed so only the ks values are parameters of the fit.
+The fit results are summarized in the table below. Note that all the initial concentrations (parameters starting with the string "c0_") are fixed so only the ks values are varying parameters in this fit.
 
 
 ```python
@@ -565,7 +565,7 @@ fit.print_result(ds)
 </div>
 
 
-To assess the fit results the evolution of concentration over time and charge passed over time are plotted:
+To assess the fit results the evolution of concentration over time and charge passed over time are plotted. For the concentrations evolution over time the lines correspond to the fit result and the points with errorbars to the experimental data.
 
 
 ```python

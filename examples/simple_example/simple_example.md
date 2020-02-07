@@ -1,11 +1,11 @@
-This example is meant to showcase the basic steps needed to fit a dataset consisting of the evolution over time of the concentration of different species. These steps are the following:
-- create a kinetic model that can be used by the module
+This example is meant to showcase the basic steps needed to fit the concentration evolution over time of different species. These steps are the following:
+- create a kinetic model that can be used by the "chemical_kinetics" module
 - loading and plotting the data
 - fitting and displaying the fit results
 
 ### Kinetic model
 
-We consider in this example are the following reactions:
+We consider in this example the following reactions:
 
 - Forward reaction 1: A $\rightarrow$ B with time constant k<sub>1, fw</sub>
 
@@ -21,19 +21,19 @@ $$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
 
 $$\frac{dC}{dt} = k_{2}[B]$$
 
-This system of differential equation will be computed at a given time t using the following function:
+This system of differential equations will be computed at a given time t using the following function:
 
 
 ```python
 def derivatives(y, t, p):
     
-    """Calculates the derivatives of the concentrations at t
+    """Calculates the derivatives of the concentrations at t.
     
     Used scipy.integrate.odeint to numerically solve the differential
     equations in a given time range.
     
-    Lists (y and dy) used by scipy.integrate.odeint are converted
-    to dictionaries (c and dc) in order to make the differentials
+    Lists ("y" and "dy") used by scipy.integrate.odeint are converted
+    to dictionaries ("c" and "dc") in order to make the differentials
     easier to write and read for humans.
     
     Arguments:
@@ -43,7 +43,7 @@ def derivatives(y, t, p):
         calculate the derivatives e.g. time constants
     """
     
-    # list (y) to dict (c) conversion
+    # list ("y") to dict ("c") conversion
     c = {"A" : y[0], "B" : y[1], "C" : y[2]}
     
     # calculate the differentials
@@ -52,7 +52,7 @@ def derivatives(y, t, p):
     dc["B"] = p["k_1fw"]*c["A"] - p["k_1bw"]*c["B"] - p["k_2"]*c["B"]
     dc["C"] = p["k_2"]*c["B"]
     
-    # dict (dc) to list (dy) conversion
+    # dict ("dc") to list ("dy") conversion
     dy = [dc["A"], dc["B"], dc["C"]]
 
     return dy
@@ -62,9 +62,9 @@ def derivatives(y, t, p):
 
 ### Loading and plotting the dataset
 
-The dataset "data/concentrations vs time.csv" is loaded in an object of class data_processing.Dataset (see [class documentation](#TODO add link) for details on the parameters that can be passed to this class). This object stores the raw data and the fit results and makes these parameters easy to access.
+The dataset "data/concentrations vs time.csv" is loaded in an object of class "chemical_kinetics.data.Dataset". This object stores the raw data and the fit results and makes these parameters easy to access.
 
-Its a good idea to consult the [recomendations for the .csv files format] (#TODO write and add link).
+Yon can consult the [recomendations for the .csv files formatting](TODO add link when uploaded) in the "chemical_kinetics.data.Dataset.load_c" function documentation. The file loaded in this example can be found [here](https://is.gd/GZPZFK).
 
 
 ```python
@@ -90,11 +90,13 @@ plot.plot_c(ds)
 <p align='center'><img src = simple_example_files/simple_example_7_0.svg
 ></p>
 
-### Fitting and displaying thefit results
+### Fitting and displaying the fit results
 
-We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants. In this case only time constant are parameters of the "residuals" function but a different residuals definition can include other parameters.
+We already defined the derivatives to be used by the fit in the derivatives function above. However, we also need to provide an initial guess for the time constants.
 
-These parameters are given as a dictionary where the keys are the time constant names. The corresponding values are a dictionary containing the parameter arguments (for a list of arguments consult the lmfit.Parameter [documentation](#TODO: add link)).
+**Note:** In this case, only time constants constitute parameters stored in the "p" argument of the "residuals" function. However, a different "residuals" function definition can require parameters that are not time constants. These parameters can still be passed in the "p" dictionnary, the parameters in "p" are not required to be time constant, they can be any parameter needed by the model.
+
+These parameters are given as a dictionary ("p" in the "residuals" function definition) where the keys are the time constant names. The corresponding values are a dictionary containing the parameter arguments, used to initialize a "lmfit.Parameter" object. The arguments that can be passed via this dictionary are in particular: value, vary, min, max and expr. Details on these arguments, and more generally on the "lmfit.Parameter" class can be found [in the lmfit documentation](https://lmfit.github.io/lmfit-py/parameters.html).
 
 
 ```python
@@ -105,7 +107,7 @@ parameters = {
 }
 ```
 
-Another argument to be passed to the fit function are the initial concentrations. These are defined in a similar way as the "parameters" variable since they are also fit parameters. It is mandatory to give the same names for theses parameters as the corresponding names given to the columns in the .csv file that was loaded in your dataset object. If you do not declare a value for the initial concentration for one of the species tracked in your .csv file then this value will be the first concentration value from this file by default.
+Another argument to be passed to the fit function are the initial concentrations. These are defined in a similar way as the "parameters" variable defined above, since they are also fit parameters. It is mandatory to give the same names for theses parameters as the corresponding names given to the columns in the .csv file that was loaded in your dataset object. If you do not declare a value for the initial concentration for one of the species tracked in your .csv file then this value will be the first concentration value from this file by default.
 
 For demonstration, in this example we consider that:
 - the initial concentration of A is at least 0.5 and we default its initial value
@@ -120,7 +122,7 @@ c0 = {
 }
 ```
 
-We can now pass these parameters to the fit function. Once the fit converged a message generated by the lmfit.MinimizerResult class is displayed (see [this page](#TODO add link) for details on this message significance).
+We can now pass these parameters to the fit function. Once the fit converged a message generated by the "lmfit.MinimizerResult" class is displayed ([see the lmfit documentation](https://lmfit.github.io/lmfit-py/fitting.html) for details on this message significance).
 
 
 ```python
@@ -177,9 +179,9 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.0993</td>
-      <td>0.00192</td>
-      <td>1.93</td>
+      <td>0.101</td>
+      <td>0.00213</td>
+      <td>2.11</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -188,9 +190,9 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0201</td>
-      <td>0.00062</td>
-      <td>3.09</td>
+      <td>0.0202</td>
+      <td>0.00068</td>
+      <td>3.37</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -200,8 +202,8 @@ fit.print_result(ds)
       <th>2</th>
       <td>k_2</td>
       <td>0.0198</td>
-      <td>0.000212</td>
-      <td>1.07</td>
+      <td>0.000231</td>
+      <td>1.17</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -210,10 +212,10 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>0.994</td>
-      <td>0.00768</td>
-      <td>0.772</td>
-      <td>0.969</td>
+      <td>0.987</td>
+      <td>0.00838</td>
+      <td>0.849</td>
+      <td>0.996</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -232,10 +234,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
+      <td>0.204</td>
+      <td>0.00496</td>
+      <td>2.43</td>
       <td>0.2</td>
-      <td>0.00449</td>
-      <td>2.25</td>
-      <td>0.214</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

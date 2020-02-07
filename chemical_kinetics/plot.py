@@ -1,3 +1,11 @@
+"""
+This module defines two functions to plot the data contained in an
+object of class chemical_kinetics.data.Dataset. "plot_c" plots the
+species concentration evolution over time and "plot_q" plots the charge
+passed evolution over time. If no fit was performed on the dataset
+object these functions only plot the raw data. If a fit was performed it
+also plot the fit estimation.
+"""
 
 
 import matplotlib.pyplot as plt
@@ -30,8 +38,8 @@ def plot_c(dataset, names = None):
 
     # plot data
     plt.figure()
-    # colors used to store the raw data plot color in order to use the same
-    # color for the fit result
+    # variable "colors" used to store the raw data plot color in order to use
+    # the same color for the fit result
     colors = dict()
     for name in names:
         style = dict(

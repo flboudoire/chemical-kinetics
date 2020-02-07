@@ -157,6 +157,12 @@
             
   <div class="section" id="module-plot">
 <span id="plotting-plot-py"></span><h1>Plotting - plot.py<a class="headerlink" href="#module-plot" title="Permalink to this headline">¶</a></h1>
+<p>This module defines two functions to plot the data contained in an
+object of class chemical_kinetics.data.Dataset. “plot_c” plots the
+species concentration evolution over time and “plot_q” plots the charge
+passed evolution over time. If no fit was performed on the dataset
+object these functions only plot the raw data. If a fit was performed it
+also plot the fit estimation.</p>
 <dl class="function">
 <dt id="plot.plot_c">
 <code class="sig-prename descclassname">plot.</code><code class="sig-name descname">plot_c</code><span class="sig-paren">(</span><em class="sig-param">dataset</em>, <em class="sig-param">names=None</em><span class="sig-paren">)</span><a class="headerlink" href="#plot.plot_c" title="Permalink to this definition">¶</a></dt>

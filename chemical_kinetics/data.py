@@ -1,25 +1,27 @@
 """
-This module defines the Dataset class that is used to load the .csv
-files holding the data to be fitted and after the fit is performed the
-initial parameters, the fitted parameters and the fit estimation.
+This module defines the "Dataset" class that is used to load the .csv
+files holding the data to be fitted. After the fit is performed it also
+stores the initial parameters, the fitted parameters and the fit
+estimations.
 
-This module also defines the load function used in the Dataset.load_c
-and Dataset.load_q functions to load .csv files.
+This module also defines the function "load" used in the
+"Dataset.load_c" and "Dataset.load_q" functions to load the .csv files.
 """
+
 
 import pandas as pd
 
 
 class Dataset:
 
-    """Loads and stores kinetics data, stores fit results and axes labels.
+    """Loads and stores kinetics data, also stores fit results and axes labels.
 
     Arguments:
         files_c (list):
             The path(s) of the concentration vs time files.
         files_q (list, optional):
             The path(s) of the charge passed vs time files, if this
-            argument is not set further fitting will proceed without
+            argument is not set, further fitting will proceed without
             taking the charge passed in account.
         t_label|c_label|q_label (str, optional):
             Set the corresponding attributes values. Used to set the
@@ -40,8 +42,9 @@ class Dataset:
             Labels to be used for the x and y axes when plotting the
             datasets.
         fit_results (lmfit.MinimizerResult):
-            Stores the results of the fit, for details see:
-            https://lmfit.github.io/lmfit-py/fitting.html#lmfit.minimizer.MinimizerResult
+            Stores the results of the fit, for details see the
+            lmfit.minimizer.MinimizerResult documentation:
+            https://lmfit.github.io/lmfit-py/fitting.html
             Defined when the fit.fit_dataset() function is run on the
             Dataset object.
         init_params (lmfit.parameter.Parameters):
@@ -97,8 +100,7 @@ class Dataset:
         are formatted in this fashion: "t, species name 1, species name
         2..."; first column is time, other columns are concentrations.
 
-        Example files can be found here: #TODO link to github folder
-        with raw data
+        An example file can be found here: https://is.gd/GZPZFK
 
         Relies on the load() function from this module, see also this
         function documentation for more details.
@@ -123,8 +125,7 @@ class Dataset:
         should be formatted in this fashion: "t,Q"; first column is the
         time, second column is the charge passed.
 
-        Example files can be found here: #TODO link to github folder
-        with raw data
+        An example file can be found here: https://is.gd/0Ma7Ii
 
         Relies on the load() function from this module, see also this
         function Docstring for more details.
