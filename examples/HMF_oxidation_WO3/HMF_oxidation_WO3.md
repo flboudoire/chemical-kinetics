@@ -16,12 +16,12 @@ $$\frac{d[FFCA]}{dt} = k_{\textbf{2}1}[DFF] + k_{\textbf{2}2}[HMFCA] - (k_{\text
 
 $$\frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]$$
 
-$$\frac{d[humins]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]$$
-$$+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[humins]$$
+$$\frac{d[D]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]$$
+$$+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[D]$$
 
-$$\frac{d[humins^*]}{dt} = k_{H^*}[humins]$$
+$$\frac{d[D^*]}{dt} = k_{H^*}[D]$$
 
-In order to write a function describing this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The humins and electropolymerized humins (humins\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of humins and humins\* (electropolymerized humins) are considered. However, these total humins and humins\* concentrations need to be splitted here into the individual concentrations coming from each individual humins formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time allowing us to include the corresponding experimental data in the fit.
+In order to write a function describing this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The degradation products (D and D\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of D and D\* are considered. However, these total D and D\* concentrations need to be splitted here into the individual concentrations coming from each individual degradation product formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time allowing us to include the corresponding experimental data in the fit.
 
 We define the species names considered in this experiment as follow:
 
@@ -31,42 +31,42 @@ species_tracked = [
     "HMF", "DFF", "HMFCA", "FFCA", "FDCA"
 ]
 species_untracked = [
-    "H_HMF",  "H_DFF",  "H_HMFCA",  "H_FFCA",  "H_FDCA",
-    "Hx_HMF", "Hx_DFF", "Hx_HMFCA", "Hx_FFCA", "Hx_FDCA"
+    "D_HMF",  "D_DFF",  "D_HMFCA",  "D_FFCA",  "D_FDCA",
+    "Dx_HMF", "Dx_DFF", "Dx_HMFCA", "Dx_FFCA", "Dx_FDCA"
 ]
 species = species_tracked.copy()
 species.extend(species_untracked)
 ```
 
-HMF, DFF, HMFCA, FFCA and FDCA are the species whose concentrations are tracked experimentally. The humins and humins\* coming from these species are denoted with the same names prepended respectively with a "H_" and a "Hx_". To sum up we can now write:
+HMF, DFF, HMFCA, FFCA and FDCA are the species whose concentrations are tracked experimentally. The D and D\* coming from these species are denoted with the same names prepended respectively with a "D_" and a "Dx_". To sum up we can now write:
 
-$$ [humins] = [H\_HMF] + [H\_DFF] + [H\_HMFCA] + [H\_FFCA] + [H\_FDCA] $$
+$$ [humins] = [D\_HMF] + [D\_DFF] + [D\_HMFCA] + [D\_FFCA] + [D\_FDCA] $$
 
-$$ [humins^*] = [Hx\_HMF] + [Hx\_DFF] + [Hx\_HMFCA] + [Hx\_FFCA] + [Hx\_FDCA] $$
+$$ [humins^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA] + [Dx\_FFCA] + [Dx\_FDCA] $$
 
 Therefore, the derivatives presented above for the concentration of humins are rewritten in the following way:
 
-$$\frac{d[H\_HMF]}{dt} = k_{H\textbf{1}}[HMF] - k_{H^*}[H\_HMF]$$
+$$\frac{d[D\_HMF]}{dt} = k_{D\textbf{1}}[HMF] - k_{D^*}[D\_HMF]$$
 
-$$\frac{d[H\_DFF]}{dt} = k_{H\textbf{1}}[DFF] - k_{H^*}[H\_DFF]$$
+$$\frac{d[D\_DFF]}{dt} = k_{D\textbf{1}}[DFF] - k_{D^*}[D\_DFF]$$
 
-$$\frac{d[H\_HMFCA]}{dt} = k_{H\textbf{1}}[HMFCA] - k_{H^*}[H\_HMFCA]$$
+$$\frac{d[D\_HMFCA]}{dt} = k_{D\textbf{1}}[HMFCA] - k_{D^*}[D\_HMFCA]$$
 
-$$\frac{d[H\_FFCA]}{dt} = k_{H\textbf{1}}[FFCA] - k_{H^*}[H\_FFCA]$$
+$$\frac{d[D\_FFCA]}{dt} = k_{D\textbf{1}}[FFCA] - k_{D^*}[D\_FFCA]$$
 
-$$\frac{d[H\_FDCA]}{dt} = k_{H\textbf{1}}[FDCA] - k_{H^*}[H\_FDCA]$$
+$$\frac{d[D\_FDCA]}{dt} = k_{D\textbf{1}}[FDCA] - k_{D^*}[D\_FDCA]$$
 
-The derivatives for the concentration of humins\* are rewritten in this way:
+The derivatives for the concentration of D\* are rewritten in this way:
 
-$$\frac{d[Hx\_HMF]}{dt} = k_{H^*}[H\_HMF]$$
+$$\frac{d[Dx\_HMF]}{dt} = k_{D^*}[D\_HMF]$$
 
-$$\frac{d[Hx\_DFF]}{dt} = k_{H^*}[H\_DFF]$$
+$$\frac{d[Dx\_DFF]}{dt} = k_{D^*}[D\_DFF]$$
 
-$$\frac{d[Hx\_HMFCA]}{dt} = k_{H^*}[H\_HMFCA]$$
+$$\frac{d[Dx\_HMFCA]}{dt} = k_{D^*}[D\_HMFCA]$$
 
-$$\frac{d[Hx\_FFCA]}{dt} = k_{H^*}[H\_FFCA]$$
+$$\frac{d[Dx\_FFCA]}{dt} = k_{D^*}[D\_FFCA]$$
 
-$$\frac{d[Hx\_FDCA]}{dt} = k_{H^*}[H\_FDCA]$$
+$$\frac{d[Dx\_FDCA]}{dt} = k_{D^*}[D\_FDCA]$$
 
 We can now write the "derivatives" function derived from these differential equations:
 
@@ -94,23 +94,23 @@ def derivatives(y, t, p):
     
     dc = dict()
 
-    dc["HMF"]      =  - (p["k11"] + p["k12"] + p["kH1"])*c["HMF"]
-    dc["DFF"]      = p["k11"]*c["HMF"]                       - (p["k21"] + p["kH21"])*c["DFF"]
-    dc["HMFCA"]    = p["k12"]*c["HMF"]                       - (p["k22"] + p["kH22"])*c["HMFCA"]
-    dc["FFCA"]     = p["k21"]*c["DFF"] + p["k22"]*c["HMFCA"] - (p["k3"] + p["kH3"])*c["FFCA"]
-    dc["FDCA"]     = p["k3"]*c["FFCA"]                       - p["kH4"]*c["FDCA"]
+    dc["HMF"]      =  - (p["k11"] + p["k12"] + p["kD1"])*c["HMF"]
+    dc["DFF"]      = p["k11"]*c["HMF"]                       - (p["k21"] + p["kD21"])*c["DFF"]
+    dc["HMFCA"]    = p["k12"]*c["HMF"]                       - (p["k22"] + p["kD22"])*c["HMFCA"]
+    dc["FFCA"]     = p["k21"]*c["DFF"] + p["k22"]*c["HMFCA"] - (p["k3"] + p["kD3"])*c["FFCA"]
+    dc["FDCA"]     = p["k3"]*c["FFCA"]                       - p["kD4"]*c["FDCA"]
     
-    dc["H_HMF"]    = p["kH1"]*c["HMF"]    - p["kHx"]*c["H_HMF"]
-    dc["H_DFF"]    = p["kH21"]*c["DFF"]   - p["kHx"]*c["H_DFF"]
-    dc["H_HMFCA"]  = p["kH22"]*c["HMFCA"] - p["kHx"]*c["H_HMFCA"]
-    dc["H_FFCA"]   = p["kH3"]*c["FFCA"]   - p["kHx"]*c["H_FFCA"]
-    dc["H_FDCA"]   = p["kH4"]*c["FDCA"]   - p["kHx"]*c["H_FDCA"]
+    dc["D_HMF"]    = p["kD1"]*c["HMF"]    - p["kDx"]*c["D_HMF"]
+    dc["D_DFF"]    = p["kD21"]*c["DFF"]   - p["kDx"]*c["D_DFF"]
+    dc["D_HMFCA"]  = p["kD22"]*c["HMFCA"] - p["kDx"]*c["D_HMFCA"]
+    dc["D_FFCA"]   = p["kD3"]*c["FFCA"]   - p["kDx"]*c["D_FFCA"]
+    dc["D_FDCA"]   = p["kD4"]*c["FDCA"]   - p["kDx"]*c["D_FDCA"]
 
-    dc["Hx_HMF"]   = p["kHx"]*c["H_HMF"]
-    dc["Hx_DFF"]   = p["kHx"]*c["H_DFF"]
-    dc["Hx_HMFCA"] = p["kHx"]*c["H_HMFCA"]
-    dc["Hx_FFCA"]  = p["kHx"]*c["H_FFCA"]
-    dc["Hx_FDCA"]  = p["kHx"]*c["H_FDCA"]
+    dc["Dx_HMF"]   = p["kDx"]*c["D_HMF"]
+    dc["Dx_DFF"]   = p["kDx"]*c["D_DFF"]
+    dc["Dx_HMFCA"] = p["kDx"]*c["D_HMFCA"]
+    dc["Dx_FFCA"]  = p["kDx"]*c["D_FFCA"]
+    dc["Dx_FDCA"]  = p["kDx"]*c["D_FDCA"]
     
     dy = [dc[name] for name in species]
 
@@ -193,8 +193,8 @@ We first define the time constants parameters:
 parameter_args = dict(value = 0.05, min = 0)
 parameter_names = [
     "k11","k12","k21","k22","k3",
-    "kH1","kH21","kH22","kH3","kH4",
-    "kHx"
+    "kD1","kD21","kD22","kD3","kD4",
+    "kDx"
     ]
 parameters = {name: parameter_args for name in parameter_names}
 ```
@@ -277,10 +277,10 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k11</td>
-      <td>0.00554</td>
-      <td>0.000195</td>
-      <td>3.51</td>
-      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.5</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
@@ -288,10 +288,10 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k12</td>
-      <td>0.00182</td>
-      <td>5.24e-05</td>
-      <td>2.89</td>
-      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.9</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
@@ -299,10 +299,10 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k21</td>
-      <td>0.0649</td>
-      <td>0.00411</td>
-      <td>6.33</td>
-      <td>0.05</td>
+      <td>0.1</td>
+      <td>0.0</td>
+      <td>6.3</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
@@ -310,10 +310,10 @@ fit.print_result(ds)
     <tr>
       <th>3</th>
       <td>k22</td>
-      <td>0.038</td>
-      <td>0.00853</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>22.4</td>
-      <td>0.05</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
@@ -321,76 +321,76 @@ fit.print_result(ds)
     <tr>
       <th>4</th>
       <td>k3</td>
-      <td>0.0073</td>
-      <td>0.000393</td>
-      <td>5.38</td>
-      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.4</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>kH1</td>
-      <td>0.0302</td>
-      <td>0.000367</td>
-      <td>1.22</td>
-      <td>0.05</td>
+      <td>kD1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.2</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>kH21</td>
-      <td>0.0435</td>
-      <td>0.00708</td>
+      <td>kD21</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>16.3</td>
-      <td>0.05</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>kH22</td>
-      <td>2.93e-05</td>
-      <td>0.00839</td>
-      <td>2.86e+04</td>
-      <td>0.05</td>
+      <td>kD22</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>28625.5</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>kH3</td>
-      <td>0.0545</td>
-      <td>0.00431</td>
+      <td>kD3</td>
+      <td>0.1</td>
+      <td>0.0</td>
       <td>7.9</td>
-      <td>0.05</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>kH4</td>
-      <td>0.0727</td>
-      <td>0.00592</td>
-      <td>8.13</td>
-      <td>0.05</td>
+      <td>kD4</td>
+      <td>0.1</td>
+      <td>0.0</td>
+      <td>8.1</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>kHx</td>
-      <td>0.00173</td>
-      <td>0.000275</td>
+      <td>kDx</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>15.9</td>
-      <td>0.05</td>
+      <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
       <td>inf</td>
@@ -398,10 +398,10 @@ fit.print_result(ds)
     <tr>
       <th>11</th>
       <td>c0_HMF</td>
-      <td>4.86e+03</td>
+      <td>4862.5</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>4.86e+03</td>
+      <td>4862.5</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -409,10 +409,10 @@ fit.print_result(ds)
     <tr>
       <th>12</th>
       <td>c0_DFF</td>
-      <td>4.57</td>
+      <td>4.6</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>4.57</td>
+      <td>4.6</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -420,10 +420,10 @@ fit.print_result(ds)
     <tr>
       <th>13</th>
       <td>c0_HMFCA</td>
-      <td>0.453</td>
+      <td>0.5</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.453</td>
+      <td>0.5</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -431,10 +431,10 @@ fit.print_result(ds)
     <tr>
       <th>14</th>
       <td>c0_FFCA</td>
-      <td>0.248</td>
+      <td>0.2</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.248</td>
+      <td>0.2</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -442,17 +442,17 @@ fit.print_result(ds)
     <tr>
       <th>15</th>
       <td>c0_FDCA</td>
-      <td>0.112</td>
+      <td>0.1</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.112</td>
+      <td>0.1</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>c0_H_HMF</td>
+      <td>c0_D_HMF</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -463,7 +463,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>17</th>
-      <td>c0_H_DFF</td>
+      <td>c0_D_DFF</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -474,7 +474,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>18</th>
-      <td>c0_H_HMFCA</td>
+      <td>c0_D_HMFCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -485,7 +485,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>19</th>
-      <td>c0_H_FFCA</td>
+      <td>c0_D_FFCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -496,7 +496,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>20</th>
-      <td>c0_H_FDCA</td>
+      <td>c0_D_FDCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -507,7 +507,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>21</th>
-      <td>c0_Hx_HMF</td>
+      <td>c0_Dx_HMF</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -518,7 +518,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>22</th>
-      <td>c0_Hx_DFF</td>
+      <td>c0_Dx_DFF</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -529,7 +529,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>23</th>
-      <td>c0_Hx_HMFCA</td>
+      <td>c0_Dx_HMFCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -540,7 +540,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>24</th>
-      <td>c0_Hx_FFCA</td>
+      <td>c0_Dx_FFCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>
@@ -551,7 +551,7 @@ fit.print_result(ds)
     </tr>
     <tr>
       <th>25</th>
-      <td>c0_Hx_FDCA</td>
+      <td>c0_Dx_FDCA</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>nan</td>

@@ -337,7 +337,7 @@ def print_result(dataset):
         }
 
     # define function used for formatting the values
-    clean = lambda value: f"{float(value):.3}"
+    clean = lambda value: f"{float(value):.1f}"
 
     # prepare data to be stored in DataFrame
     data = [
