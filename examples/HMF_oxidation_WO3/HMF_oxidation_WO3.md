@@ -6,20 +6,20 @@ This example emphasizes two scenarii not covered in the simple example:
 
 The kinetics model derived in [this paper](TODO add link when published) leads to the following set of differential equations:
 
-$$\frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{H\textbf{1}})[HMF]$$
+$$\rm \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{D\textbf{1}})[HMF]$$
 
-$$\frac{d[DFF]}{dt} = k_{\textbf{1}1}[HMF] - (k_{\textbf{2}1} + k_{H\textbf{2}1})[DFF]$$
+$$\rm \frac{d[DFF]}{dt} = k_{\textbf{1}1}[HMF] - (k_{\textbf{2}1} + k_{D\textbf{2}1})[DFF]$$
 
-$$\frac{d[HMFCA]}{dt} = k_{\textbf{1}2}[HMF] - (k_{\textbf{2}2} + k_{H\textbf{2}2})[HMFCA]$$
+$$\rm \frac{d[HMFCA]}{dt} = k_{\textbf{1}2}[HMF] - (k_{\textbf{2}2} + k_{D\textbf{2}2})[HMFCA]$$
 
-$$\frac{d[FFCA]}{dt} = k_{\textbf{2}1}[DFF] + k_{\textbf{2}2}[HMFCA] - (k_{\textbf{3}} + k_{H\textbf{3}})[FFCA]$$
+$$\rm \frac{d[FFCA]}{dt} = k_{\textbf{2}1}[DFF] + k_{\textbf{2}2}[HMFCA] - (k_{\textbf{3}} + k_{D\textbf{3}})[FFCA]$$
 
-$$\frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{H\textbf{4}}[FDCA]$$
+$$\rm \frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{D\textbf{4}}[FDCA]$$
 
-$$\frac{d[D]}{dt} = k_{H\textbf{1}}[HMF] + k_{H\textbf{2}1}[DFF] + k_{H\textbf{2}2}[HMFCA]$$
-$$+ k_{H\textbf{3}}[FFCA] + k_{H\textbf{4}}[FDCA] - k_{H^*}[D]$$
+$$\rm \frac{d[D]}{dt} = k_{D\textbf{1}}[HMF] + k_{D\textbf{2}1}[DFF] + k_{D\textbf{2}2}[HMFCA]$$
+$$\rm + k_{D\textbf{3}}[FFCA] + k_{D\textbf{4}}[FDCA] - k_{D^*}[D]$$
 
-$$\frac{d[D^*]}{dt} = k_{H^*}[D]$$
+$$\rm \frac{d[D^*]}{dt} = k_{D^*}[D]$$
 
 In order to write a function describing this model we need to define all the species whose concentrations evolution over time are considered in this study. In that case 5 species concentrations were tracked by HPLC measurements (HMF, DFF, HMFCA, FFCA, FDCA). The degradation products (D and D\*) concentrations could not be tracked. For the untracked species we need to consider 10 additional concentrations. Indeed, in the differential equations mentionned above only the total concentration evolution of D and D\* are considered. However, these total D and D\* concentrations need to be splitted here into the individual concentrations coming from each individual degradation product formation reactions. This is required because humins species formed through different reaction pathways will involve a different amount of charge passed in our electrochemical measurement. With these individual concentrations we are able to calculate the amount of charge passed over time allowing us to include the corresponding experimental data in the fit.
 
@@ -40,33 +40,33 @@ species.extend(species_untracked)
 
 HMF, DFF, HMFCA, FFCA and FDCA are the species whose concentrations are tracked experimentally. The D and D\* coming from these species are denoted with the same names prepended respectively with a "D_" and a "Dx_". To sum up we can now write:
 
-$$ [humins] = [D\_HMF] + [D\_DFF] + [D\_HMFCA] + [D\_FFCA] + [D\_FDCA] $$
+$$\rm [D] = [D\_HMF] + [D\_DFF] + [D\_HMFCA] + [D\_FFCA] + [D\_FDCA] $$
 
-$$ [humins^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA] + [Dx\_FFCA] + [Dx\_FDCA] $$
+$$\rm [D^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA] + [Dx\_FFCA] + [Dx\_FDCA] $$
 
 Therefore, the derivatives presented above for the concentration of humins are rewritten in the following way:
 
-$$\frac{d[D\_HMF]}{dt} = k_{D\textbf{1}}[HMF] - k_{D^*}[D\_HMF]$$
+$$\rm \frac{d[D\_HMF]}{dt} = k_{D\textbf{1}}[HMF] - k_{D^*}[D\_HMF]$$
 
-$$\frac{d[D\_DFF]}{dt} = k_{D\textbf{1}}[DFF] - k_{D^*}[D\_DFF]$$
+$$\rm \frac{d[D\_DFF]}{dt} = k_{D\textbf{1}}[DFF] - k_{D^*}[D\_DFF]$$
 
-$$\frac{d[D\_HMFCA]}{dt} = k_{D\textbf{1}}[HMFCA] - k_{D^*}[D\_HMFCA]$$
+$$\rm \frac{d[D\_HMFCA]}{dt} = k_{D\textbf{1}}[HMFCA] - k_{D^*}[D\_HMFCA]$$
 
-$$\frac{d[D\_FFCA]}{dt} = k_{D\textbf{1}}[FFCA] - k_{D^*}[D\_FFCA]$$
+$$\rm \frac{d[D\_FFCA]}{dt} = k_{D\textbf{1}}[FFCA] - k_{D^*}[D\_FFCA]$$
 
-$$\frac{d[D\_FDCA]}{dt} = k_{D\textbf{1}}[FDCA] - k_{D^*}[D\_FDCA]$$
+$$\rm \frac{d[D\_FDCA]}{dt} = k_{D\textbf{1}}[FDCA] - k_{D^*}[D\_FDCA]$$
 
 The derivatives for the concentration of D\* are rewritten in this way:
 
-$$\frac{d[Dx\_HMF]}{dt} = k_{D^*}[D\_HMF]$$
+$$\rm \frac{d[Dx\_HMF]}{dt} = k_{D^*}[D\_HMF]$$
 
-$$\frac{d[Dx\_DFF]}{dt} = k_{D^*}[D\_DFF]$$
+$$\rm \frac{d[Dx\_DFF]}{dt} = k_{D^*}[D\_DFF]$$
 
-$$\frac{d[Dx\_HMFCA]}{dt} = k_{D^*}[D\_HMFCA]$$
+$$\rm \frac{d[Dx\_HMFCA]}{dt} = k_{D^*}[D\_HMFCA]$$
 
-$$\frac{d[Dx\_FFCA]}{dt} = k_{D^*}[D\_FFCA]$$
+$$\rm \frac{d[Dx\_FFCA]}{dt} = k_{D^*}[D\_FFCA]$$
 
-$$\frac{d[Dx\_FDCA]}{dt} = k_{D^*}[D\_FDCA]$$
+$$\rm \frac{d[Dx\_FDCA]}{dt} = k_{D^*}[D\_FDCA]$$
 
 We can now write the "derivatives" function derived from these differential equations:
 
@@ -119,7 +119,7 @@ def derivatives(y, t, p):
 
 We can then convert the concentrations evolution over time into the charge passed over time using this equation:
 
-$$Q = e N_A V \sum_i n_i C_i$$
+$$\rm Q = e N_A V \sum_i n_i C_i$$
 
 With e the electron charge in Coulombs, N<sub>A</sub> the Avogadro number, V the volume of solution, n<sub>i</sub> the number of charge passed to make one molecule of i, and C<sub>i</sub> the concentration of species i. This equation translates into code as follow:
 

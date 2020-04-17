@@ -15,11 +15,11 @@ We consider in this example the following reactions:
 
 Which gives the following differential equations according to the law of mass action:
 
-$$\frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]$$
+$$\rm \frac{dA}{dt} = k_{1,bw}[B] - k_{1,fw}[A]$$
 
-$$\frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
+$$\rm \frac{dB}{dt} = k_{1,fw}[A] - k_{1,bw}[B] - k_{2}[B]$$
 
-$$\frac{dC}{dt} = k_{2}[B]$$
+$$\rm \frac{dC}{dt} = k_{2}[B]$$
 
 This system of differential equations will be computed at a given time t using the following function:
 
@@ -180,8 +180,8 @@ fit.print_result(ds)
       <th>0</th>
       <td>k_1fw</td>
       <td>0.1</td>
-      <td>0.00194</td>
-      <td>1.94</td>
+      <td>0.0</td>
+      <td>2.0</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -190,8 +190,8 @@ fit.print_result(ds)
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0201</td>
-      <td>0.000623</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>3.1</td>
       <td>0.1</td>
       <td>True</td>
@@ -201,9 +201,9 @@ fit.print_result(ds)
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0199</td>
-      <td>0.000213</td>
-      <td>1.07</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.1</td>
       <td>0.1</td>
       <td>True</td>
       <td>0.0</td>
@@ -213,9 +213,9 @@ fit.print_result(ds)
       <th>3</th>
       <td>c0_A</td>
       <td>1.0</td>
-      <td>0.00779</td>
-      <td>0.779</td>
-      <td>0.974</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>0.9</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -234,10 +234,10 @@ fit.print_result(ds)
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.205</td>
-      <td>0.00459</td>
-      <td>2.25</td>
-      <td>0.216</td>
+      <td>0.2</td>
+      <td>0.0</td>
+      <td>2.3</td>
+      <td>0.2</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>
