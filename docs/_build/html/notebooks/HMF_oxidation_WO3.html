@@ -58,6 +58,10 @@
           
             
             
+              <div class="version">
+                1.0
+              </div>
+            
           
 
           
@@ -154,7 +158,7 @@
 </ul>
 <div class="section" id="kinetic-model">
 <h1>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h1>
-<p>The kinetics model derived in <a class="reference external" href="TODOaddlinkwhenpublished">this paper</a> leads to the following set of differential equations:</p>
+<p>The kinetics model derived in <a href="#id1"><span class="problematic" id="id2">`this paper &lt;&gt;`_</span></a> leads to the following set of differential equations:</p>
 <div class="math notranslate nohighlight">
 \[\rm \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{D\textbf{1}})[HMF]\]</div>
 <div class="math notranslate nohighlight">
@@ -359,7 +363,7 @@
 </div>
 <div class="section" id="fit-results">
 <h1>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h1>
-<p>The fit results are summarized in the table below. Note that all the initial concentrations (parameters starting with the string “<a href="#id1"><span class="problematic" id="id2">c0_</span></a>”) are fixed so only the ks values are varying parameters in this fit.</p>
+<p>The fit results are summarized in the table below. Note that all the initial concentrations (parameters starting with the string “<a href="#id3"><span class="problematic" id="id4">c0_</span></a>”) are fixed so only the ks values are varying parameters in this fit.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -395,131 +399,131 @@
     <tr>
       <th>0</th>
       <td>k11</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>3.5</td>
-      <td>0.1</td>
+      <td>0.00554</td>
+      <td>0.000195</td>
+      <td>3.51</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>1</th>
       <td>k12</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2.9</td>
-      <td>0.1</td>
+      <td>0.00182</td>
+      <td>5.24e-05</td>
+      <td>2.89</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>2</th>
       <td>k21</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>6.3</td>
-      <td>0.1</td>
+      <td>0.0649</td>
+      <td>0.00411</td>
+      <td>6.33</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>3</th>
       <td>k22</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.038</td>
+      <td>0.00853</td>
       <td>22.4</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>4</th>
       <td>k3</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>5.4</td>
-      <td>0.1</td>
+      <td>0.0073</td>
+      <td>0.000393</td>
+      <td>5.38</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>5</th>
       <td>kD1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.2</td>
-      <td>0.1</td>
+      <td>0.0302</td>
+      <td>0.000367</td>
+      <td>1.22</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>6</th>
       <td>kD21</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.0435</td>
+      <td>0.00708</td>
       <td>16.3</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>7</th>
       <td>kD22</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>28625.5</td>
-      <td>0.1</td>
+      <td>2.93e-05</td>
+      <td>0.00839</td>
+      <td>2.86e+04</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>8</th>
       <td>kD3</td>
-      <td>0.1</td>
-      <td>0.0</td>
+      <td>0.0545</td>
+      <td>0.00431</td>
       <td>7.9</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>9</th>
       <td>kD4</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>8.1</td>
-      <td>0.1</td>
+      <td>0.0727</td>
+      <td>0.00592</td>
+      <td>8.13</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>10</th>
       <td>kDx</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.00173</td>
+      <td>0.000275</td>
       <td>15.9</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>11</th>
       <td>c0_HMF</td>
-      <td>4862.5</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4862.5</td>
+      <td>4.86e+03</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.86e+03</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -527,10 +531,10 @@
     <tr>
       <th>12</th>
       <td>c0_DFF</td>
-      <td>4.6</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4.6</td>
+      <td>4.57</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.57</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -538,10 +542,10 @@
     <tr>
       <th>13</th>
       <td>c0_HMFCA</td>
-      <td>0.5</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.5</td>
+      <td>0.453</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.453</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -549,10 +553,10 @@
     <tr>
       <th>14</th>
       <td>c0_FFCA</td>
-      <td>0.2</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.2</td>
+      <td>0.248</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.248</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -560,10 +564,10 @@
     <tr>
       <th>15</th>
       <td>c0_FDCA</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.1</td>
+      <td>0.112</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.112</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -571,10 +575,10 @@
     <tr>
       <th>16</th>
       <td>c0_D_HMF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -582,10 +586,10 @@
     <tr>
       <th>17</th>
       <td>c0_D_DFF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -593,10 +597,10 @@
     <tr>
       <th>18</th>
       <td>c0_D_HMFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -604,10 +608,10 @@
     <tr>
       <th>19</th>
       <td>c0_D_FFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -615,10 +619,10 @@
     <tr>
       <th>20</th>
       <td>c0_D_FDCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -626,10 +630,10 @@
     <tr>
       <th>21</th>
       <td>c0_Dx_HMF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -637,10 +641,10 @@
     <tr>
       <th>22</th>
       <td>c0_Dx_DFF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -648,10 +652,10 @@
     <tr>
       <th>23</th>
       <td>c0_Dx_HMFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -659,10 +663,10 @@
     <tr>
       <th>24</th>
       <td>c0_Dx_FFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -670,10 +674,10 @@
     <tr>
       <th>25</th>
       <td>c0_Dx_FDCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>

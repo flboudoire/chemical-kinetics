@@ -26,7 +26,7 @@ Examples
 
 - :ref:`Simple theoretical example<Simple example>`: demonstrates the fit of species concentration evolution over time.
 
-- :ref:`Example using real experimental data<Advanced example>`: published in `this scientific paper <#TODO: add link>`_. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
+- :ref:`Example using real experimental data<Advanced example>`: published in `this scientific paper <>`_. Demonstrates the simultaneous fit of the species concentrations and charge passed evolution over time in an electrochemical experiment.
 
 Dependencies
 ------------

@@ -23,6 +23,7 @@ author = 'Florent Boudoire'
 
 # The full version, including alpha/beta/rc tags
 release = '1.0'
+version = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -36,8 +37,11 @@ extensions = [
     'sphinx_rtd_theme',
     'm2r',
     'sphinx.ext.mathjax',
-    'sphinx.ext.autosectionlabel'
+    'sphinx.ext.autosectionlabel',
+    'rst2pdf.pdfbuilder'
 ]
+
+pdf_documents = [('index', u'code documentation', u'chemical_kinetics Python module documentation', u''),]
 
 # source_suffix = '.rst'
 source_suffix = ['.rst', '.md']

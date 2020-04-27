@@ -4,7 +4,7 @@ This example emphasizes two scenarii not covered in the simple example:
 
 ### Kinetic model
 
-The kinetics model derived in [this paper](TODO add link when published) leads to the following set of differential equations:
+The kinetics model derived in [this paper]() leads to the following set of differential equations:
 
 $$\rm \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{D\textbf{1}})[HMF]$$
 
@@ -277,131 +277,131 @@ fit.print_result(ds)
     <tr>
       <th>0</th>
       <td>k11</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>3.5</td>
-      <td>0.1</td>
+      <td>0.00554</td>
+      <td>0.000195</td>
+      <td>3.51</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>1</th>
       <td>k12</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2.9</td>
-      <td>0.1</td>
+      <td>0.00182</td>
+      <td>5.24e-05</td>
+      <td>2.89</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>2</th>
       <td>k21</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>6.3</td>
-      <td>0.1</td>
+      <td>0.0649</td>
+      <td>0.00411</td>
+      <td>6.33</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>3</th>
       <td>k22</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.038</td>
+      <td>0.00853</td>
       <td>22.4</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>4</th>
       <td>k3</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>5.4</td>
-      <td>0.1</td>
+      <td>0.0073</td>
+      <td>0.000393</td>
+      <td>5.38</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>5</th>
       <td>kD1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.2</td>
-      <td>0.1</td>
+      <td>0.0302</td>
+      <td>0.000367</td>
+      <td>1.22</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>6</th>
       <td>kD21</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.0435</td>
+      <td>0.00708</td>
       <td>16.3</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>7</th>
       <td>kD22</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>28625.5</td>
-      <td>0.1</td>
+      <td>2.93e-05</td>
+      <td>0.00839</td>
+      <td>2.86e+04</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>8</th>
       <td>kD3</td>
-      <td>0.1</td>
-      <td>0.0</td>
+      <td>0.0545</td>
+      <td>0.00431</td>
       <td>7.9</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>9</th>
       <td>kD4</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>8.1</td>
-      <td>0.1</td>
+      <td>0.0727</td>
+      <td>0.00592</td>
+      <td>8.13</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>10</th>
       <td>kDx</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.00173</td>
+      <td>0.000275</td>
       <td>15.9</td>
-      <td>0.1</td>
+      <td>0.05</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>11</th>
       <td>c0_HMF</td>
-      <td>4862.5</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4862.5</td>
+      <td>4.86e+03</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.86e+03</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -409,10 +409,10 @@ fit.print_result(ds)
     <tr>
       <th>12</th>
       <td>c0_DFF</td>
-      <td>4.6</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>4.6</td>
+      <td>4.57</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4.57</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -420,10 +420,10 @@ fit.print_result(ds)
     <tr>
       <th>13</th>
       <td>c0_HMFCA</td>
-      <td>0.5</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.5</td>
+      <td>0.453</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.453</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -431,10 +431,10 @@ fit.print_result(ds)
     <tr>
       <th>14</th>
       <td>c0_FFCA</td>
-      <td>0.2</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.2</td>
+      <td>0.248</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.248</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -442,10 +442,10 @@ fit.print_result(ds)
     <tr>
       <th>15</th>
       <td>c0_FDCA</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.1</td>
+      <td>0.112</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.112</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -453,10 +453,10 @@ fit.print_result(ds)
     <tr>
       <th>16</th>
       <td>c0_D_HMF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -464,10 +464,10 @@ fit.print_result(ds)
     <tr>
       <th>17</th>
       <td>c0_D_DFF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -475,10 +475,10 @@ fit.print_result(ds)
     <tr>
       <th>18</th>
       <td>c0_D_HMFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -486,10 +486,10 @@ fit.print_result(ds)
     <tr>
       <th>19</th>
       <td>c0_D_FFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -497,10 +497,10 @@ fit.print_result(ds)
     <tr>
       <th>20</th>
       <td>c0_D_FDCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -508,10 +508,10 @@ fit.print_result(ds)
     <tr>
       <th>21</th>
       <td>c0_Dx_HMF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -519,10 +519,10 @@ fit.print_result(ds)
     <tr>
       <th>22</th>
       <td>c0_Dx_DFF</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -530,10 +530,10 @@ fit.print_result(ds)
     <tr>
       <th>23</th>
       <td>c0_Dx_HMFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -541,10 +541,10 @@ fit.print_result(ds)
     <tr>
       <th>24</th>
       <td>c0_Dx_FFCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -552,10 +552,10 @@ fit.print_result(ds)
     <tr>
       <th>25</th>
       <td>c0_Dx_FDCA</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
