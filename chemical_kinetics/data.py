@@ -9,7 +9,7 @@ This module also defines the function "load" used in the
 """
 
 
-import pandas as pd
+# import pandas as pd
 
 
 class Dataset:
