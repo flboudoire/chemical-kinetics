@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Loading data - data.py &mdash; chemical-kinetics 1.0.0 documentation</title>
+  <title>Loading data - data.py &mdash; chemical-kinetics  documentation</title>
   
 
   
@@ -59,6 +59,10 @@
 
           
             
+            
+              <div class="version">
+                1.0.4
+              </div>
             
           
 
@@ -168,52 +172,101 @@ estimations.</p>
 <dt id="data.Dataset">
 <em class="property">class </em><code class="sig-prename descclassname">data.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">files_c</span></em>, <em class="sig-param"><span class="n">files_q</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">t_label</span><span class="o">=</span><span class="default_value">'t [s]'</span></em>, <em class="sig-param"><span class="n">c_label</span><span class="o">=</span><span class="default_value">'C [M]'</span></em>, <em class="sig-param"><span class="n">q_label</span><span class="o">=</span><span class="default_value">'Q [C]'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.Dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads and stores kinetics data, also stores fit results and axes labels.</p>
-<dl>
-<dt>Arguments:</dt><dd><dl class="simple">
-<dt>files_c (list):</dt><dd><p>The path(s) of the concentration vs time files.</p>
-</dd>
-<dt>files_q (list, optional):</dt><dd><p>The path(s) of the charge passed vs time files, if this
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files_c</strong> (<em>list</em>) – The path(s) of the concentration vs time files.</p></li>
+<li><p><strong>files_q</strong> (<em>list</em><em>, </em><em>optional</em>) – The path(s) of the charge passed vs time files, if this
 argument is not set, further fitting will proceed without
-taking the charge passed in account.</p>
-</dd>
-<dt>t_label|c_label|q_label (str, optional):</dt><dd><p>Set the corresponding attributes values. Used to set the
-x and y axes labels when plotting.</p>
+taking the charge passed in account.</p></li>
+<li><p><strong>t_label|c_label|q_label</strong> (<em>str</em><em>, </em><em>optional</em>) – Set the corresponding attributes values. Used to set the
+x and y axes labels when plotting.</p></li>
+</ul>
 </dd>
 </dl>
-</dd>
-<dt>Attributes:</dt><dd><dl>
-<dt>df_c|df_c_std|df_c_fit (pandas.DataFrame):</dt><dd><p>Store respectively the mean concentration, the concentration
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">df_c|df_c_std|df_c_fit</code></dt>
+<dd><p>Store respectively the mean concentration, the concentration
 standard deviations and the corresponding fit results.
 Defined by the load_c method or directly at initialization
 using the files_c argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
-<dt>df_q|df_q_std|df_q_fit (pandas.DataFrame):</dt><dd><p>Store respectively the mean charge passed, the charge passed
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">df_q|df_q_std|df_q_fit</code></dt>
+<dd><p>Store respectively the mean charge passed, the charge passed
 standard deviations and the corresponding fit results.
 Defined by the load_q method or directly at initialization
 using the files_q argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
-<dt>t_label|c_label|q_label (str):</dt><dd><p>Labels to be used for the x and y axes when plotting the
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">t_label|c_label|q_label</code></dt>
+<dd><p>Labels to be used for the x and y axes when plotting the
 datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
-<dt>fit_results (lmfit.MinimizerResult):</dt><dd><p>Stores the results of the fit, for details see the
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="data.Dataset.fit_results">
+<code class="sig-name descname">fit_results</code><a class="headerlink" href="#data.Dataset.fit_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the results of the fit, for details see the
 lmfit.minimizer.MinimizerResult documentation:
 <a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html">https://lmfit.github.io/lmfit-py/fitting.html</a></p>
 <p>Defined when the fit.fit_dataset() function is run on the
 Dataset object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>lmfit.MinimizerResult</p>
 </dd>
-<dt>init_params (lmfit.parameter.Parameters):</dt><dd><p>Stores the initial parameters for the fit, for details on
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="data.Dataset.init_params">
+<code class="sig-name descname">init_params</code><a class="headerlink" href="#data.Dataset.init_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the initial parameters for the fit, for details on
 this object class see:
 <a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p>
 <p>Defined when the fit.fit_dataset() function is run on the
 Dataset object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>lmfit.parameter.Parameters</p>
 </dd>
-<dt>names (list):</dt><dd><p>Species names which concentration evolution over time is
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="data.Dataset.names">
+<code class="sig-name descname">names</code><a class="headerlink" href="#data.Dataset.names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Species names which concentration evolution over time is
 tracked. Used in particular to label the data when plotting.
 Defined in the load_c method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt id="data.Dataset.load_c">
 <code class="sig-name descname">load_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">files</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.Dataset.load_c" title="Permalink to this definition">¶</a></dt>
@@ -224,11 +277,9 @@ are formatted in this fashion: “t, species name 1, species name
 <p>An example file can be found here: <a class="reference external" href="https://is.gd/GZPZFK">https://is.gd/GZPZFK</a></p>
 <p>Relies on the load() function from this module, see also this
 function documentation for more details.</p>
-<dl class="simple">
-<dt>Arguments:</dt><dd><dl class="simple">
-<dt>files (list):</dt><dd><p>Path(s) of the .csv files.</p>
-</dd>
-</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>files</strong> (<em>list</em>) – Path(s) of the .csv files.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -243,11 +294,9 @@ time, second column is the charge passed.</p>
 <p>An example file can be found here: <a class="reference external" href="https://is.gd/0Ma7Ii">https://is.gd/0Ma7Ii</a></p>
 <p>Relies on the load() function from this module, see also this
 function Docstring for more details.</p>
-<dl class="simple">
-<dt>Arguments:</dt><dd><dl class="simple">
-<dt>files (list):</dt><dd><p>Paths of the .csv files.</p>
-</dd>
-</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>files</strong> (<em>list</em>) – Paths of the .csv files.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -263,17 +312,16 @@ columns and the same number of rows. The header should be held in
 the first row.</p>
 <p>These .csv files are typically generated from raw data files from
 experiments using custom code to satisfy these requirements.</p>
-<dl class="simple">
-<dt>Arguments:</dt><dd><dl class="simple">
-<dt>files (list):</dt><dd><p>Path(s) to the file(s), each column in each file must have
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>files</strong> (<em>list</em>) – Path(s) to the file(s), each column in each file must have
 the same number of rows.</p>
 </dd>
-</dl>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Averages DataFrame and standard deviation DataFrame.</p>
 </dd>
-<dt>Returns:</dt><dd><dl class="simple">
-<dt>pandas.DataFrame, pandas.DataFrame:</dt><dd><p>Averages DataFrame and standard deviation DataFrame.</p>
-</dd>
-</dl>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.DataFrame, pandas.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>

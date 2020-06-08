@@ -22,7 +22,7 @@ copyright = '2020, Florent Boudoire'
 author = 'Florent Boudoire'
 
 # The full version, including alpha/beta/rc tags
-release = '1.0.0'
+version="1.0.4"
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,7 +32,7 @@ release = '1.0.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    # 'sphinxcontrib.napoleon',
+    'sphinx.ext.napoleon',
     'sphinx_rtd_theme',
     'sphinx.ext.mathjax',
     'sphinx.ext.autosectionlabel'
