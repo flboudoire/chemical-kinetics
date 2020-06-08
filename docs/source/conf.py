@@ -38,7 +38,7 @@ extensions = [
     'sphinx.ext.autosectionlabel'
 ]
 
-autodoc_mock_imports = ['scipy.integrate', 'pandas', 'matplotlib', 'numpy', 'lmfit']
+autodoc_mock_imports = ['scipy', 'scipy.integrate', 'pandas', 'matplotlib', 'matplotlib.pyplot', 'numpy', 'lmfit']
 
 # source_suffix = '.rst'
 source_suffix = '.rst'
