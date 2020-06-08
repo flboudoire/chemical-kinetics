@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: chemical-kinetics
+Version: 1.0.1
+Summary: Module to fit data with a chemical kinetics model.
+Home-page: https://github.com/flboudoire/chemical-kinetics
+Author: Florent Boudoire
+Author-email: flboudoire@gmail.com
+License: UNKNOWN
+Description: A python module to load, fit and plot chemical kinetics data. In particular, it can be used to extract reaction time constants from experimental data. This data should at least describe the evolution of some of the species concentration over time. Optionally, if an electrochemical measurement was performed, the fit can also include the charge passed over time in order to improve the fit of the model parameters.
+        
+        Documentation can be consulted [here](TODO: add link when online)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
