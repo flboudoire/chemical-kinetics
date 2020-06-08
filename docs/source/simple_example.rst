@@ -1,20 +1,30 @@
+Simple example
+==============
+
 This example is meant to showcase the basic steps needed to fit the
 concentration evolution over time of different species. These steps are
-the following: - create a kinetic model that can be used by the
-“chemical_kinetics” module - loading and plotting the data - fitting and
-displaying the fit results
+the following:
+
+-  create a kinetic model that can be used by the “chemical_kinetics”
+   module
+
+-  loading and plotting the data
+
+-  fitting and displaying the fit results
 
 Kinetic model
 ~~~~~~~~~~~~~
 
 We consider in this example the following reactions:
 
--  Forward reaction 1: A :math:`\rightarrow` B with time constant k1, fw
+-  Forward reaction 1: A :math:`\rightarrow` B with time constant
+   :math:`\rm k_{1, fw}`
 
--  Backward reaction 1: B :math:`\rightarrow` A with time constant k1,
-   bw
+-  Backward reaction 1: B :math:`\rightarrow` A with time constant
+   :math:`\rm k_{1, bw}`
 
--  Forward reaction 2: B :math:`\rightarrow` C with time constant k2
+-  Forward reaction 2: B :math:`\rightarrow` C with time constant
+   :math:`\rm k_{2}`
 
 Which gives the following differential equations according to the law of
 mass action:
@@ -100,7 +110,7 @@ You can check if the data was loaded properly by plotting it:
 
 
 
-.. image:: simple_example_files/simple_example_7_0.svg
+.. image:: simple_example_files/simple_example_8_0.svg
   :align: center
 
 Fitting and displaying the fit results
@@ -224,43 +234,43 @@ functions:
         <tr>
           <th>0</th>
           <td>k_1fw</td>
-          <td>0.1</td>
-          <td>0.0</td>
-          <td>2.0</td>
+          <td>0.101</td>
+          <td>0.00191</td>
+          <td>1.88</td>
           <td>0.1</td>
           <td>True</td>
-          <td>0.0</td>
+          <td>0</td>
           <td>inf</td>
         </tr>
         <tr>
           <th>1</th>
           <td>k_1bw</td>
-          <td>0.0</td>
-          <td>0.0</td>
-          <td>3.1</td>
+          <td>0.0204</td>
+          <td>0.000613</td>
+          <td>3</td>
           <td>0.1</td>
           <td>True</td>
-          <td>0.0</td>
+          <td>0</td>
           <td>inf</td>
         </tr>
         <tr>
           <th>2</th>
           <td>k_2</td>
-          <td>0.0</td>
-          <td>0.0</td>
-          <td>1.1</td>
+          <td>0.0201</td>
+          <td>0.000205</td>
+          <td>1.02</td>
           <td>0.1</td>
           <td>True</td>
-          <td>0.0</td>
+          <td>0</td>
           <td>inf</td>
         </tr>
         <tr>
           <th>3</th>
           <td>c0_A</td>
-          <td>1.0</td>
-          <td>0.0</td>
-          <td>0.8</td>
-          <td>0.9</td>
+          <td>0.996</td>
+          <td>0.00744</td>
+          <td>0.748</td>
+          <td>0.954</td>
           <td>True</td>
           <td>0.5</td>
           <td>inf</td>
@@ -268,10 +278,10 @@ functions:
         <tr>
           <th>4</th>
           <td>c0_B</td>
-          <td>0.0</td>
-          <td>0.0</td>
+          <td>0</td>
+          <td>0</td>
           <td>nan</td>
-          <td>0.0</td>
+          <td>0</td>
           <td>False</td>
           <td>-inf</td>
           <td>inf</td>
@@ -279,10 +289,10 @@ functions:
         <tr>
           <th>5</th>
           <td>c0_C</td>
-          <td>0.2</td>
-          <td>0.0</td>
-          <td>2.3</td>
-          <td>0.2</td>
+          <td>0.196</td>
+          <td>0.00432</td>
+          <td>2.2</td>
+          <td>0.205</td>
           <td>True</td>
           <td>-inf</td>
           <td>inf</td>
@@ -299,7 +309,7 @@ functions:
 
 
 
-.. image:: simple_example_files/simple_example_16_0.svg
+.. image:: simple_example_files/simple_example_17_0.svg
   :align: center
 
 For information, here is the code that was used to generate the raw data

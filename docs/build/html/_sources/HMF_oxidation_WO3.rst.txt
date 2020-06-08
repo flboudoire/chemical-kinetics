@@ -1,15 +1,21 @@
+Advanced example
+================
+
 This example emphasizes two scenarii not covered in the simple example:
-- using charge passed over time data, which can be acquired when
-performing electrochemical measurements (chronocoulometry), and that can
-help improve the accuracy of the time constants obtained from the fit -
-fitting when the concentration evolution over time experimental data
-only covers some of the species considered in the model
+
+-  using charge passed over time data, which can be acquired when
+   performing electrochemical measurements (chronocoulometry), and that
+   can help improve the accuracy of the time constants obtained from the
+   fit
+
+-  fitting when the concentration evolution over time experimental data
+   only covers some of the species considered in the model
 
 Kinetic model
 ~~~~~~~~~~~~~
 
-The kinetics model derived in `this paper <>`__ leads to the following
-set of differential equations:
+The kinetics model we use leads to the following set of differential
+equations:
 
 .. math:: \rm \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{D\textbf{1}})[HMF]
 
@@ -21,9 +27,10 @@ set of differential equations:
 
 .. math:: \rm \frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{D\textbf{4}}[FDCA]
 
-.. math:: \rm \frac{d[D]}{dt} = k_{D\textbf{1}}[HMF] + k_{D\textbf{2}1}[DFF] + k_{D\textbf{2}2}[HMFCA]
+.. math::
 
-.. math:: \rm + k_{D\textbf{3}}[FFCA] + k_{D\textbf{4}}[FDCA] - k_{D^*}[D]
+   \rm \frac{d[D]}{dt} = k_{D\textbf{1}}[HMF] + k_{D\textbf{2}1}[DFF] + k_{D\textbf{2}2}[HMFCA]\\
+   \rm + k_{D\textbf{3}}[FFCA] + k_{D\textbf{4}}[FDCA] - k_{D^*}[D]
 
 .. math:: \rm \frac{d[D^*]}{dt} = k_{D^*}[D]
 
@@ -63,9 +70,17 @@ tracked experimentally. The D and D\* coming from these species are
 denoted with the same names prepended respectively with a “D\_” and a
 “Dx\_”. To sum up we can now write:
 
-.. math:: \rm [D] = [D\_HMF] + [D\_DFF] + [D\_HMFCA] + [D\_FFCA] + [D\_FDCA] 
+.. math::
 
-.. math:: \rm [D^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA] + [Dx\_FFCA] + [Dx\_FDCA] 
+
+   \rm [D] = [D\_HMF] + [D\_DFF] + [D\_HMFCA]\\
+   \rm  + [D\_FFCA] + [D\_FDCA]
+
+.. math::
+
+
+   \rm [D^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA]\\
+   \rm  + [Dx\_FFCA] + [Dx\_FDCA]
 
 Therefore, the derivatives presented above for the concentration of
 humins are rewritten in the following way:
@@ -146,10 +161,11 @@ charge passed over time using this equation:
 
 .. math:: \rm Q = e N_A V \sum_i n_i C_i
 
-With e the electron charge in Coulombs, NA the Avogadro number, V the
-volume of solution, ni the number of charge passed to make one molecule
-of i, and Ci the concentration of species i. This equation translates
-into code as follow:
+With e the electron charge in Coulombs, :math:`\rm N_{A}` the Avogadro
+number, V the volume of solution, :math:`\rm n_{i}` the number of charge
+passed to make one molecule of i, and :math:`\rm C_{i}` the
+concentration of species i. This equation translates into code as
+follow:
 
 .. code:: python3
 
@@ -618,7 +634,7 @@ errorbars to the experimental data.
 
 
 
-.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_36_0.svg
+.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_37_0.svg
   :align: center
 
 .. code:: python3
@@ -627,7 +643,7 @@ errorbars to the experimental data.
 
 
 
-.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_37_0.svg
+.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_38_0.svg
   :align: center
 
 .. code:: python3
@@ -636,5 +652,5 @@ errorbars to the experimental data.
 
 
 
-.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_38_0.svg
+.. image:: HMF_oxidation_WO3_files/HMF_oxidation_WO3_39_0.svg
   :align: center

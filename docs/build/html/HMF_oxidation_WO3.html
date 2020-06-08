@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kinetic model &mdash; chemical-kinetics 1.0.0 documentation</title>
+  <title>Advanced example &mdash; chemical-kinetics 1.0.0 documentation</title>
   
 
   
@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code documentation" href="docs.html" />
+    <link rel="prev" title="Simple example" href="simple_example.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,14 +81,18 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Kinetic model</a></li>
-<li><a class="reference internal" href="#load-concentrations-and-charge-passed-evolution-over-time">Load concentrations and charge passed evolution over time</a></li>
-<li><a class="reference internal" href="#fitting">Fitting</a></li>
-<li><a class="reference internal" href="#fit-results">Fit results</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="simple_example.html">Simple example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kinetic-model">Kinetic model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-concentrations-and-charge-passed-evolution-over-time">Load concentrations and charge passed evolution over time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting">Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fit-results">Fit results</a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Code documentation</a></li>
+</ul>
+
             
           
         </div>
@@ -130,7 +136,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Kinetic model</li>
+      <li>Advanced example</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -149,16 +155,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>This example emphasizes two scenarii not covered in the simple example:
-- using charge passed over time data, which can be acquired when
-performing electrochemical measurements (chronocoulometry), and that can
-help improve the accuracy of the time constants obtained from the fit -
-fitting when the concentration evolution over time experimental data
-only covers some of the species considered in the model</p>
+  <div class="section" id="advanced-example">
+<h1>Advanced example<a class="headerlink" href="#advanced-example" title="Permalink to this headline">¶</a></h1>
+<p>This example emphasizes two scenarii not covered in the simple example:</p>
+<ul class="simple">
+<li><p>using charge passed over time data, which can be acquired when
+performing electrochemical measurements (chronocoulometry), and that
+can help improve the accuracy of the time constants obtained from the
+fit</p></li>
+<li><p>fitting when the concentration evolution over time experimental data
+only covers some of the species considered in the model</p></li>
+</ul>
 <div class="section" id="kinetic-model">
-<h1>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h1>
-<p>The kinetics model derived in <a href="#id1"><span class="problematic" id="id2">`this paper &lt;&gt;`__</span></a> leads to the following
-set of differential equations:</p>
+<h2>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h2>
+<p>The kinetics model we use leads to the following set of differential
+equations:</p>
 <div class="math notranslate nohighlight">
 \[\rm \frac{d[HMF]}{dt} = -(k_{\textbf{1}1} + k_{\textbf{1}2} + k_{D\textbf{1}})[HMF]\]</div>
 <div class="math notranslate nohighlight">
@@ -170,9 +181,8 @@ set of differential equations:</p>
 <div class="math notranslate nohighlight">
 \[\rm \frac{d[FDCA]}{dt} = k_{\textbf{3}}[FFCA] - k_{D\textbf{4}}[FDCA]\]</div>
 <div class="math notranslate nohighlight">
-\[\rm \frac{d[D]}{dt} = k_{D\textbf{1}}[HMF] + k_{D\textbf{2}1}[DFF] + k_{D\textbf{2}2}[HMFCA]\]</div>
-<div class="math notranslate nohighlight">
-\[\rm + k_{D\textbf{3}}[FFCA] + k_{D\textbf{4}}[FDCA] - k_{D^*}[D]\]</div>
+\[\begin{split}\rm \frac{d[D]}{dt} = k_{D\textbf{1}}[HMF] + k_{D\textbf{2}1}[DFF] + k_{D\textbf{2}2}[HMFCA]\\
+\rm + k_{D\textbf{3}}[FFCA] + k_{D\textbf{4}}[FDCA] - k_{D^*}[D]\end{split}\]</div>
 <div class="math notranslate nohighlight">
 \[\rm \frac{d[D^*]}{dt} = k_{D^*}[D]\]</div>
 <p>In order to write a function describing this model we need to define all
@@ -208,9 +218,11 @@ tracked experimentally. The D and D* coming from these species are
 denoted with the same names prepended respectively with a “D_” and a
 “Dx_”. To sum up we can now write:</p>
 <div class="math notranslate nohighlight">
-\[\rm [D] = [D\_HMF] + [D\_DFF] + [D\_HMFCA] + [D\_FFCA] + [D\_FDCA]\]</div>
+\[\begin{split}\rm [D] = [D\_HMF] + [D\_DFF] + [D\_HMFCA]\\
+\rm  + [D\_FFCA] + [D\_FDCA]\end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[\rm [D^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA] + [Dx\_FFCA] + [Dx\_FDCA]\]</div>
+\[\begin{split}\rm [D^*] = [Dx\_HMF] + [Dx\_DFF] + [Dx\_HMFCA]\\
+\rm  + [Dx\_FFCA] + [Dx\_FDCA]\end{split}\]</div>
 <p>Therefore, the derivatives presented above for the concentration of
 humins are rewritten in the following way:</p>
 <div class="math notranslate nohighlight">
@@ -285,10 +297,11 @@ differential equations:</p>
 charge passed over time using this equation:</p>
 <div class="math notranslate nohighlight">
 \[\rm Q = e N_A V \sum_i n_i C_i\]</div>
-<p>With e the electron charge in Coulombs, NA the Avogadro number, V the
-volume of solution, ni the number of charge passed to make one molecule
-of i, and Ci the concentration of species i. This equation translates
-into code as follow:</p>
+<p>With e the electron charge in Coulombs, <span class="math notranslate nohighlight">\(\rm N_{A}\)</span> the Avogadro
+number, V the volume of solution, <span class="math notranslate nohighlight">\(\rm n_{i}\)</span> the number of charge
+passed to make one molecule of i, and <span class="math notranslate nohighlight">\(\rm C_{i}\)</span> the
+concentration of species i. This equation translates into code as
+follow:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">constants</span>
 
@@ -326,7 +339,7 @@ into code as follow:</p>
 <p>Now that the model is defined we can load the raw data and fit it.</p>
 </div>
 <div class="section" id="load-concentrations-and-charge-passed-evolution-over-time">
-<h1>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h1>
+<h2>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h2>
 <p>Here three .csv files are used to get the measured evolution of HMF,
 DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
 .csv files are used for the charge passed over time.</p>
@@ -347,7 +360,7 @@ DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
 </div>
 </div>
 <div class="section" id="fitting">
-<h1>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h1>
+<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
 <p>The only parameters to be fitted are the time constants. The initial
 concentrations are fixed to the initial values recorded by HPLC for the
 tracked species. For the untracked species the initial concentrations
@@ -394,7 +407,7 @@ concentrations initialized we can proceed with the fit:</p>
 </div>
 </div>
 <div class="section" id="fit-results">
-<h1>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h1>
+<h2>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h2>
 <p>The fit results are summarized in the table below. Note that all the
 initial concentrations (parameters starting with the string “c0_”) are
 fixed so only the ks values are varying parameters in this fit.</p>
@@ -727,19 +740,29 @@ errorbars to the experimental data.</p>
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<img alt="_images/HMF_oxidation_WO3_36_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_36_0.svg" /><div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FDCA&quot;</span><span class="p">])</span>
+<img alt="_images/HMF_oxidation_WO3_37_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_37_0.svg" /><div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;DFF&quot;</span><span class="p">,</span> <span class="s2">&quot;HMFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FFCA&quot;</span><span class="p">,</span> <span class="s2">&quot;FDCA&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
-<img alt="_images/HMF_oxidation_WO3_37_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_37_0.svg" /><div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_q</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<img alt="_images/HMF_oxidation_WO3_38_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_38_0.svg" /><div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">plot_q</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/HMF_oxidation_WO3_38_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_38_0.svg" /></div>
+<img alt="_images/HMF_oxidation_WO3_39_0.svg" class="align-center" src="_images/HMF_oxidation_WO3_39_0.svg" /></div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="docs.html" class="btn btn-neutral float-right" title="Code documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="simple_example.html" class="btn btn-neutral float-left" title="Simple example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

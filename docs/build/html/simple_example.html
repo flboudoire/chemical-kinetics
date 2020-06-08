@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Kinetic model &mdash; chemical-kinetics 1.0.0 documentation</title>
+  <title>Simple example &mdash; chemical-kinetics 1.0.0 documentation</title>
   
 
   
@@ -35,7 +35,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced example" href="HMF_oxidation_WO3.html" />
+    <link rel="prev" title="chemical_kinetics" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,13 +81,17 @@
               
             
             
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Kinetic model</a></li>
-<li><a class="reference internal" href="#loading-and-plotting-the-dataset">Loading and plotting the dataset</a></li>
-<li><a class="reference internal" href="#fitting-and-displaying-the-fit-results">Fitting and displaying the fit results</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#kinetic-model">Kinetic model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-and-plotting-the-dataset">Loading and plotting the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fitting-and-displaying-the-fit-results">Fitting and displaying the fit results</a></li>
 </ul>
-</div>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HMF_oxidation_WO3.html">Advanced example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Code documentation</a></li>
+</ul>
+
             
           
         </div>
@@ -129,7 +135,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Kinetic model</li>
+      <li>Simple example</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -148,19 +154,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>This example is meant to showcase the basic steps needed to fit the
+  <div class="section" id="simple-example">
+<h1>Simple example<a class="headerlink" href="#simple-example" title="Permalink to this headline">¶</a></h1>
+<p>This example is meant to showcase the basic steps needed to fit the
 concentration evolution over time of different species. These steps are
-the following: - create a kinetic model that can be used by the
-“chemical_kinetics” module - loading and plotting the data - fitting and
-displaying the fit results</p>
+the following:</p>
+<ul class="simple">
+<li><p>create a kinetic model that can be used by the “chemical_kinetics”
+module</p></li>
+<li><p>loading and plotting the data</p></li>
+<li><p>fitting and displaying the fit results</p></li>
+</ul>
 <div class="section" id="kinetic-model">
-<h1>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h1>
+<h2>Kinetic model<a class="headerlink" href="#kinetic-model" title="Permalink to this headline">¶</a></h2>
 <p>We consider in this example the following reactions:</p>
 <ul class="simple">
-<li><p>Forward reaction 1: A <span class="math notranslate nohighlight">\(\rightarrow\)</span> B with time constant k1, fw</p></li>
-<li><p>Backward reaction 1: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> A with time constant k1,
-bw</p></li>
-<li><p>Forward reaction 2: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> C with time constant k2</p></li>
+<li><p>Forward reaction 1: A <span class="math notranslate nohighlight">\(\rightarrow\)</span> B with time constant
+<span class="math notranslate nohighlight">\(\rm k_{1, fw}\)</span></p></li>
+<li><p>Backward reaction 1: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> A with time constant
+<span class="math notranslate nohighlight">\(\rm k_{1, bw}\)</span></p></li>
+<li><p>Forward reaction 2: B <span class="math notranslate nohighlight">\(\rightarrow\)</span> C with time constant
+<span class="math notranslate nohighlight">\(\rm k_{2}\)</span></p></li>
 </ul>
 <p>Which gives the following differential equations according to the law of
 mass action:</p>
@@ -212,7 +226,7 @@ concentrations and will be defined and used in the “fit.fit_dataset”
 function.</p>
 </div>
 <div class="section" id="loading-and-plotting-the-dataset">
-<h1>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h1>
+<h2>Loading and plotting the dataset<a class="headerlink" href="#loading-and-plotting-the-dataset" title="Permalink to this headline">¶</a></h2>
 <p>The dataset “data/concentrations vs time.csv” is loaded in an object of
 class “chemical_kinetics.data.Dataset”. This object stores the raw data
 and the fit results and makes these parameters easy to access.</p>
@@ -235,9 +249,9 @@ loaded in this example can be found <a class="reference external" href="https://
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/simple_example_7_0.svg" class="align-center" src="_images/simple_example_7_0.svg" /></div>
+<img alt="_images/simple_example_8_0.svg" class="align-center" src="_images/simple_example_8_0.svg" /></div>
 <div class="section" id="fitting-and-displaying-the-fit-results">
-<h1>Fitting and displaying the fit results<a class="headerlink" href="#fitting-and-displaying-the-fit-results" title="Permalink to this headline">¶</a></h1>
+<h2>Fitting and displaying the fit results<a class="headerlink" href="#fitting-and-displaying-the-fit-results" title="Permalink to this headline">¶</a></h2>
 <p>We already defined the derivatives to be used by the fit in the
 derivatives function above. However, we also need to provide an initial
 guess for the time constants.</p>
@@ -338,43 +352,43 @@ functions:</p>
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.1</td>
-      <td>0.0</td>
-      <td>2.0</td>
+      <td>0.101</td>
+      <td>0.00191</td>
+      <td>1.88</td>
       <td>0.1</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>3.1</td>
+      <td>0.0204</td>
+      <td>0.000613</td>
+      <td>3</td>
       <td>0.1</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>2</th>
       <td>k_2</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.1</td>
+      <td>0.0201</td>
+      <td>0.000205</td>
+      <td>1.02</td>
       <td>0.1</td>
       <td>True</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>inf</td>
     </tr>
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.8</td>
-      <td>0.9</td>
+      <td>0.996</td>
+      <td>0.00744</td>
+      <td>0.748</td>
+      <td>0.954</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -382,10 +396,10 @@ functions:</p>
     <tr>
       <th>4</th>
       <td>c0_B</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
       <td>nan</td>
-      <td>0.0</td>
+      <td>0</td>
       <td>False</td>
       <td>-inf</td>
       <td>inf</td>
@@ -393,10 +407,10 @@ functions:</p>
     <tr>
       <th>5</th>
       <td>c0_C</td>
-      <td>0.2</td>
-      <td>0.0</td>
-      <td>2.3</td>
-      <td>0.2</td>
+      <td>0.196</td>
+      <td>0.00432</td>
+      <td>2.2</td>
+      <td>0.205</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>
@@ -407,7 +421,7 @@ functions:</p>
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/simple_example_16_0.svg" class="align-center" src="_images/simple_example_16_0.svg" /><p>For information, here is the code that was used to generate the raw data
+<img alt="_images/simple_example_17_0.svg" class="align-center" src="_images/simple_example_17_0.svg" /><p>For information, here is the code that was used to generate the raw data
 used in this example:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -437,12 +451,22 @@ used in this example:</p>
 </pre></div>
 </div>
 </div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="HMF_oxidation_WO3.html" class="btn btn-neutral float-right" title="Advanced example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="chemical_kinetics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
