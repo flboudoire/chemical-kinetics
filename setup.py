@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="chemical-kinetics",
-    version="1.0.2",
+    version="1.0.3",
     author="Florent Boudoire",
     author_email="flboudoire@gmail.com",
     description="Module to fit data with a chemical kinetics model.",
