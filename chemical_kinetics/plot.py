@@ -8,8 +8,8 @@ also plot the fit estimation.
 """
 
 
-# import matplotlib.pyplot as plt
-# import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plot_c(dataset, names = None):
