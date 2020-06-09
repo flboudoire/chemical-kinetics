@@ -164,7 +164,7 @@
 concentration evolution over time of different species. These steps are
 the following:</p>
 <ul class="simple">
-<li><p>create a kinetic model that can be used by the “chemical_kinetics”
+<li><p>create a kinetic model that can be used by the <strong>chemical_kinetics</strong>
 module</p></li>
 <li><p>loading and plotting the data</p></li>
 <li><p>fitting and displaying the fit results</p></li>
@@ -223,9 +223,9 @@ using the following function:</p>
     <span class="k">return</span> <span class="n">dy</span>
 </pre></div>
 </div>
-<p><strong>Caution:</strong> when defining the “derivatives” function, do not use keys
-for the “p” parameters dictionary containing the string “c0_” (if you
-do an error will be raised). These keys are reserved for the initial
+<p>Caution: when defining the <strong>derivatives()</strong> function, do not use keys
+for the <strong>p</strong> parameters dictionary containing the string <strong>c0_</strong> (if
+you do an error will be raised). These keys are reserved for the initial
 concentrations and will be defined and used in the
 <a class="reference internal" href="fitting.html#fit.fit_dataset" title="fit.fit_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit.fit_dataset()</span></code></a> function.</p>
 </div>
@@ -259,19 +259,19 @@ this example can be found <a class="reference external" href="https://is.gd/GZPZ
 <p>We already defined the derivatives to be used by the fit in the
 derivatives function above. However, we also need to provide an initial
 guess for the time constants.</p>
-<p><strong>Note:</strong> In this case, only time constants constitute parameters stored
-in the “p” argument of the “residuals” function. However, a different
-“residuals” function definition can require parameters that are not time
-constants. These parameters can still be passed in the “p” dictionnary,
-the parameters in “p” are not required to be time constant, they can be
-any parameter needed by the model.</p>
-<p>These parameters are given as a dictionary (“p” in the “residuals”
-function definition) where the keys are the time constant names. The
-corresponding values are a dictionary containing the parameter
-arguments, used to initialize a “lmfit.Parameter” object. The arguments
-that can be passed via this dictionary are in particular: value, vary,
-min, max and expr. Details on these arguments, and more generally on the
-“lmfit.Parameter” class can be found <a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">in the lmfit
+<p>Note: In this case, only time constants constitute parameters stored in
+the <strong>p</strong> argument of the <strong>derivatives()</strong> function. However, a
+different <strong>derivatives()</strong> function definition can require parameters
+that are not time constants. These parameters can still be passed in the
+<strong>p</strong> dictionnary, the parameters in <strong>p</strong> are not required to be time
+constant, they can be any parameter needed by the model.</p>
+<p>These parameters are given as a dictionary (<strong>p</strong> in the
+<strong>derivatives()</strong> function definition) where the keys are the time
+constant names. The corresponding values are a dictionary containing the
+parameter arguments, used to initialize a <strong>lmfit.Parameter</strong> object.
+The arguments that can be passed via this dictionary are in particular:
+value, vary, min, max and expr. Details on these arguments, and more
+generally on the <strong>lmfit.Parameter</strong> class can be found <a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">in the lmfit
 documentation</a>.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;k_1fw&quot;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">),</span>
@@ -281,7 +281,7 @@ documentation</a>.</p>
 </pre></div>
 </div>
 <p>Another argument to be passed to the fit function are the initial
-concentrations. These are defined in a similar way as the “parameters”
+concentrations. These are defined in a similar way as the <strong>parameters</strong>
 variable defined above, since they are also fit parameters. It is
 mandatory to give the same names for theses parameters as the
 corresponding names given to the columns in the .csv file that was
@@ -303,7 +303,7 @@ concentration for C in the dataset</p>
 </div>
 <p>We can now pass these parameters to the <a class="reference internal" href="fitting.html#fit.fit_dataset" title="fit.fit_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit.fit_dataset()</span></code></a>
 function. Once the fit converged a message generated by the
-“lmfit.MinimizerResult” class is displayed (<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html">see the lmfit
+<strong>lmfit.MinimizerResult</strong> class is displayed (<a class="reference external" href="https://lmfit.github.io/lmfit-py/fitting.html">see the lmfit
 documentation</a> for
 details on this message significance).</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
@@ -356,9 +356,9 @@ details on this message significance).</p>
     <tr>
       <th>0</th>
       <td>k_1fw</td>
-      <td>0.0972</td>
-      <td>0.00182</td>
-      <td>1.87</td>
+      <td>0.098</td>
+      <td>0.00189</td>
+      <td>1.93</td>
       <td>0.1</td>
       <td>True</td>
       <td>0</td>
@@ -367,9 +367,9 @@ details on this message significance).</p>
     <tr>
       <th>1</th>
       <td>k_1bw</td>
-      <td>0.0191</td>
-      <td>0.000581</td>
-      <td>3.04</td>
+      <td>0.0197</td>
+      <td>0.000612</td>
+      <td>3.1</td>
       <td>0.1</td>
       <td>True</td>
       <td>0</td>
@@ -379,8 +379,8 @@ details on this message significance).</p>
       <th>2</th>
       <td>k_2</td>
       <td>0.0196</td>
-      <td>0.000211</td>
-      <td>1.08</td>
+      <td>0.000214</td>
+      <td>1.09</td>
       <td>0.1</td>
       <td>True</td>
       <td>0</td>
@@ -389,10 +389,10 @@ details on this message significance).</p>
     <tr>
       <th>3</th>
       <td>c0_A</td>
-      <td>0.984</td>
-      <td>0.0076</td>
-      <td>0.773</td>
-      <td>1.02</td>
+      <td>0.991</td>
+      <td>0.00774</td>
+      <td>0.78</td>
+      <td>0.94</td>
       <td>True</td>
       <td>0.5</td>
       <td>inf</td>
@@ -411,10 +411,10 @@ details on this message significance).</p>
     <tr>
       <th>5</th>
       <td>c0_C</td>
+      <td>0.207</td>
+      <td>0.00459</td>
+      <td>2.22</td>
       <td>0.21</td>
-      <td>0.00456</td>
-      <td>2.17</td>
-      <td>0.218</td>
       <td>True</td>
       <td>-inf</td>
       <td>inf</td>

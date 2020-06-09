@@ -2,14 +2,14 @@
 This module defines a set of functions used to fit the species
 concentrations evolution over time and optionally the charge passed
 evolution over time, stored in an object of Dataset class. This fit
-proceeds via the "fit_dataset" function that uses the functions
-"residuals", "calculate_residuals" and "evaluate".
+proceeds via the :func:`fit_dataset` function that uses the functions
+:func:`residuals`, :func:`calculate_residuals` and :func:`evaluate`.
 
-After the fit is performed the "print_result" function can be used to
+After the fit is performed the :func:`print_result` function can be used to
 print the fit parameters initial values and setup (min, max, vary) and
 their fitted values and standard deviations.
 
-The function "evaluate" can be used to get values from a kinetic model
+The function :func:`evaluate` can be used to get values from a kinetic model
 outside of the scope of fitting data, e.g. to test the influence of
 model parameters on the concentrations evolution over time.
 """
@@ -32,7 +32,7 @@ def fit_dataset(
 
     """Fit a dataset holding concentration vs t data and optionally charge vs t.
     
-    The arguments "parameters", "c0" and "c0_untracked" are dictionaries
+    The arguments **parameters**, **c0** and **c0_untracked** are dictionaries
     in which each value is a dictionary of the arguments to use in order
     to initialize objects of the lmfit.Parameter class. The arguments
     that can be passed via this dictionary are in particular: value,
@@ -79,12 +79,12 @@ def fit_dataset(
 
     ############################################################################
     # create the lmfit.Parameters object with all parameters from the
-    # "parameters", "c0" and "c0_untracked" variables
+    # **parameters**, **c0** and **c0_untracked** variables
     ############################################################################
 
     params = lmfit.Parameters()
 
-    # unpack arguments from "parameters"
+    # unpack arguments from **parameters**
     for key, value in parameters.items():
         # to avoid issues with having "c0_" in the key for these parameters an
         # error is raised in that case, else the unpacking proceeds
@@ -95,7 +95,7 @@ def fit_dataset(
                 )
         else: params.add(key, **value)
 
-    # unpack arguments from "c0"
+    # unpack arguments from **c0**
     for name in tracked_species:
         key = fr"c0_{name}"
         # default initial concentration value to be used if needed
@@ -111,7 +111,7 @@ def fit_dataset(
             # default value
             params.add(key, value = default_val)
 
-    # unpack arguments from "c0_untracked"
+    # unpack arguments from **c0_untracked**
     for name, value in c0_untracked.items():
         key = fr"c0_{name}"
         params.add(key, **value)

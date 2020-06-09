@@ -1,7 +1,7 @@
 """
 This module defines two functions to plot the data contained in an
-object of class chemical_kinetics.data.Dataset. "plot_c" plots the
-species concentration evolution over time and "plot_q" plots the charge
+object of class :class:`data.Dataset`. The function :func:`plot_c` plots the
+species concentration evolution over time and the function :func:`plot_q` plots the charge
 passed evolution over time. If no fit was performed on the dataset
 object these functions only plot the raw data. If a fit was performed it
 also plot the fit estimation.
@@ -38,7 +38,7 @@ def plot_c(dataset, names = None):
 
     # plot data
     plt.figure()
-    # variable "colors" used to store the raw data plot color in order to use
+    # variable **colors** used to store the raw data plot color in order to use
     # the same color for the fit result
     colors = dict()
     for name in names:
@@ -49,7 +49,7 @@ def plot_c(dataset, names = None):
             )
         # here we need to consider whether no error-bars were generated for any
         # of the raw data (i.e. only one data file was loaded when creating
-        # "dataset"); if no standard deviation were generated use plot to plot
+        # **dataset**); if no standard deviation were generated use plot to plot
         # the data, else use error-bar to plot the data
         if np.all(np.isnan(df_std[name])):
             p = plt.plot(
@@ -72,7 +72,7 @@ def plot_c(dataset, names = None):
     plt.ylabel(dataset.c_label)
     plt.legend()
 
-    # if "dataset" contains fit result data, plot it
+    # if **dataset** contains fit result data, plot it
     if df_fit is not None:
         for name in names:
             plt.plot(
@@ -116,7 +116,7 @@ def plot_q(dataset):
     # plot the raw data
     plt.plot(df["t"], df["Q"], label = "data")
 
-    # if "dataset" contains fit result data, plot it
+    # if **dataset** contains fit result data, plot it
     if df_fit is not None:
         plt.plot(df_fit["t"], df_fit["Q"], "--", label = "fit")
 

@@ -165,12 +165,12 @@
 <p>This module defines a set of functions used to fit the species
 concentrations evolution over time and optionally the charge passed
 evolution over time, stored in an object of Dataset class. This fit
-proceeds via the “fit_dataset” function that uses the functions
-“residuals”, “calculate_residuals” and “evaluate”.</p>
-<p>After the fit is performed the “print_result” function can be used to
+proceeds via the <a class="reference internal" href="#fit.fit_dataset" title="fit.fit_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit_dataset()</span></code></a> function that uses the functions
+<a class="reference internal" href="#fit.residuals" title="fit.residuals"><code class="xref py py-func docutils literal notranslate"><span class="pre">residuals()</span></code></a>, <a class="reference internal" href="#fit.calculate_residuals" title="fit.calculate_residuals"><code class="xref py py-func docutils literal notranslate"><span class="pre">calculate_residuals()</span></code></a> and <a class="reference internal" href="#fit.evaluate" title="fit.evaluate"><code class="xref py py-func docutils literal notranslate"><span class="pre">evaluate()</span></code></a>.</p>
+<p>After the fit is performed the <a class="reference internal" href="#fit.print_result" title="fit.print_result"><code class="xref py py-func docutils literal notranslate"><span class="pre">print_result()</span></code></a> function can be used to
 print the fit parameters initial values and setup (min, max, vary) and
 their fitted values and standard deviations.</p>
-<p>The function “evaluate” can be used to get values from a kinetic model
+<p>The function <a class="reference internal" href="#fit.evaluate" title="fit.evaluate"><code class="xref py py-func docutils literal notranslate"><span class="pre">evaluate()</span></code></a> can be used to get values from a kinetic model
 outside of the scope of fitting data, e.g. to test the influence of
 model parameters on the concentrations evolution over time.</p>
 <dl class="py function">
@@ -214,7 +214,7 @@ function, for details on this object class see:
 <dt id="fit.fit_dataset">
 <code class="sig-prename descclassname">fit.</code><code class="sig-name descname">fit_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">derivatives</span></em>, <em class="sig-param"><span class="n">parameters</span></em>, <em class="sig-param"><span class="n">c0</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">c0_untracked</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">c_to_q</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fit.fit_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit a dataset holding concentration vs t data and optionally charge vs t.</p>
-<p>The arguments “parameters”, “c0” and “c0_untracked” are dictionaries
+<p>The arguments <strong>parameters</strong>, <strong>c0</strong> and <strong>c0_untracked</strong> are dictionaries
 in which each value is a dictionary of the arguments to use in order
 to initialize objects of the lmfit.Parameter class. The arguments
 that can be passed via this dictionary are in particular: value,

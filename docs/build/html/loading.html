@@ -162,12 +162,12 @@
             
   <div class="section" id="module-data">
 <span id="loading-data-data-py"></span><h1>Loading data - data.py<a class="headerlink" href="#module-data" title="Permalink to this headline">¶</a></h1>
-<p>This module defines the “Dataset” class that is used to load the .csv
+<p>This module defines the <a class="reference internal" href="#data.Dataset" title="data.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> class that is used to load the .csv
 files holding the data to be fitted. After the fit is performed it also
 stores the initial parameters, the fitted parameters and the fit
 estimations.</p>
-<p>This module also defines the function “load” used in the
-“Dataset.load_c” and “Dataset.load_q” functions to load the .csv files.</p>
+<p>This module also defines the function <a class="reference internal" href="#data.load" title="data.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">load()</span></code></a> used in the
+<a class="reference internal" href="#data.Dataset.load_c" title="data.Dataset.load_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.load_c()</span></code></a> and <a class="reference internal" href="#data.Dataset.load_q" title="data.Dataset.load_q"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.load_q()</span></code></a> methods to load the .csv files.</p>
 <dl class="py class">
 <dt id="data.Dataset">
 <em class="property">class </em><code class="sig-prename descclassname">data.</code><code class="sig-name descname">Dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">files_c</span></em>, <em class="sig-param"><span class="n">files_q</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">t_label</span><span class="o">=</span><span class="default_value">'t [s]'</span></em>, <em class="sig-param"><span class="n">c_label</span><span class="o">=</span><span class="default_value">'C [M]'</span></em>, <em class="sig-param"><span class="n">q_label</span><span class="o">=</span><span class="default_value">'Q [C]'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.Dataset" title="Permalink to this definition">¶</a></dt>

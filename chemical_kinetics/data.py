@@ -1,11 +1,11 @@
 """
-This module defines the "Dataset" class that is used to load the .csv
+This module defines the :class:`Dataset` class that is used to load the .csv
 files holding the data to be fitted. After the fit is performed it also
 stores the initial parameters, the fitted parameters and the fit
 estimations.
 
-This module also defines the function "load" used in the
-"Dataset.load_c" and "Dataset.load_q" functions to load the .csv files.
+This module also defines the function :func:`load` used in the
+:meth:`Dataset.load_c` and :meth:`Dataset.load_q` methods to load the .csv files.
 """
 
 

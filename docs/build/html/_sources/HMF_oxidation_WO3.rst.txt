@@ -107,7 +107,7 @@ The derivatives for the concentration of D\* are rewritten in this way:
 
 .. math:: \rm \frac{d[Dx\_FDCA]}{dt} = k_{D^*}[D\_FDCA]
 
-We can now write the “derivatives” function derived from these
+We can now write the **derivatives** function derived from these
 differential equations:
 
 .. code:: python3
@@ -164,8 +164,10 @@ charge passed over time using this equation:
 With e the electron charge in Coulombs, :math:`\rm N_{A}` the Avogadro
 number, V the volume of solution, :math:`\rm n_{i}` the number of charge
 passed to make one molecule of i, and :math:`\rm C_{i}` the
-concentration of species i. This equation translates into code as
-follow:
+concentration of species i. This equation is used to define a
+**c_to_q()** function that convert a list of all concentrations
+evolution over time **c** into a list of charge passed over time **q**
+as follow:
 
 .. code:: python3
 
@@ -295,8 +297,8 @@ Fit results
 ~~~~~~~~~~~
 
 The fit results are summarized in the table below. Note that all the
-initial concentrations (parameters starting with the string “c0\_”) are
-fixed so only the ks values are varying parameters in this fit. The
+initial concentrations (parameters starting with the string **c0\_**)
+are fixed so only the ks values are varying parameters in this fit. The
 parameter values resulting from the fit can be printed using the
 function :func:`fit.print_result`:
 

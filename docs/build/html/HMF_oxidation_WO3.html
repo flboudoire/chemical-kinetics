@@ -250,7 +250,7 @@ humins are rewritten in the following way:</p>
 \[\rm \frac{d[Dx\_FFCA]}{dt} = k_{D^*}[D\_FFCA]\]</div>
 <div class="math notranslate nohighlight">
 \[\rm \frac{d[Dx\_FDCA]}{dt} = k_{D^*}[D\_FDCA]\]</div>
-<p>We can now write the “derivatives” function derived from these
+<p>We can now write the <strong>derivatives</strong> function derived from these
 differential equations:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
 
@@ -304,8 +304,10 @@ charge passed over time using this equation:</p>
 <p>With e the electron charge in Coulombs, <span class="math notranslate nohighlight">\(\rm N_{A}\)</span> the Avogadro
 number, V the volume of solution, <span class="math notranslate nohighlight">\(\rm n_{i}\)</span> the number of charge
 passed to make one molecule of i, and <span class="math notranslate nohighlight">\(\rm C_{i}\)</span> the
-concentration of species i. This equation translates into code as
-follow:</p>
+concentration of species i. This equation is used to define a
+<strong>c_to_q()</strong> function that convert a list of all concentrations
+evolution over time <strong>c</strong> into a list of charge passed over time <strong>q</strong>
+as follow:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.constants</span> <span class="k">as</span> <span class="nn">constants</span>
 
@@ -418,8 +420,8 @@ function <a class="reference internal" href="fitting.html#fit.fit_dataset" title
 <div class="section" id="fit-results">
 <h2>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h2>
 <p>The fit results are summarized in the table below. Note that all the
-initial concentrations (parameters starting with the string “c0_”) are
-fixed so only the ks values are varying parameters in this fit. The
+initial concentrations (parameters starting with the string <strong>c0_</strong>)
+are fixed so only the ks values are varying parameters in this fit. The
 parameter values resulting from the fit can be printed using the
 function <a class="reference internal" href="fitting.html#fit.print_result" title="fit.print_result"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit.print_result()</span></code></a>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
