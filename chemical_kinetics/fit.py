@@ -32,14 +32,14 @@ def fit_dataset(
 
     """Fit a dataset holding concentration vs t data and optionally charge vs t.
     
-    The arguments **parameters**, **c0** and **c0_untracked** are dictionaries
-    in which each value is a dictionary of the arguments to use in order
-    to initialize objects of the lmfit.Parameter class. The arguments
+    The parameters **parameters**, **c0** and **c0_untracked** are dictionaries
+    in which each value is a dictionary of the parameters to use in order
+    to initialize objects of the lmfit.Parameter class. The parameters
     that can be passed via this dictionary are in particular: value,
     vary, min, max and expr. Details on the Parameter class can be found
     here: https://lmfit.github.io/lmfit-py/parameters.html
 
-    Arguments:
+    Parameters:
         dataset (chemical_kinetics.data.Dataset):
             Object holding the different DataFrames containing the data
             to be fitted.
@@ -48,23 +48,23 @@ def fit_dataset(
             d(concentration)/dt at a time t for each species. Used by
             scipy.integrate.odeint
         parameters (dict):
-            Stores parameter names (str): arguments (dict) (e.g. value,
+            Stores parameter names (str): parameters (dict) (e.g. value,
             min, max, vary) to be passed to the corresponding
             lmfit.Parameter. Represents all the parameters of the
             kinetic model.
         c0 (dict, optional):
-            Stores species name (str): arguments (dict) (e.g. value,
+            Stores species name (str): parameters (dict) (e.g. value,
             min, max, vary) to be passed to the corresponding
             lmfit.Parameter. Represent the concentrations at initial
             time for the species whose concentration evolution over time
             is stored in dataset.df_c.
         c0_untracked (collections.OrderedDict, optional):
-            Stores species name (str): arguments (dict) (e.g. value,
+            Stores species name (str): parameters (dict) (e.g. value,
             min, max, vary) to be passed to the corresponding
             lmfit.Parameter. Represent concentrations at initial time
             for the species whose concentrations evolution over time is
             NOT stored in dataset.df_c. An ordered dictionary is
-            necessary in this case to be able to pass arguments properly
+            necessary in this case to be able to pass parameters properly
             to the scipy.integrate.odeint solver.
         c_to_q (function, optional):
             Used to convert the concentrations over time evolution into
@@ -84,7 +84,7 @@ def fit_dataset(
 
     params = lmfit.Parameters()
 
-    # unpack arguments from **parameters**
+    # unpack parameters from **parameters**
     for key, value in parameters.items():
         # to avoid issues with having "c0_" in the key for these parameters an
         # error is raised in that case, else the unpacking proceeds
@@ -95,23 +95,23 @@ def fit_dataset(
                 )
         else: params.add(key, **value)
 
-    # unpack arguments from **c0**
+    # unpack parameters from **c0**
     for name in tracked_species:
         key = fr"c0_{name}"
         # default initial concentration value to be used if needed
         default_val = df_c[name][0]
         if name in c0:
-            # unpacking if arguments are given for this specie
+            # unpacking if parameters are given for this specie
             params.add(key, **c0[name])
             if "value" not in c0[name]:
-                # if the "value" argument was not give it the default value
+                # if the "value" parameter was not give it the default value
                 params[key].value = default_val
         else:
-            # if no arguments were passed for this specie: initialize with the
+            # if no parameters were passed for this specie: initialize with the
             # default value
             params.add(key, value = default_val)
 
-    # unpack arguments from **c0_untracked**
+    # unpack parameters from **c0_untracked**
     for name, value in c0_untracked.items():
         key = fr"c0_{name}"
         params.add(key, **value)
@@ -165,7 +165,7 @@ def evaluate(derivatives, params, t):
 
     """Evaluate the concentration(s) evolution(s) over time.
 
-    Arguments:
+    Parameters:
         derivatives (function):
             A function in the form dy = f(y, t, p) used to compute
             d(concentration)/dt at a time t for each species. Used by
@@ -203,7 +203,7 @@ def calculate_residuals(df, fit, names):
 
     """Calculates residuals values by comparing values in df and in fit.
 
-    Arguments:
+    Parameters:
         df (pandas.DataFrame):
             Holds the data to be fitted. Either concentrations vs time
             or charge passed vs time depending on the situation.
@@ -254,7 +254,7 @@ def residuals(
 
     """Calculates residuals for concentrations vs t and optionally charge vs t.
     
-    Arguments:
+    Parameters:
         params (lmfit.parameter.Parameters):
             The parameters values used to compute the derivatives
             function, for details on this object class see:
@@ -314,7 +314,7 @@ def print_result(dataset):
 
     """ Pretty printing of the fit parameters stored in dataset.
 
-    Arguments:
+    Parameters:
         dataset (chemical_kinetics.data.Dataset):
             Object holding the different DataFrames containing the
             initial parameters and the fitted parameters.

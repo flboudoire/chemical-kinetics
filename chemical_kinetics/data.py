@@ -16,12 +16,12 @@ class Dataset:
 
     """Loads and stores kinetics data, also stores fit results and axes labels.
 
-    Arguments:
+    Parameters:
         files_c (list):
             The path(s) of the concentration vs time files.
         files_q (list, optional):
             The path(s) of the charge passed vs time files, if this
-            argument is not set, further fitting will proceed without
+            parameter is not set, further fitting will proceed without
             taking the charge passed in account.
         t_label|c_label|q_label (str, optional):
             Set the corresponding attributes values. Used to set the
@@ -32,12 +32,12 @@ class Dataset:
             Store respectively the mean concentration, the concentration
             standard deviations and the corresponding fit results.
             Defined by the load_c method or directly at initialization
-            using the files_c argument.
+            using the files_c parameter.
         df_q|df_q_std|df_q_fit (pandas.DataFrame):
             Store respectively the mean charge passed, the charge passed
             standard deviations and the corresponding fit results.
             Defined by the load_q method or directly at initialization
-            using the files_q argument.
+            using the files_q parameter.
         t_label|c_label|q_label (str):
             Labels to be used for the x and y axes when plotting the
             datasets.
@@ -107,7 +107,7 @@ class Dataset:
         Relies on the load() function from this module, see also this
         function documentation for more details.
 
-        Arguments:
+        Parameters:
             files (list):
                 Path(s) of the .csv files.
         """
@@ -132,7 +132,7 @@ class Dataset:
         Relies on the load() function from this module, see also this
         function Docstring for more details.
 
-        Arguments:
+        Parameters:
             files (list):
                 Paths of the .csv files.
         """
@@ -150,7 +150,7 @@ def load(files):
     These .csv files are typically generated from raw data files from
     experiments using custom code to satisfy these requirements.
 
-    Arguments:
+    Parameters:
         files (list):
             Path(s) to the file(s), each column in each file must have
             the same number of rows.

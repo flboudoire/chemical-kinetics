@@ -177,7 +177,7 @@ estimations.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>files_c</strong> (<em>list</em>) – The path(s) of the concentration vs time files.</p></li>
 <li><p><strong>files_q</strong> (<em>list</em><em>, </em><em>optional</em>) – The path(s) of the charge passed vs time files, if this
-argument is not set, further fitting will proceed without
+parameter is not set, further fitting will proceed without
 taking the charge passed in account.</p></li>
 <li><p><strong>t_label|c_label|q_label</strong> (<em>str</em><em>, </em><em>optional</em>) – Set the corresponding attributes values. Used to set the
 x and y axes labels when plotting.</p></li>
@@ -190,7 +190,7 @@ x and y axes labels when plotting.</p></li>
 <dd><p>Store respectively the mean concentration, the concentration
 standard deviations and the corresponding fit results.
 Defined by the load_c method or directly at initialization
-using the files_c argument.</p>
+using the files_c parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
@@ -204,7 +204,7 @@ using the files_c argument.</p>
 <dd><p>Store respectively the mean charge passed, the charge passed
 standard deviations and the corresponding fit results.
 Defined by the load_q method or directly at initialization
-using the files_q argument.</p>
+using the files_q parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>

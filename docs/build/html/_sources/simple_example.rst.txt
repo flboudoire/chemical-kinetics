@@ -51,7 +51,7 @@ using the following function:
         to dictionaries ("c" and "dc") in order to make the differentials
         easier to write and read for humans.
         
-        Arguments:
+        Parameters:
             y (list): concentration values at t
             t (float): time value where the derivatives are calculated
             p (dict): dictionary containing the parameters used to
@@ -121,7 +121,7 @@ derivatives function above. However, we also need to provide an initial
 guess for the time constants.
 
 Note: In this case, only time constants constitute parameters stored in
-the **p** argument of the **derivatives()** function. However, a
+the **p** parameter of the **derivatives()** function. However, a
 different **derivatives()** function definition can require parameters
 that are not time constants. These parameters can still be passed in the
 **p** dictionnary, the parameters in **p** are not required to be time
@@ -130,9 +130,9 @@ constant, they can be any parameter needed by the model.
 These parameters are given as a dictionary (**p** in the
 **derivatives()** function definition) where the keys are the time
 constant names. The corresponding values are a dictionary containing the
-parameter arguments, used to initialize a **lmfit.Parameter** object.
-The arguments that can be passed via this dictionary are in particular:
-value, vary, min, max and expr. Details on these arguments, and more
+parameter parameters, used to initialize a **lmfit.Parameter** object.
+The parameters that can be passed via this dictionary are in particular:
+value, vary, min, max and expr. Details on these parameters, and more
 generally on the **lmfit.Parameter** class can be found `in the lmfit
 documentation <https://lmfit.github.io/lmfit-py/parameters.html>`__.
 
@@ -144,7 +144,7 @@ documentation <https://lmfit.github.io/lmfit-py/parameters.html>`__.
         "k_2": dict(value = 0.1, min = 0)
     }
 
-Another argument to be passed to the fit function are the initial
+Another parameter to be passed to the fit function are the initial
 concentrations. These are defined in a similar way as the **parameters**
 variable defined above, since they are also fit parameters. It is
 mandatory to give the same names for theses parameters as the
@@ -234,9 +234,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>0</th>
           <td>k_1fw</td>
-          <td>0.098</td>
-          <td>0.00189</td>
-          <td>1.93</td>
+          <td>0.101</td>
+          <td>0.00197</td>
+          <td>1.96</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -245,9 +245,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>1</th>
           <td>k_1bw</td>
-          <td>0.0197</td>
-          <td>0.000612</td>
-          <td>3.1</td>
+          <td>0.0199</td>
+          <td>0.000626</td>
+          <td>3.14</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -256,9 +256,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>2</th>
           <td>k_2</td>
-          <td>0.0196</td>
+          <td>0.0199</td>
           <td>0.000214</td>
-          <td>1.09</td>
+          <td>1.08</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -267,10 +267,10 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>3</th>
           <td>c0_A</td>
-          <td>0.991</td>
-          <td>0.00774</td>
-          <td>0.78</td>
-          <td>0.94</td>
+          <td>1</td>
+          <td>0.00788</td>
+          <td>0.784</td>
+          <td>0.919</td>
           <td>True</td>
           <td>0.5</td>
           <td>inf</td>
@@ -289,10 +289,10 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>5</th>
           <td>c0_C</td>
-          <td>0.207</td>
-          <td>0.00459</td>
-          <td>2.22</td>
-          <td>0.21</td>
+          <td>0.195</td>
+          <td>0.00453</td>
+          <td>2.32</td>
+          <td>0.185</td>
           <td>True</td>
           <td>-inf</td>
           <td>inf</td>

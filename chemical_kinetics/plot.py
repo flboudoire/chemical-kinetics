@@ -19,7 +19,7 @@ def plot_c(dataset, names = None):
     chemical_kinetics.fit.fit_dataset function was run once on the
     dataset. Else it only plots the raw data.
 
-    Arguments:
+    Parameters:
         dataset (chemical_kinetics.data.Dataset):
             Object holding the DataFrame containing the data and the fit
             results.
@@ -91,7 +91,7 @@ def plot_q(dataset):
     chemical_kinetics.fit.fit_dataset function was run once on the
     dataset. Else it only plots the raw data.
 
-    Arguments:
+    Parameters:
         dataset (chemical_kinetics.data.Dataset):
             Object holding the DataFrame containing the data and the fit
             results.

@@ -123,7 +123,7 @@ differential equations:
         to dictionaries ("c" and "dc") in order to make the differentials
         easier to write and read for humans.
         
-        Arguments:
+        Parameters:
             y (list): concentration values at t
             t (float): time value where the derivatives are calculated
             p (dict): dictionary containing the parameters used to
@@ -178,7 +178,7 @@ as follow:
         
         """Calculates the charge passed from the concentrations vs time
         
-        Arguments:
+        Parameters:
             c (numpy.ndarray):
                 Concentrations evolution over time, axis 0 is time,
                 axis 1 is species.

@@ -214,9 +214,9 @@ function, for details on this object class see:
 <dt id="fit.fit_dataset">
 <code class="sig-prename descclassname">fit.</code><code class="sig-name descname">fit_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset</span></em>, <em class="sig-param"><span class="n">derivatives</span></em>, <em class="sig-param"><span class="n">parameters</span></em>, <em class="sig-param"><span class="n">c0</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">c0_untracked</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">c_to_q</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#fit.fit_dataset" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit a dataset holding concentration vs t data and optionally charge vs t.</p>
-<p>The arguments <strong>parameters</strong>, <strong>c0</strong> and <strong>c0_untracked</strong> are dictionaries
-in which each value is a dictionary of the arguments to use in order
-to initialize objects of the lmfit.Parameter class. The arguments
+<p>The parameters <strong>parameters</strong>, <strong>c0</strong> and <strong>c0_untracked</strong> are dictionaries
+in which each value is a dictionary of the parameters to use in order
+to initialize objects of the lmfit.Parameter class. The parameters
 that can be passed via this dictionary are in particular: value,
 vary, min, max and expr. Details on the Parameter class can be found
 here: <a class="reference external" href="https://lmfit.github.io/lmfit-py/parameters.html">https://lmfit.github.io/lmfit-py/parameters.html</a></p>
@@ -228,21 +228,21 @@ to be fitted.</p></li>
 <li><p><strong>derivatives</strong> (<em>function</em>) – A function in the form dy = f(y, t, p) used to compute
 d(concentration)/dt at a time t for each species. Used by
 scipy.integrate.odeint</p></li>
-<li><p><strong>parameters</strong> (<em>dict</em>) – Stores parameter names (str): arguments (dict) (e.g. value,
+<li><p><strong>parameters</strong> (<em>dict</em>) – Stores parameter names (str): parameters (dict) (e.g. value,
 min, max, vary) to be passed to the corresponding
 lmfit.Parameter. Represents all the parameters of the
 kinetic model.</p></li>
-<li><p><strong>c0</strong> (<em>dict</em><em>, </em><em>optional</em>) – Stores species name (str): arguments (dict) (e.g. value,
+<li><p><strong>c0</strong> (<em>dict</em><em>, </em><em>optional</em>) – Stores species name (str): parameters (dict) (e.g. value,
 min, max, vary) to be passed to the corresponding
 lmfit.Parameter. Represent the concentrations at initial
 time for the species whose concentration evolution over time
 is stored in dataset.df_c.</p></li>
-<li><p><strong>c0_untracked</strong> (<em>collections.OrderedDict</em><em>, </em><em>optional</em>) – Stores species name (str): arguments (dict) (e.g. value,
+<li><p><strong>c0_untracked</strong> (<em>collections.OrderedDict</em><em>, </em><em>optional</em>) – Stores species name (str): parameters (dict) (e.g. value,
 min, max, vary) to be passed to the corresponding
 lmfit.Parameter. Represent concentrations at initial time
 for the species whose concentrations evolution over time is
 NOT stored in dataset.df_c. An ordered dictionary is
-necessary in this case to be able to pass arguments properly
+necessary in this case to be able to pass parameters properly
 to the scipy.integrate.odeint solver.</p></li>
 <li><p><strong>c_to_q</strong> (<em>function</em><em>, </em><em>optional</em>) – Used to convert the concentrations over time evolution into
 charge passed.</p></li>
