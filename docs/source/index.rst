@@ -7,7 +7,7 @@ A python module to load, fit and plot chemical kinetics data. In particular, it 
 Installation
 ------------
 
-Using pip:
+Using `pip <https://pypi.org/project/chemical-kinetics/>`_:
 
 .. code:: bash
 
