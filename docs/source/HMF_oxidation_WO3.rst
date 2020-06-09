@@ -210,7 +210,10 @@ Load concentrations and charge passed evolution over time
 Here three .csv files are used to get the measured evolution of HMF,
 DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
 .csv files are used for the charge passed over time. These files are
-loaded in an object of class :class:`data.Dataset`:
+loaded in an object of class :class:`data.Dataset`. Yon can consult
+the recomendations for the .csv files formatting in the
+:meth:`data.Dataset.load_c` and the :meth:`data.Dataset.load_q`
+methods documentation.
 
 .. code:: python3
 

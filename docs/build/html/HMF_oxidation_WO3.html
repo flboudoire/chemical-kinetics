@@ -347,7 +347,10 @@ follow:</p>
 <p>Here three .csv files are used to get the measured evolution of HMF,
 DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
 .csv files are used for the charge passed over time. These files are
-loaded in an object of class <a class="reference internal" href="loading.html#data.Dataset" title="data.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">data.Dataset</span></code></a>:</p>
+loaded in an object of class <a class="reference internal" href="loading.html#data.Dataset" title="data.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">data.Dataset</span></code></a>. Yon can consult
+the recomendations for the .csv files formatting in the
+<a class="reference internal" href="loading.html#data.Dataset.load_c" title="data.Dataset.load_c"><code class="xref py py-meth docutils literal notranslate"><span class="pre">data.Dataset.load_c()</span></code></a> and the <a class="reference internal" href="loading.html#data.Dataset.load_q" title="data.Dataset.load_q"><code class="xref py py-meth docutils literal notranslate"><span class="pre">data.Dataset.load_q()</span></code></a>
+methods documentation.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data</span>
 
 <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data/run</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
