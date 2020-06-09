@@ -130,8 +130,8 @@ constant, they can be any parameter needed by the model.
 These parameters are given as a dictionary (**p** in the
 **derivatives()** function definition) where the keys are the time
 constant names. The corresponding values are a dictionary containing the
-parameter parameters, used to initialize a **lmfit.Parameter** object.
-The parameters that can be passed via this dictionary are in particular:
+parameters, used to initialize a **lmfit.Parameter** object. The
+parameters that can be passed via this dictionary are in particular:
 value, vary, min, max and expr. Details on these parameters, and more
 generally on the **lmfit.Parameter** class can be found `in the lmfit
 documentation <https://lmfit.github.io/lmfit-py/parameters.html>`__.
@@ -234,9 +234,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>0</th>
           <td>k_1fw</td>
-          <td>0.101</td>
-          <td>0.00197</td>
-          <td>1.96</td>
+          <td>0.103</td>
+          <td>0.002</td>
+          <td>1.95</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -245,9 +245,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>1</th>
           <td>k_1bw</td>
-          <td>0.0199</td>
-          <td>0.000626</td>
-          <td>3.14</td>
+          <td>0.0211</td>
+          <td>0.000645</td>
+          <td>3.06</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -256,9 +256,9 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>2</th>
           <td>k_2</td>
-          <td>0.0199</td>
-          <td>0.000214</td>
-          <td>1.08</td>
+          <td>0.0197</td>
+          <td>0.000209</td>
+          <td>1.06</td>
           <td>0.1</td>
           <td>True</td>
           <td>0</td>
@@ -267,10 +267,10 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>3</th>
           <td>c0_A</td>
-          <td>1</td>
-          <td>0.00788</td>
-          <td>0.784</td>
-          <td>0.919</td>
+          <td>0.989</td>
+          <td>0.00758</td>
+          <td>0.767</td>
+          <td>0.965</td>
           <td>True</td>
           <td>0.5</td>
           <td>inf</td>
@@ -289,10 +289,10 @@ The fit results can be printed and plotted using respectively the
         <tr>
           <th>5</th>
           <td>c0_C</td>
-          <td>0.195</td>
-          <td>0.00453</td>
-          <td>2.32</td>
-          <td>0.185</td>
+          <td>0.204</td>
+          <td>0.0045</td>
+          <td>2.2</td>
+          <td>0.202</td>
           <td>True</td>
           <td>-inf</td>
           <td>inf</td>
