@@ -346,7 +346,8 @@ follow:</p>
 <h2>Load concentrations and charge passed evolution over time<a class="headerlink" href="#load-concentrations-and-charge-passed-evolution-over-time" title="Permalink to this headline">¶</a></h2>
 <p>Here three .csv files are used to get the measured evolution of HMF,
 DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
-.csv files are used for the charge passed over time.</p>
+.csv files are used for the charge passed over time. These files are
+loaded in an object of class <a class="reference internal" href="loading.html#data.Dataset" title="data.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">data.Dataset</span></code></a>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">data</span>
 
 <span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data/run</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -393,7 +394,8 @@ species (note that we need here to define an ordered dictionary):</p>
 </pre></div>
 </div>
 <p>With the data loaded, the model defined and the parameters / initial
-concentrations initialized we can proceed with the fit:</p>
+concentrations initialized we can proceed with the fit, using the
+function <a class="reference internal" href="fitting.html#fit.fit_dataset" title="fit.fit_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit.fit_dataset()</span></code></a>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">fit</span>
 
 <span class="n">fit</span><span class="o">.</span><span class="n">fit_dataset</span><span class="p">(</span>
@@ -414,7 +416,9 @@ concentrations initialized we can proceed with the fit:</p>
 <h2>Fit results<a class="headerlink" href="#fit-results" title="Permalink to this headline">¶</a></h2>
 <p>The fit results are summarized in the table below. Note that all the
 initial concentrations (parameters starting with the string “c0_”) are
-fixed so only the ks values are varying parameters in this fit.</p>
+fixed so only the ks values are varying parameters in this fit. The
+parameter values resulting from the fit can be printed using the
+function <a class="reference internal" href="fitting.html#fit.print_result" title="fit.print_result"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit.print_result()</span></code></a>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span><span class="o">.</span><span class="n">print_result</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -736,9 +740,10 @@ fixed so only the ks values are varying parameters in this fit.</p>
   </tbody>
 </table>
 </div><p>To assess the fit results the evolution of concentration over time and
-charge passed over time are plotted. For the concentrations evolution
-over time the lines correspond to the fit result and the points with
-errorbars to the experimental data.</p>
+charge passed over time are plotted, using respectively the functions
+<a class="reference internal" href="plotting.html#plot.plot_c" title="plot.plot_c"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot.plot_c()</span></code></a> and <a class="reference internal" href="plotting.html#plot.plot_q" title="plot.plot_q"><code class="xref py py-func docutils literal notranslate"><span class="pre">plot.plot_q()</span></code></a>. For the concentrations
+evolution over time the lines correspond to the fit result and the
+points with errorbars to the experimental data.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">chemical_kinetics</span> <span class="kn">import</span> <span class="n">plot</span>
 
 <span class="n">plot</span><span class="o">.</span><span class="n">plot_c</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;HMF&quot;</span><span class="p">])</span>

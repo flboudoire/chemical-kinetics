@@ -47,6 +47,8 @@ def export_notebooks(ipynb_files):
                     pattern = r'class\=\"(.*?)\"'
                     repl = r"class = 'docutils'"
                     clean_file +=  re.sub(pattern, repl, line)
+                elif any(s in line for s in [":mod:", ":func:", ":class:", ":meth:"]):
+                    clean_file += line.replace("``", "`")
                 else:
                     clean_file += line
 

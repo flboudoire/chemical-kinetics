@@ -209,7 +209,8 @@ Load concentrations and charge passed evolution over time
 
 Here three .csv files are used to get the measured evolution of HMF,
 DFF, HMFCA, FFCA and FDCA concentrations over time. Three additional
-.csv files are used for the charge passed over time.
+.csv files are used for the charge passed over time. These files are
+loaded in an object of class :class:`data.Dataset`:
 
 .. code:: python3
 
@@ -265,7 +266,8 @@ species (note that we need here to define an ordered dictionary):
     })
 
 With the data loaded, the model defined and the parameters / initial
-concentrations initialized we can proceed with the fit:
+concentrations initialized we can proceed with the fit, using the
+function :func:`fit.fit_dataset`:
 
 .. code:: python3
 
@@ -291,7 +293,9 @@ Fit results
 
 The fit results are summarized in the table below. Note that all the
 initial concentrations (parameters starting with the string “c0\_”) are
-fixed so only the ks values are varying parameters in this fit.
+fixed so only the ks values are varying parameters in this fit. The
+parameter values resulting from the fit can be printed using the
+function :func:`fit.print_result`:
 
 .. code:: python3
 
@@ -622,9 +626,10 @@ fixed so only the ks values are varying parameters in this fit.
 
 
 To assess the fit results the evolution of concentration over time and
-charge passed over time are plotted. For the concentrations evolution
-over time the lines correspond to the fit result and the points with
-errorbars to the experimental data.
+charge passed over time are plotted, using respectively the functions
+:func:`plot.plot_c` and :func:`plot.plot_q`. For the concentrations
+evolution over time the lines correspond to the fit result and the
+points with errorbars to the experimental data.
 
 .. code:: python3
 
